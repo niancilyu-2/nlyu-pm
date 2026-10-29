@@ -1,7 +1,7 @@
 {
   "name": "pm",
-  "version": "0.7.7",
-  "description": "Product discovery to PRD for product managers: research public sources and choose an opportunity (/pm:scout), build a clickable prototype (/pm:prototype), write a repository-grounded PRD with an independent read-only review (/pm:prd), and turn one of your own PM practices into a Claude skill (/pm:create-skill).",
+  "version": "0.8.0",
+  "description": "Product discovery to PRD for product managers: research public sources on your own project or repository (BYOP) or on one of five example open-source products and choose an opportunity (/pm:scout), build a clickable prototype (/pm:prototype), write a repository-grounded PRD with an independent read-only review (/pm:prd), and turn one of your own PM practices into a Claude skill (/pm:create-skill).",
   "author": {
     "name": "niancilyu-2",
     "url": "https://github.com/niancilyu-2"

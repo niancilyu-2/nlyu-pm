@@ -4,7 +4,52 @@ All notable changes to the `pm` plugin are recorded here. Bump `version` in
 `plugins/pm/.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`
 whenever a changed build is distributed, otherwise existing installs will not refresh.
 
-## 0.7.7 (unreleased)
+## 0.8.0 (unreleased)
+
+- Which product, asked up front. The first question `/pm:scout` asks (and readiness
+  check 7 offers in advance) is which product: *BYOP: bring your own project or repo*,
+  the normal path, or an example case to try the workflow on, *core* (Immich, Plane, Home
+  Assistant, or Umbraco; a second question picks the product) or *advanced* (ERPNext).
+  Example cases explain what a focus area is, then start research right after it is
+  chosen. Readiness and case selection never offer more than four
+  options per question, so all five example products are visible; the five-row table that
+  rendered as four options plus "type something" is gone.
+- BYOP. `/pm:scout` recognises when Claude was started inside a repository (in-repo mode)
+  and otherwise takes a URL, a local folder, or a zip. A new `custom-case.md` procedure
+  builds a case package at `.pm/case/` from any repository: README, tree, and manifest
+  read; persona, brief, and focus area asked; entry points proposed; research feeds
+  derived from the GitHub or GitLab remote and from the forum, app store, and
+  competitors the PM names; orientation and design notes written from the code with
+  Verified and Inferred labels; a case check-in before research. Before that, three
+  source questions: which built-in source groups to use (shown as a plain-words menu),
+  anything extra (public JSON, HTML, or RSS, a document in `.pm/inbox/`, a page to paste
+  from), and anything behind a sign-in the PM holds. The answers are written to
+  `.pm/sources.yaml` during the case build, so the research pass only confirms them. A
+  private URL works with the PM's existing credentials (Claude never asks for a token);
+  a zip without git history is read as an unpinned archive with a stamp-file change
+  check. About fifteen minutes before research starts.
+- Sources behind a sign-in (PM-held access). A paid report, a members-only forum, a help
+  centre behind single sign-on, or a private issue tracker can be read on any case
+  through access the PM holds and sets up themselves: a command-line tool they are
+  already signed in to (`gh`, `glab`) or an API key they export in their own shell and
+  name to Claude. Claude never asks for, prints, or stores a secret; the PM confirms their
+  account permits reading the content that way; items are labelled `Evidence (PM-held
+  access)` and listed in the brief. Support tickets, analytics or CRM exports, and
+  customer records stay out. CAPTCHA, paywall, and scraping limits are unchanged.
+- One case contract. `case-schema.md` states what all three kinds of case share
+  (example, BYOP-built, placed by hand). Every stage and the reviewer resolve the case
+  through `case.dir` and read code from `sources[].root`, so nothing downstream knows
+  which kind it is running on. Source protection compares the PM's own working tree
+  against a recorded baseline instead of requiring it to be clean, and never edits a
+  tracked file.
+- Source overrides on any case. The PM can add any public JSON, HTML, or RSS source, a
+  paste-from page, or a public document, drop keys or whole rungs, read some first, and
+  raise the budget; scout shows the source plan in plain words before the first fetch,
+  then asks. The brief lists what was added and dropped.
+- Terminal and API surfaces get a non-graphical prototype shape. Session schema 2, with
+  0.7.x files read as before.
+
+## 0.7.7
 
 - PRD opens with a five-sentence Summary for engineering; header splits status, approval,
   and revision; soft caps of 10 requirements and 15 criteria with one observable outcome

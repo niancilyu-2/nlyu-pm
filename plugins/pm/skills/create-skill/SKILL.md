@@ -121,6 +121,7 @@ published, or committed.
 - Original wording only. Do not copy structure or text from any third-party skill
   creator.
 - No scripts, subagents, integrations, custom metadata, or global installation.
-- Never modify the `pm` plugin or anything under `sources/`.
+- Never modify the `pm` plugin, anything under `sources/`, or a tracked file of the
+  repository when Claude is running inside the PM's own repository.
 - If the PM asks for a skill that needs logins, private data, or external
   services, help them narrow it to a version that works on pasted or public input.

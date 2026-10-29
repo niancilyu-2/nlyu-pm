@@ -7,10 +7,12 @@ the PM the error, offer to rebuild it from the approved output files, and record
 that you did so under `notes`.
 
 ```yaml
-schema: 1
-plugin_version: "0.1.0"          # from plugin.json at the time of setup
+schema: 2
+plugin_version: "0.8.0"          # from plugin.json at the time of setup
 created_at: "2026-10-01T09:12:00Z"
 workspace: "/absolute/path/to/workspace"
+workspace_mode: wrapper          # wrapper | in-repo              (see workspace.md)
+outputs_dir: outputs             # outputs | pm-outputs           (pm-outputs only when outputs/ was already in use)
 
 readiness:
   status: ready                  # ready | ready-with-fallback | blocked | not-run
@@ -26,19 +28,28 @@ readiness:
   notes: []
 
 case:
-  id: immich                     # null until chosen
+  id: immich                     # null until chosen; a slug for a BYOP case
+  source: prepared               # prepared | custom | provided   (shared rules section 10)
+  dir: "${CLAUDE_PLUGIN_ROOT}/cases/immich"   # or .pm/case
+  origin: null                   # BYOP only: the URL or local path the PM gave
   lane: backup-status-confidence # null until chosen
   chosen_at: "2026-10-01T09:20:00Z"
   preselected: true              # chosen during readiness; may be changed on the day
 
 sources:
   - role: primary                # primary | companion
-    owner_repo: immich-app/immich
-    clone_to: sources/primary
-    pinned_sha: 9994eb3bedc77a63e652cb4195d843433696d036
+    owner_repo: immich-app/immich   # null when there is no GitHub or GitLab remote
+    root: sources/primary        # where files are read: sources/primary, ".", or an absolute path
+    clone_to: sources/primary    # null for in-place sources
+    pinned_sha: 9994eb3bedc77a63e652cb4195d843433696d036   # null if the folder is not a git repository
     verified_sha: 9994eb3bedc77a63e652cb4195d843433696d036   # from git rev-parse HEAD after clone
-    method: sparse-clone         # sparse-clone | offline-copy
-    clean_at_start: true         # git status --porcelain empty at the start of the last stage
+    method: sparse-clone         # sparse-clone | shallow-clone | in-place | offline-copy | archive
+    access: public               # public | private   (private: cloned with the PM's own existing credentials)
+    archive_ref: null            # archive only: branch or tag and download date the PM gave
+    dirty_at_start: false        # in-place only: the working tree had uncommitted changes
+    baseline: ""                 # in-place only: porcelain output at stage start, plugin folders excluded
+    moved_to: null               # in-place only: HEAD at a later stage if it differs from pinned_sha
+    clean_at_start: true         # true | false | unknown
     clean_at_end: true
 
 stage:
@@ -75,7 +86,7 @@ stale: []                        # e.g. [prototype, prd]
 decisions:                       # append-only
   - id: D-001
     stage: discovery
-    checkin: research-check      # research-check | priority-check | flow-check | prototype-check | scope-check | handoff-check
+    checkin: research-check      # case-check | research-check | priority-check | flow-check | prototype-check | scope-check | handoff-check
     claude_recommended: "Coverage is thin on mobile backup; continue with framing X"
     pm_decided: "Continue; accept the gap"
     reason: "Gap is documented; enough to prototype"
@@ -84,11 +95,24 @@ decisions:                       # append-only
 notes: []                        # free-text events worth remembering, newest last
 ```
 
+Source overrides (added, dropped, or reordered research sources and a raised budget) live
+in a separate file, `.pm/sources.yaml`, written by `/pm:scout` from what the PM said (for
+BYOP, during the case build); its shape is in `research-guide.md`. An `add:` entry for a
+source behind a sign-in carries `access: pm-held` and an `auth:` hint (a variable name or
+tool name, never a value); the PM's terms confirmation for it is appended to `notes`. Each
+change is also appended to `notes` here.
+
+A file with `schema: 1` (written by plugin 0.7.x) is valid: treat a missing
+`workspace_mode` as `wrapper`, `outputs_dir` as `outputs`, `case.source` as `prepared`,
+`case.dir` as the plugin's case folder, `sources[].root` as `clone_to`, and `method:
+sparse-clone` as itself. Rewrite the file as `schema: 2` on the next write.
+
 ## Rules of ownership
 
 | Key | Written by |
 |---|---|
-| `schema`, `plugin_version`, `created_at`, `workspace`, `readiness`, `case`, `sources` | `/pm:scout` |
+| `schema`, `plugin_version`, `created_at`, `workspace`, `workspace_mode`, `outputs_dir`, `readiness`, `case`, `sources` | `/pm:scout` |
+| `sources[].baseline`, `clean_at_start`, `clean_at_end`, `moved_to` | any stage skill, at its start and end |
 | `stage`, `stale` | any stage skill that changes the current stage |
 | `stages.discovery` | `/pm:scout` |
 | `stages.prototype`, `readiness.design` | `/pm:prototype` |

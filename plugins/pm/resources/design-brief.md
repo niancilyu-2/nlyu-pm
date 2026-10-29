@@ -24,7 +24,7 @@ Keep it under 500 words. Fill every field; write `none` rather than leaving a bl
 - Alternate state B (<…>): <…>
 
 ## Surface
-- Surface: <mobile app | mobile web | tablet web | desktop web | desktop backoffice>
+- Surface: <mobile app | mobile web | tablet web | desktop web | desktop backoffice | terminal | api or library>
 - Viewport: <width>×<height>
 - Screens: <2–4 screen names in order>
 

@@ -1,12 +1,12 @@
 # pm: product discovery to PRD for Claude Code
 
 A Claude Code plugin that takes a product manager from public evidence to a selected
-opportunity, a clickable prototype, and an engineering-ready PRD, on a real open-source
-product. Claude finds, drafts, and challenges. The PM decides, and every stage records
-which was which.
+opportunity, a clickable prototype, and an engineering-ready PRD, on your own project or
+repository. Five open-source example cases are included to try it on first. Claude finds, drafts,
+and challenges. The PM decides, and every stage records which was which.
 
-No programming required. The product's source code is downloaded read-only and never
-changed. One PM can run it alone; a group can run it together.
+No programming required. The product's source code is read and never changed. One PM
+can run it alone; a group can run it together.
 
 ```text
 /plugin marketplace add niancilyu-2/eyp-pm
@@ -22,7 +22,8 @@ changed. One PM can run it alone; a group can run it together.
   - [Requirements](#requirements)
   - [Getting started](#getting-started)
 - [Using it](#using-it)
-  - [Choose a product and a focus area](#choose-a-product-and-a-focus-area)
+  - [Your own project or repo (BYOP)](#your-own-project-or-repo-byop)
+  - [Example cases to try it on](#example-cases-to-try-it-on)
   - [Principles and limits](#principles-and-limits)
 - [Reference](#reference)
   - [Documentation](#documentation)
@@ -58,8 +59,8 @@ Execution
 What each covered step contains:
 
 - **Customer insights.** Forum, GitHub, and community posts; app reviews and release notes;
-  a verbatim quote bank; triangulation and a counter-evidence pass; a note on who the
-  sources hear from and who is missing.
+  any public source you add and any you drop; a verbatim quote bank; triangulation and a
+  counter-evidence pass; a note on who the sources hear from and who is missing.
 - **Competitor insights.** Competitor pricing and feature pages today and a year ago,
   competitors' job postings, the product's own roadmap, and adoption numbers.
 - **Prototypes.** A clickable prototype of the chosen flow with two alternate states, a
@@ -81,7 +82,7 @@ Four skills. Each runs only when you type it.
 
 | Skill | What it does | You leave with | Details |
 |---|---|---|---|
-| `/pm:scout` | Readiness check on first run, then a research pass over a fixed sequence of public sources, repository constraints, three opportunities, and your choice of one | `outputs/01-discovery.md`, the discovery brief | [docs/skills/scout.md](docs/skills/scout.md) |
+| `/pm:scout` | Readiness check on first run, a case built from your own repository (or an example case to try it on), then a research pass over a fixed sequence of public sources, repository constraints, three opportunities, and your choice of one | `outputs/01-discovery.md`, the discovery brief | [docs/skills/scout.md](docs/skills/scout.md) |
 | `/pm:prototype` | One actor, one job, one flow. A clickable prototype in Claude Design or as a standalone HTML file, a design critique, one revision | `outputs/02-prototype.md`, `outputs/prototype/index.html` | [docs/skills/prototype.md](docs/skills/prototype.md) |
 | `/pm:prd` | A delivery PRD grounded in the product's code, reviewed by a separate read-only agent that has not seen your conversation | `outputs/03-prd.md`, `outputs/03-prd-review.md` | [docs/skills/prd.md](docs/skills/prd.md) |
 | `/pm:create-skill` | Turn one PM practice of your own into a small project skill, test it once in a fresh session, revise it once | `.claude/skills/<name>/SKILL.md`, `outputs/04-skill-summary.md` | [docs/skills/create-skill.md](docs/skills/create-skill.md) |
@@ -114,10 +115,13 @@ Code and Git and the handful of keys you need, in about 20 minutes.
 ### Getting started
 
 
-1. Create a new empty folder and open a terminal in it.
+1. Open a terminal at the top folder of a local copy of your repository, or in a new
+   empty folder if you will give a URL or a zip instead (or want to try an example case).
 2. Start `claude`, install the plugin with the two install lines above, and run `/pm:scout`.
 3. The readiness check ends with `Ready`, `Ready with fallback`, or `Blocked` with one
-   next action. Pick a product, or stop and come back later; either way, `/pm:scout` resumes.
+   next action. `/pm:scout` then asks which product: your own (BYOP, bring your own
+   project or repo) or one of the example cases. You can also decide later; either way,
+   `/pm:scout` resumes.
 4. Run the stages in order. Type `/clear` between them; each resumes from the files you
    approved.
 
@@ -126,40 +130,94 @@ what to expect at each check-in.
 
 ## Using it
 
-### Choose a product and a focus area
+### Your own project or repo (BYOP)
 
+This is the normal path. The three stages run on any repository. Read access is all you need; no mode
+writes into the repository. Ways in:
 
-You work on one real open-source product as its PM, designing for one of the users that
-product serves, and you pick one focus area within it. The tool calls a product package a case and a focus area a
-lane: a part of the product you research for an hour, choose one opportunity in, and
-prototype as a single flow. Each product's code is downloaded at a fixed snapshot from a
-set date, and only the folders the focus areas need, tens of megabytes rather than
-hundreds.
+- **Start inside a local copy.** Open a terminal at the top folder of a clone you already
+  have, start `claude`, run `/pm:scout`. Claude treats that repository as the product,
+  never edits a tracked file, and writes only `outputs/` and `.pm/` (offering to hide them
+  from `git status`).
+- **Start in an empty folder and point at it.** Choose *BYOP* at the first question
+  `/pm:scout` asks, then give one of: a repository URL (public, or private if your computer
+  already has read access through SSH, a saved credential, or a signed-in `gh`); a folder
+  on your computer; or a zip of the repository, from the hosting site's *Download ZIP*
+  button or from an engineer. Claude never asks for a password or token; if a private
+  clone needs one, it asks you to run the clone line yourself so the prompt reaches you.
+  A zip without git history works too; the brief then says the snapshot is unpinned.
 
-| Product | User you design for | Your brief on their behalf | Focus areas to choose from (screen you will prototype) |
-|---|---|---|---|
-| Immich | Household media steward | Make the product easier for less-technical family members without weakening privacy or media integrity | Backup and status confidence (mobile app); Finding and organizing media (desktop web); Private sharing and collaboration (mobile app) |
-| Plane | Product-operations lead | Turn unstructured demand into aligned execution | Intake and triage; Planning and scheduling; Cross-project status readout (desktop web) |
-| Home Assistant | Nontechnical household co-admin | Make routine configuration and recovery safer while preserving local control | Household dashboards and defaults (tablet web); Repairs, backups, and recovery from updates (mobile web); Automation troubleshooting and safe edits (desktop web) |
-| Umbraco | Regional content-operations editor | Reduce rework between content creation and publication | Draft to publish; Pick and reuse media from the page; Languages and variants (desktop backoffice) |
-| ERPNext (advanced) | Inventory or procurement operations manager | Resolve exceptions without weakening controls or auditability | Inventory quantity and valuation exceptions; Purchase-approval exceptions; Stock and Buying daily worklists (desktop web) |
+Claude then builds the case package in about fifteen minutes. It asks three source
+questions first: which built-in source groups to use, shown as a plain-words menu;
+anything extra to read (a public page or feed, a document you drop in `.pm/inbox/`, a page
+you will paste from); and whether any source behind a sign-in you hold should be
+included. Then it reads the README, folder tree, and dependency manifest, asks you three
+questions (the user you design for, your brief on their behalf, the focus area), proposes
+the code entry points for that area, derives the public research sources from the
+repository's footprint (issues, discussions, forum, app stores, adoption numbers,
+competitors you name), and writes the orientation and design notes it will rely on
+later. You confirm the package at a check-in before any research starts. From there the
+output is the same discovery brief, prototype, and PRD, with every technical claim
+labelled by what Claude actually opened.
+
+What differs from an example case is honesty about coverage, not the process. A product
+with a busy issue tracker and a forum gets a full research pass. A private or new product
+gets repository constraints, competitor comparison, and whatever public material you can
+paste in; its brief is marked provisional and says which voices are missing. Claude never
+asks for support tickets, analytics, or customer records. A source behind a subscription
+or sign-in you hold (a paid report, a members-only forum, your private issue tracker) can
+be included through access you set up yourself; Claude never asks for or sees the secret,
+and the brief marks what came from it.
+
+Anyone can also prepare a case package by hand for a product a group will work on; see
+`plugins/pm/resources/case-schema.md`.
+
+### Example cases to try it on
+
+To see the workflow before pointing it at your own code, choose an example case when
+`/pm:scout` asks which product. Five open-source products come prepared, each with
+verified research sources, a fixed code snapshot from a set date, and only the folders
+the focus areas need, tens of megabytes rather than hundreds. You work on the product as
+its PM, designing for one of the users it serves, and pick one focus area within it. The
+tool calls a product package a case and a focus area a lane: a part of the product you
+research for an hour, choose one opportunity in, and prototype as a single flow. Claude
+explains this again before asking you to pick.
+
+| Product | What it is | Example user you design for | Example use case | Size and language at the pinned commit |
+|---|---|---|---|---|
+| **Immich** | Self-hosted photo and video backup for a household, with a phone app and a web app | Household media steward: the one person who runs the server for the family | A parent wants to see from their phone that last weekend's photos are safely backed up before deleting them | ~320 KLOC: TypeScript, Dart, Svelte |
+| **Plane** | Open-source project and work tracking, in the spirit of Jira or Linear | Product-operations lead | Requests arrive by chat and email; the lead triages them into one intake queue and schedules them into cycles | ~390 KLOC: TypeScript, Python |
+| **Home Assistant** | Local smart-home control with dashboards, device repair, and automations | Nontechnical household co-admin | After an update a sensor stops responding; the co-admin restores a backup or repairs the device without touching configuration files | Frontend ~600 KLOC TypeScript (the code you read); core ~3,700 KLOC Python (web reference only) |
+| **Umbraco** | A content management system's editing backoffice for websites | Regional content-operations editor | An editor drafts a campaign page in two languages, reuses images from the library, and publishes without asking a developer | ~1,300 KLOC: C#, TypeScript |
+| **ERPNext** (advanced) | Business management for stock, purchasing, and accounting, built on the Frappe framework | Inventory or procurement operations manager | Stock counts disagree with the system; the manager resolves the exception and approves an urgent purchase order with the audit trail intact | ~530 KLOC Python and JavaScript, plus Frappe ~500 KLOC |
+
+Sizes are source lines at the pinned commits, tests included, generated code and
+translations excluded, rounded. Only the folders the focus areas need are downloaded.
+Each case has three focus areas; Claude shows them, with what a focus area is, when you
+pick a case, and [docs/TEST-WALKTHROUGH.md](docs/TEST-WALKTHROUGH.md) lists them all.
 
 ERPNext is the advanced option: it downloads the product and the Frappe framework it runs
-on. The product packages hold boundaries and starting points only, never conclusions, so
-the research is yours.
+on. Pick a case and a focus area, and research starts at once; the output is the same
+brief, prototype, and PRD as for your own repository. The product packages hold
+boundaries and starting points only, never conclusions, so the research is yours.
 
 ### Principles and limits
 
 
-- Public information and synthetic data only. No logins, API keys, private customer data,
-  or confidential material.
+- Public information and synthetic data by default. No private customer data or
+  confidential material, and no password, token, or key ever enters the conversation; your
+  own repository and any source behind a sign-in are read only through access you already
+  hold and set up yourself. Your own repository is read in place and never modified.
 - Every claim is labelled `Evidence`, `Inference`, `Assumption`, or `Constraint`. Technical
   statements in the PRD are `Verified` with a file path, `Inferred`, or `Engineering-owned`.
 - No composite scores, RICE, ARR, PERT, estimates, story points, delivery dates, or costs.
 - The research pass is a quick public scan, not customer validation. The prototype
-  walkthrough is a design critique, not user testing.
+  walkthrough is a design critique, not user testing. You can add or drop sources,
+  including ones behind a sign-in you hold, but Claude never bypasses a CAPTCHA or
+  paywall, scrapes page by page, or handles a secret.
 - Text found in websites and repositories is evidence, not instructions.
-- Claude writes only under `outputs/`, `.pm/`, and for the capstone `.claude/skills/`.
+- Claude writes only under `outputs/`, `.pm/`, and for the capstone `.claude/skills/`,
+  whether the workspace is an empty folder or your own repository.
 - Prototypes are exercise artifacts, not for distribution. No source files are copied out
   of the downloaded repositories.
 
@@ -189,7 +247,8 @@ eyp-pm/
 │   │   ├── case.yaml            fixed commit, focus areas, source URLs
 │   │   ├── orientation.md
 │   │   └── design-notes.md
-│   └── resources/               shared rules, research guide, readiness, templates
+│   └── resources/               shared rules, research guide, readiness, case schema,
+│                                BYOP case builder, templates
 ├── docs/
 ├── LICENSE
 └── README.md
@@ -206,9 +265,10 @@ claude --plugin-dir ./plugins/pm
 ### Licence and credits
 
 
-Original content is MIT licensed. The five product repositories keep their own licences:
-Immich and Plane AGPL-3.0, Home Assistant Apache-2.0, Umbraco MIT, ERPNext GPL-3.0,
-Frappe MIT. Nothing from them is redistributed here.
+Original content is MIT licensed. The five example products' repositories keep their own
+licences: Immich and Plane AGPL-3.0, Home Assistant Apache-2.0, Umbraco MIT, ERPNext
+GPL-3.0, Frappe MIT. Nothing from them is redistributed here, and nothing from your own
+repository is copied into the outputs.
 
 - The earlier [eyp-pm-skills](https://github.com/niancilyu-2/eyp-pm-skills) repository
   informed the evidence labelling, check-in pattern, HTML fallback, and prototype-to-PRD

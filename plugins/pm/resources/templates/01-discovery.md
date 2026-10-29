@@ -5,7 +5,7 @@
 | Status | draft / provisional / approved |
 | Product · focus area | <case id> · <lane id> |
 | User you design for · your brief | <persona> · <mandate> |
-| Code snapshot | <owner/repo @ short sha> (primary); <companion, if any> |
+| Code snapshot | <owner/repo or folder name @ short sha> (primary; add "working tree has uncommitted changes" if true); <companion, if any> |
 | Research window | <start> to <end> · fetches <n>/20 · searches <n>/8 |
 | Chosen opportunity | OPP-### |
 
@@ -67,7 +67,7 @@ Who we heard from: <3 or 4 sentences: which crowds the sources sample, and who i
 | Repository constraints | 2 | | | |
 
 Queries used: <exact search terms, one per line>
-Sources reached: <which kinds returned results; which were empty or unreachable>
+Sources reached: <which kinds returned results; which were empty or unreachable; sources added, dropped, or read with PM-held access>
 
 Triangulation (at most three decision-relevant themes):
 | Theme | Forum, GitHub | Lemmy, Mastodon, HN | Reviews | Numbers, competitors, official | Recurrence (recurring / concentrated / isolated) | Same crowd? | Counter-evidence (SIG-### or "looked, none") |

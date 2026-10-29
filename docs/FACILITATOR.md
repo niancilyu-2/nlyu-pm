@@ -34,6 +34,13 @@ short saves a file marked provisional rather than a fabricated one.
   403 or 429.
 - Zip each case's `sources/` folders from a completed readiness run in case the venue
   network blocks GitHub. Scout accepts a copy and verifies the pinned commit.
+- Decide whether participants work on an example case or on a product of your own. For
+  your own product, either let each participant choose *BYOP* against the same URL (each
+  builds their own case and answers the source questions, about fifteen minutes; their
+  choices live in their own `.pm/sources.yaml`), or prepare one case package in advance by
+  following `plugins/pm/resources/case-schema.md` and have participants place it at
+  `.pm/case/` in their workspace; scout offers it first and records it as provided. A
+  prepared package saves the fifteen minutes and gives everyone the same feeds.
 - Decide whether to allow the Reddit switch. Claude Code's fetch tool refuses reddit.com;
   the only path is one `curl` of a subreddit RSS feed, off by default. If you allow it,
   tell participants to say so when scout asks, and it records `reddit_rss: true`.

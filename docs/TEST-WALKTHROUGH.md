@@ -9,7 +9,7 @@ Not installed yet? Do [SETUP.md](SETUP.md) first.
 
 ## 1. Start
 
-Open a terminal in your `pm-workshop` folder and type `claude`.
+Open a terminal in your `pm-workspace` folder (or, for BYOP, at the top folder of your repository) and type `claude`.
 
 ## 2. Readiness
 
@@ -20,7 +20,7 @@ Type `/pm:scout`. On the first run it:
 3. opens a test page in your browser and asks whether it appeared
 4. fetches one public page and tries one web search
 5. asks you to type `/design` and say what happened
-6. offers to pick your case now so the download happens today
+6. offers to choose BYOP or an example case now so the download happens today
 7. prints `Ready`, `Ready with fallback`, or `Blocked`
 
 Choose *stop after setup* to continue another day, or *continue* to go straight on.
@@ -29,9 +29,12 @@ From here every reply ends with a status line:
 `Scout · step 5/10 · fetches 6/20 · searches 0/8 · items 5 · quotes 3/8 · 14 min · sources clean`.
 If it ever says `sources CHANGED`, stop and note the step.
 
-## 3. Pick a case and lane
+## 3. Pick a track, a case, and a lane
 
-Fifteen combinations. Core cases are easier. ERPNext downloads two repositories.
+The first question is BYOP (bring your own project or repo) or an example case. Five
+example cases with three lanes each, fifteen combinations. Core cases are easier; ERPNext
+downloads two repositories. Core takes two clicks (core, then the product); BYOP and
+ERPNext take one.
 
 | Case | You play | Lane | Prototype screen | Download |
 |---|---|---|---|---|
@@ -58,10 +61,26 @@ no GitHub Discussions board.
 
 Fullest research demo: Immich or Home Assistant. Quickest run: Plane, Intake and triage.
 
+**BYOP.** Either start `claude` at the top folder of a local copy of your repository
+(Claude asks you to confirm it is the product), or choose *BYOP* at the first question and
+give a repository URL, a folder path, or a zip file. Read access is enough; a private URL
+works if your computer is already signed in, and otherwise Claude asks you to run the
+clone line yourself or to use a zip. Claude then asks which built-in source groups to use,
+whether there is anything else to read, and whether any source behind a sign-in you hold
+should be included, and writes your answers to `.pm/sources.yaml`. It reads the README and
+folder tree, asks who you design for, what your brief is, and which focus area, proposes
+the code entry points, lists which research sources exist for this product, and shows the
+package at a **case check-in**. About fifteen minutes before research starts. Nothing in your repository
+is modified; `outputs/` and `.pm/` are the only new folders, and Claude offers to hide
+them from `git status`.
+
 ## 4. Discovery: `/pm:scout` (60 min)
 
-Claude asks for the case, then the lane, gives a short tour, downloads the repository,
-and asks for two or three search words. Then it works through the sources in order: forum,
+Claude asks for the track, the case, then the lane, gives a short tour, downloads the
+repository, asks for two or three search words, shows the list of sources it will read in
+order with who each one hears from and what does not exist for this product (for BYOP,
+the list you confirmed when the case was built), and asks once whether to add or skip any (say "no" to take the list as shown; say "also read the Stack Overflow
+tag" or "skip app reviews" to change it, now or at any later point). Then it works through the sources in order: forum,
 GitHub discussions by upvotes, GitHub issues by reactions, Lemmy, Mastodon, Hacker News,
 App Store reviews, adoption numbers, competitor pages against their copy from a year ago,
 release notes. It shows one number or quote per source and collects user quotes as it
@@ -145,7 +164,8 @@ Files: `.claude/skills/<name>/SKILL.md`, `outputs/04-skill-summary.md`.
 | A source returns 403 or 429 | Claude logs a gap and moves on |
 | Path-too-long error on Windows | `git config --global core.longpaths true`, then `/pm:scout` |
 | `/design` does nothing | Claude uses the HTML path |
-| `sources CHANGED` in the status line | Stop and note the step |
+| `sources CHANGED` in the status line | Stop and note the step. In your own repository, it may be your own edit in another window; Claude asks before assuming |
+| BYOP and most research sources are empty | Expected for a private or new product. Claude says so up front, uses the code, competitors, anything you paste, and any source you set up with your own sign-in, and marks the brief provisional |
 | Lost your place | `/clear`, then the current stage command. It resumes from the files |
 | Capstone skill not in `/skills` | Test from a new session in the same folder. The folder name must match the `name` line in the file |
 
@@ -157,5 +177,6 @@ Per stage:
 2. One thing Claude did that helped, one decision you kept.
 3. Anything confusing or wrong, with the step number.
 
-Send the files in `outputs/` if you can. They contain only public information and made-up
-data.
+Send the files in `outputs/` if you can. They contain public information and made-up
+data, plus items marked `PM-held access` if you added a source behind a sign-in; check
+those before sharing.

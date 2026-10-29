@@ -29,7 +29,8 @@ rules section 9 (`PRD · step n/7 · REQ · AC · findings · minutes · sources
 - Read `.pm/session.yaml`. Stop with the next action if `stages.discovery.status` or
   `stages.prototype.status` is not `approved`, or if `prd` is in `stale`.
 - Read `outputs/01-discovery.md`, `outputs/02-prototype.md`, `outputs/prototype/index.html`,
-  the case `case.yaml`, and the lane entry points.
+  the case `case.yaml` from the case folder in `session.yaml` (shared rules section 10),
+  and the lane entry points.
 - If `stages.prd.status` is `in-progress` or `approved`, offer Resume or Restart.
 - Source check; record `clean_at_start`. Set `stage.current: prd`,
   `stages.prd.status: in-progress`.
@@ -38,8 +39,10 @@ rules section 9 (`PRD · step n/7 · REQ · AC · findings · minutes · sources
 
 Starting from the lane's `repo_entry_points` and the prototype's repository references,
 locate the files most likely to change for this flow: UI components, state or data
-handling, permission checks, API routes or service calls. For each, record the path at the
-pinned commit and what you actually saw. Label each item `Verified` only if you opened the
+handling, permission checks, API routes or service calls. Paths are relative to the
+primary source root (`sources[].root`). For each, record the path at the pinned commit
+(or at the current commit, named, when the PM's own working tree has moved or has
+uncommitted changes) and what you actually saw. Label each item `Verified` only if you opened the
 file in this session. Anything you did not open is `Inferred`. Before writing, reopen every
 `CON-###` from the discovery file at its path and line range and confirm the quoted line is
 there; if it is not, relabel that constraint `Inferred`, say so, and add an `OPEN-###`
@@ -93,8 +96,12 @@ conversation, so the prompt must contain:
 
 - Absolute paths of `outputs/01-discovery.md`, `outputs/02-prototype.md`,
   `outputs/03-prd.md`, `outputs/prototype/index.html`.
-- Absolute paths of each cloned source folder and its pinned SHA.
-- Case id, lane id, selected `OPP-###`.
+- Absolute path of each source root (a clone under `sources/`, or the repository itself
+  in in-repo mode) and its pinned SHA, with a note when the working tree has uncommitted
+  changes. In in-repo mode tell the reviewer it must not read `outputs/` or `.pm/` as
+  product code and must not open anything outside the given paths.
+- Case id, lane id, selected `OPP-###`, and whether the case is an example case or BYOP
+  (the PM's own repository).
 - The full text of `${CLAUDE_PLUGIN_ROOT}/resources/prd-review-checklist.md`.
 - The instruction to return findings in the checklist's output format and to write no files.
 

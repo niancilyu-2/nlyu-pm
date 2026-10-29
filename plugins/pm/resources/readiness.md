@@ -15,10 +15,14 @@ Report only one of three words, then the next action:
 ## Checks, in order
 
 1. **Plugin version.** Read `${CLAUDE_PLUGIN_ROOT}/.claude-plugin/plugin.json` and say
-   "You are running the pm plugin version X." (Facilitators use this to spot stale installs.)
-2. **Workspace folder.** Apply the folder checks in `workspace.md`. Create `.claude/skills/`,
-   `outputs/prototype/`, `sources/`, and `.pm/`. Write `.pm/session.yaml` with
-   `readiness.status: not-run` if it does not exist.
+   "You are running the pm plugin version X." (This is how a stale install is spotted.)
+2. **Workspace folder and mode.** Apply the folder checks in `workspace.md` to decide
+   between wrapper mode (an empty folder; an example case, or BYOP by URL, path, or zip)
+   and in-repo mode (the PM started inside their own repository, which is BYOP). In in-repo mode confirm
+   with the PM that this repository is the product. Create `.claude/skills/`,
+   `outputs/prototype/`, `.pm/`, and in wrapper mode `sources/`. Write `.pm/session.yaml`
+   with `readiness.status: not-run`, `workspace_mode`, and `outputs_dir` if it does not
+   exist.
 3. **Git.** Run `git --version`. Missing git is `Blocked`; the next action is to install
    Git for Windows or Xcode command-line tools, then rerun.
 4. **Open a local HTML file.** Write a tiny file `outputs/readiness.html` (one heading that
@@ -29,10 +33,10 @@ Report only one of three words, then the next action:
    tell them they can double-click the file in their file manager later. Delete the file
    afterwards.
 5. **Public web, two parts.** First, fetch one JSON feed you can verify, for example
-   `https://hn.algolia.com/api/v1/search?query=immich&tags=story&hitsPerPage=1`. If the
+   `https://hn.algolia.com/api/v1/search?query=open%20source&tags=story&hitsPerPage=1`. If the
    fetch tool is unavailable or denied, record `web: unavailable`; this is `Blocked`
    unless an offline research pack has been provided. Second,
-   run one web search (for example `immich backup`). If it works, record `search: ok`. If
+   run one web search (for example the product's name plus one word). If it works, record `search: ok`. If
    it returns a policy or permission error, record `search: unavailable` and put the error
    text in `notes` only. In the reply say one plain line ("Web search is switched off for
    your account; research still works") instead of showing the error. This is a warning,
@@ -48,10 +52,22 @@ Report only one of three words, then the next action:
    line and tell you what happened: a design tool started (`available`), an "unknown
    command" message appeared (`unavailable`), or they are unsure (`unknown`). Record it.
    `unavailable` or `unknown` means `Ready with fallback`, never `Blocked`.
-7. **Pre-select a case (optional).** Show the five cases in one short table (name, persona,
-   one-line mandate). Offer to pick one now so its repository can be downloaded today;
-   they may change their mind on the day. If they pick, run the clone procedure in
-   `workspace.md` and record `case.preselected: true`. If they decline, skip.
+7. **Choose the track (optional pre-selection).** In in-repo mode the product is already
+   known: say "BYOP: this repository", record `case.source: custom`, and skip to step 8;
+   the case itself is built when Discovery starts. In wrapper mode ask the fork question
+   from `/pm:scout` Step 2 (header `Product`, "Which product do you want to work on?")
+   with its three options, BYOP, example case core, example case advanced, plus a fourth,
+   **Decide later** (nothing downloads today; `/pm:scout` asks again when Discovery
+   starts). Say that picking now means the code downloads today and that they may change
+   their mind on the day. No table in the reply.
+   - Example case: core asks the second question with the four core products, as in
+     `/pm:scout` Step 2; advanced is ERPNext. Run the clone procedure in `workspace.md` and
+     record `case.id`, `case.source: prepared`, `case.dir`, and `case.preselected: true`.
+   - BYOP: ask the question in `custom-case.md` Step A (URL, folder, or archive; its
+     fourth option returns to this fork), record `case.source: custom`, the URL or path
+     under `case.origin`, and `case.preselected: true`. The clone, the source questions,
+     and the case package are built when Discovery starts.
+   - Decide later: skip.
 8. **Save.** Write `readiness` into `session.yaml` with `checked_at`, set
    `stage.current: setup`, and print the result line.
 

@@ -105,6 +105,26 @@ Adjust `.frame` to the lane viewport (for example `1440px × 900px`; for desktop
 drop the fixed frame and use the full window with a max-width). Replace neutral tokens with
 values you verified in the repository, and list the source paths in `02-prototype.md`.
 
+## Non-graphical surfaces (terminal, API or library)
+
+A product with no screens still gets a clickable prototype of the same shape: one main
+path, two alternate states, synthetic data, one file. What changes is what a "screen" is.
+
+- **Terminal.** Each step is a panel showing the command the actor types and the output
+  they see, in a monospace block, with a short caption in plain words above it. The main
+  action is a button labelled with the command ("Run `tool sync --dry-run`"). Alternate
+  states are the empty result and the error output with its recovery hint. Use the
+  1200×800 frame and a light background; do not imitate a particular terminal theme.
+- **API or library.** Each step is a panel with the request (or call) on the left and the
+  response on the right, both synthetic, with a one-line caption saying what the actor
+  learns from it. Alternate states are an empty collection and an error response with the
+  field or permission that caused it. A short "what the developer sees in their editor"
+  panel is acceptable for a library when the flow is about discoverability.
+
+Everything else in the contract holds: no network, buttons not divs, focus moves to the
+new panel's heading, `role="alert"` on the error, the badge in the corner. The walkthrough
+checklist below applies unchanged; "labels" means captions and command names.
+
 ## Walkthrough checklist (PM design critique, not customer validation)
 
 Go through the main path once and each alternate state once, and check:

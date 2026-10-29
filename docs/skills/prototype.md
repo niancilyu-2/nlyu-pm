@@ -25,6 +25,8 @@ skill stops and asks you to rerun discovery first.
 2. **Flow check-in.** You approve or edit the flow before anything is built.
 3. **Read the product's design.** Claude reads the repository's design tokens, shared
    components, and layouts, read-only, and notes what it verified against what it inferred.
+   A product with no screens (a command-line tool, an API, a library) gets the same flow
+   shown as a stepped transcript or request walkthrough.
 4. **Design brief.** One page: context, the flow, the screen size, the look to follow,
    synthetic data, what is out of scope, and the file contract. Both build paths start from
    it.

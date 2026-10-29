@@ -85,7 +85,9 @@ Leave Shift+Tab alone. It changes permission modes.
 
 ## 7. Workshop folder and plugin
 
-1. Create an empty folder called `pm-workshop` on your Desktop.
+1. Pick the folder. Example cases: create an empty folder called `pm-workspace` on your
+   Desktop. BYOP (bring your own project or repo): use the top folder of a local copy of
+   your repository, or an empty folder if you will give a URL or a zip instead.
 2. Open a terminal in it. Windows: right-click the folder, *Open in Terminal*. macOS:
    right-click the folder, *New Terminal at Folder*.
 3. Type `claude`. Say yes to trusting the folder.
@@ -99,7 +101,8 @@ Leave Shift+Tab alone. It changes permission modes.
 5. Type `/` and confirm `/pm:scout` is in the list.
 6. Type `/pm:scout`. It runs a readiness check and ends with `Ready`, `Ready with
    fallback`, or `Blocked`. For `Blocked`, do the action it prints and run `/pm:scout`
-   again.
+   again. It also asks whether you want BYOP or an example case; answer now so the code
+   downloads today, or choose *decide later*.
 7. When asked, choose *stop after setup*.
 
 ## Checklist
@@ -111,7 +114,7 @@ Leave Shift+Tab alone. It changes permission modes.
 
 ## On the day
 
-Open a terminal in `pm-workshop`, type `claude`, then:
+Open a terminal in the folder you picked in step 7 (`pm-workspace`, or your repository), type `claude`, then:
 
 | Stage | Type |
 |---|---|

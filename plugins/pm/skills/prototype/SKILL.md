@@ -29,7 +29,8 @@ rules section 9 (`Prototype · step n/11 · path · revision · minutes · sourc
   `provisional: true` still counts), or `prototype` is listed in `stale`, stop and say which
   skill to run.
 - Read `outputs/01-discovery.md`, the selected `OPP-###`, and the case's `case.yaml`,
-  `design-notes.md`, and lane entry (surface, viewport, `repo_entry_points`).
+  `design-notes.md`, and lane entry (surface, viewport, `repo_entry_points`), from the
+  case folder named in `session.yaml` (shared rules section 10).
 - If `stages.prototype.status` is `awaiting-design`, skip to **Step 6b (resume after
   Design)**. If `in-progress` or `approved`, offer Resume or Restart.
 - Run the source check and record `clean_at_start`. Set `stage.current: prototype`,
@@ -63,9 +64,11 @@ components, layouts, and public UI references. Read only the paths and URLs the 
 notes list. When a design system lives in another repository, fetch only the exact URLs
 given there; never guess a path from a package name. If a fetch returns 404, do not try
 variants: use neutral defaults from `prototype-html-guide.md` and record the gap in
-section 6 of the notes. Note what you actually verified (paths at
-the pinned commit) versus what you are inferring. Do not copy source files into
-`outputs/`. Run nothing.
+section 6 of the notes. For a BYOP case the design notes were written by Claude from the
+code; re-open the paths marked Verified and treat the rest as Inferred. If the
+notes say "no visual system in the repository", use the neutral defaults and say so.
+Note what you actually verified (paths at the pinned commit) versus what you are
+inferring. Do not copy source files into `outputs/`. Run nothing.
 
 ## Step 4: Write the design brief
 
@@ -116,7 +119,9 @@ Check for `outputs/prototype/index.html`.
 Build `outputs/prototype/index.html` yourself following
 `${CLAUDE_PLUGIN_ROOT}/resources/prototype-html-guide.md`: one file, no network, no
 build step, lane viewport, main path clickable end to end, both states reachable,
-keyboard-usable, synthetic data, "Prototype · synthetic data" badge. Use verified tokens
+keyboard-usable, synthetic data, "Prototype · synthetic data" badge. For a `terminal` or
+`api or library` surface follow the guide's non-graphical section: the same main path and
+two states, shown as a stepped transcript or request walkthrough. Use verified tokens
 and patterns from Step 3 and list them in section 6 of the notes. Set
 `stages.prototype.path: html-fallback`. Open the file for the PM (`start`,
 `open`, or `xdg-open`).

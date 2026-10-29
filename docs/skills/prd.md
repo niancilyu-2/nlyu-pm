@@ -31,8 +31,9 @@ missing or stale, the skill stops and says which one to rerun.
 3. **Scope check-in**, in two short turns. First the problem, quotes, goals, and non-goals.
    Then behaviour, states, and acceptance criteria as yes or no items. You approve or edit,
    and you pick which two quotes go in.
-4. **Independent review.** Claude sends the files, the code paths, and a checklist to a
-   reviewer agent that has not seen the conversation and can only read. It checks
+4. **Independent review.** Claude sends the files, the source roots (a clone, or your own
+   repository), and a checklist to a reviewer agent that has not seen the conversation and
+   can only read. It checks
    traceability, unsupported technical claims, quote provenance, missing states or
    permissions, untestable criteria, scope conflicts, delivery risks, and blocking open
    questions.

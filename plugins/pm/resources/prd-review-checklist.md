@@ -1,8 +1,9 @@
 # PRD review checklist (passed to `pm:prd-reviewer`)
 
 The reviewer does not see the conversation. `/pm:prd` sends it: the paths of
-`outputs/01-discovery.md`, `outputs/02-prototype.md`, `outputs/03-prd.md`, the cloned
-source folders, the case id and lane, the selected opportunity ID, and this checklist.
+`outputs/01-discovery.md`, `outputs/02-prototype.md`, `outputs/03-prd.md`, the source
+roots with their commits, the case id and lane, the selected opportunity ID, and this
+checklist.
 The reviewer reads only; it returns findings as text. `/pm:prd` writes them to
 `outputs/03-prd-review.md`.
 
@@ -19,8 +20,8 @@ The reviewer reads only; it returns findings as text. `/pm:prd` writes them to
    `01-discovery.md` section 4b with a URL, and the wording matches that entry. Flag any
    quote that appears only in the PRD or differs from the bank.
 4. **Unsupported technical claims.** Every technical statement is labelled `Verified`,
-   `Inferred`, or `Engineering-owned`. For `Verified`, open the cited path in `sources/` and
-   confirm it exists and says what the PRD claims. For every `CON-###`, check that it names a
+   `Inferred`, or `Engineering-owned`. For `Verified`, open the cited path under the source
+   root given in the prompt and confirm it exists and says what the PRD claims. For every `CON-###`, check that it names a
    path, a line range, a quoted line, and the status "to confirm with engineering"; flag any
    that do not. Flag invented file names, APIs, or data
    models. Flag estimates, story points, delivery dates or deadlines, or costs anywhere in the
