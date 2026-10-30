@@ -161,7 +161,6 @@ Suggested time budget per stage:
 | Prototype (`/pm:prototype`) | 60 |
 | PRD (`/pm:prd`) | 45 |
 | Capstone (`/pm:create-skill`) | 30 |
-| Breaks and buffer | 30 |
 
 ## 9. Usage line
 

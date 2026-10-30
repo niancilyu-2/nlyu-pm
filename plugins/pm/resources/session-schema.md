@@ -34,7 +34,7 @@ case:
   origin: null                   # BYOP only: the URL or local path the PM gave
   lane: backup-status-confidence # null until chosen
   chosen_at: "2026-10-01T09:20:00Z"
-  preselected: true              # chosen during readiness; may be changed on the day
+  preselected: true              # chosen during readiness; may be changed when Discovery starts
 
 sources:
   - role: primary                # primary | companion

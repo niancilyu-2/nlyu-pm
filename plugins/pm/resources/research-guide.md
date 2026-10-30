@@ -64,8 +64,8 @@ the coverage table:
 - `github_issues_top`: the GitHub search API ranked by thumbs-up reactions. Read
   `total_count`, then the top items. Open the `html_url` of anything you cite. If the case
   also has `github_issues_top_companion`, run it once too.
-  The API allows about 60 calls an hour per network address, shared by everyone on the
-  venue wifi. If it returns 403 or 429, switch to `github_issues_top_html` (and the
+  The API allows about 60 calls an hour per network address, shared by everyone behind
+  the same address. If it returns 403 or 429, switch to `github_issues_top_html` (and the
   companion `_html` variant): same order, but the list hides reaction counts, so open the
   two or three issues you cite and take the counts from their pages. Do not retry the API.
 - `gitlab_issues_top`: for a product hosted on gitlab.com, the issues API ordered by

@@ -1,9 +1,8 @@
 # Test walkthrough
 
 How to run the whole flow yourself. Readiness and Discovery take about 75 minutes. The
-three workshop stages take about three hours; the capstone is a 30-minute exercise you do
-afterwards. Everything Claude produces lands in files you can open in
-any text editor.
+three product stages take about three hours; the capstone is an independent 30-minute
+exercise. Everything Claude produces lands in files you can open in any text editor.
 
 Not installed yet? Do [SETUP.md](SETUP.md) first.
 
@@ -136,11 +135,10 @@ Engineering-owned; no estimates, delivery dates, or story points; status reads
 
 Files: `outputs/03-prd.md`, `outputs/03-prd-review.md`. Type `/clear`.
 
-## 7. Capstone: `/pm:create-skill` (30 min, on your own after the workshop)
+## 7. Capstone: `/pm:create-skill` (30 min, any time)
 
-The facilitator demonstrates this stage on the day; you run it yourself afterwards in the
-same folder. Independent of the other stages. Bring one repeated task from your job, or paste a
-checklist you already use.
+Independent of the other stages; run it in the same folder whenever you like. Bring one
+repeated task from your job, or paste a checklist you already use.
 
 Claude asks four questions, shows a proposed skill at the **scope check-in**, then writes
 `.claude/skills/<name>/SKILL.md` and validates it. Claude Code asks permission before
@@ -157,7 +155,7 @@ Files: `.claude/skills/<name>/SKILL.md`, `outputs/04-skill-summary.md`.
 
 | You see | Do |
 |---|---|
-| `/pm:` commands missing | `/plugin marketplace update eyp-pm`, then `/plugin install pm@eyp-pm` |
+| `/pm:` commands missing | `/plugin marketplace update nlyu`, then `/plugin install pm@nlyu` |
 | Repeated permission prompts | Choose the option that stops asking for the session |
 | `Blocked` | Do the action printed, then `/pm:scout` again |
 | Web search policy error | Continue. Send the error text to whoever manages your account |
@@ -169,14 +167,14 @@ Files: `.claude/skills/<name>/SKILL.md`, `outputs/04-skill-summary.md`.
 | Lost your place | `/clear`, then the current stage command. It resumes from the files |
 | Capstone skill not in `/skills` | Test from a new session in the same folder. The folder name must match the `name` line in the file |
 
-## 9. Report back
+## 9. Feedback
 
-Per stage:
+If you want to report how a run went, open an issue on GitHub with, per stage:
 
 1. Finished? How long?
 2. One thing Claude did that helped, one decision you kept.
 3. Anything confusing or wrong, with the step number.
 
-Send the files in `outputs/` if you can. They contain public information and made-up
+Attach files from `outputs/` if you can. They contain public information and made-up
 data, plus items marked `PM-held access` if you added a source behind a sign-in; check
 those before sharing.

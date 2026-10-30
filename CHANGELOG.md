@@ -6,6 +6,9 @@ whenever a changed build is distributed, otherwise existing installs will not re
 
 ## 0.8.0 (unreleased)
 
+- Repository renamed to `nlyu`; install lines updated. The group-run page is removed and
+  all wording is product-neutral: the plugin and its docs address a PM working alone or
+  with a team.
 - Which product, asked up front. The first question `/pm:scout` asks (and readiness
   check 7 offers in advance) is which product: *BYOP: bring your own project or repo*,
   the normal path, or an example case to try the workflow on, *core* (Immich, Plane, Home
@@ -113,20 +116,19 @@ whenever a changed build is distributed, otherwise existing installs will not re
 
 ## 0.6.1
 
-- The plugin no longer refers to a workshop, participants, or a facilitator anywhere. It
-  addresses the PM directly, the stop-after-setup prompt says "continue later", the Reddit
-  feed is a PM opt-in, and offline repository copies replace facilitator copies. All
-  workshop material lives in `docs/FACILITATOR.md`.
+- The plugin addresses the PM directly throughout, the stop-after-setup prompt says
+  "continue later", the Reddit feed is a PM opt-in, and offline repository copies replace
+  shared copies. Group-run material moved out of the plugin into the docs.
 
 ## 0.6.0
 
 - Repositioned as a distributable skill package. README is a package front page with a
-  flow diagram and a traceability diagram; facilitation material moved to
-  `docs/FACILITATOR.md`. Manifest descriptions updated.
+  flow diagram and a traceability diagram; group-run material split out of the README.
+  Manifest descriptions updated.
 
 ## 0.5.1
 
-- README rewritten as a participant-facing front page.
+- README rewritten as a PM-facing front page.
 - Start time is written into the stage draft and re-read after a resume, so elapsed minutes
   survive a restart. Replies follow the same no-dash, no-arrow rule as files. Walkthrough
   notes the permission prompt when the capstone writes its skill file.
@@ -141,12 +143,12 @@ whenever a changed build is distributed, otherwise existing installs will not re
 
 ## 0.4.2
 
-- Android reviews: `play_store_page` per case with an Android app; the participant pastes
-  reviews from the browser and Claude logs them as participant-pasted evidence.
+- Android reviews: `play_store_page` per case with an Android app; the PM pastes
+  reviews from the browser and Claude logs them as PM-pasted evidence.
 
 ## 0.4.1
 
-- Capstone repositioned as a facilitator demo and take-home exercise; time budget adjusted.
+- Capstone repositioned as an independent take-home exercise; time budget adjusted.
 
 ## 0.4.0
 
@@ -161,12 +163,12 @@ whenever a changed build is distributed, otherwise existing installs will not re
 
 ## 0.3.1
 
-- Fixes from a cold-read review and a simulated participant run: drafts live in
+- Fixes from a cold-read review and a simulated PM run: drafts live in
   `.pm/drafts/` and are promoted on approval; clone reuse and case-switch handling; fetch
   budget arithmetic for competitor comparisons; coverage-based stop rule; schema and
   ownership corrections; plain-language definitions for repository, pinned commit, sources
   clean, and rung; check-ins capped at about 300 words and the PRD scope check split in two;
-  record only observed participant actions; quote answers verbatim.
+  record only observed PM actions; quote answers verbatim.
 
 ## 0.3.0
 
@@ -181,11 +183,11 @@ whenever a changed build is distributed, otherwise existing installs will not re
   search JSON, GitHub discussions and reaction-ranked issues, Lemmy, Mastodon tags, Hacker
   News, Apple App Store review feeds, adoption counts, Wayback competitor snapshots).
 - Triangulation table in the discovery file and research check-in.
-- Readiness tests web search separately from fetch and records a Reddit RSS facilitator switch.
+- Readiness tests web search separately from fetch and records a Reddit RSS opt-in switch.
 - Usage line at the end of every reply: stage, step, budget used, elapsed time, source status.
 
 ## 0.1.0
 
-- Initial workshop kit: `/pm:scout`, `/pm:prototype`, `/pm:prd`, `/pm:create-skill`.
+- Initial release: `/pm:scout`, `/pm:prototype`, `/pm:prd`, `/pm:create-skill`.
 - Read-only `pm:prd-reviewer` agent.
 - Five case packages: Immich, Plane, Home Assistant, Umbraco, ERPNext.

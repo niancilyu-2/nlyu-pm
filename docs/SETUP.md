@@ -1,16 +1,15 @@
 # Setup
 
-Do this before the workshop. It takes about 20 minutes. If you get stuck, note the step
-number and ask the facilitator.
+Do this once before your first run. It takes about 20 minutes. If you get stuck, note the
+step number and check the Problems table at the end.
 
 Claude Code is Claude running in a text window on your laptop. You type in plain English
-and it replies in the same window. For the workshop you will type a few commands that
-start with a slash, such as `/pm:scout`, and answer questions in ordinary sentences.
+and it replies in the same window. You will type a few commands that start with a slash, such as `/pm:scout`, and answer questions in ordinary sentences.
 
 ## 1. Account
 
 You need a Claude Pro, Max, Team, or Enterprise account. If your company provides Claude,
-the facilitator will tell you which sign-in to use.
+use that sign-in.
 
 ## 2. Open a terminal
 
@@ -83,7 +82,7 @@ Pick the option that stops asking for the session.
 
 Leave Shift+Tab alone. It changes permission modes.
 
-## 7. Workshop folder and plugin
+## 7. Workspace folder and plugin
 
 1. Pick the folder. Example cases: create an empty folder called `pm-workspace` on your
    Desktop. BYOP (bring your own project or repo): use the top folder of a local copy of
@@ -94,8 +93,8 @@ Leave Shift+Tab alone. It changes permission modes.
 4. Type these two lines, one at a time:
 
    ```text
-   /plugin marketplace add niancilyu-2/eyp-pm
-   /plugin install pm@eyp-pm
+   /plugin marketplace add niancilyu-2/nlyu
+   /plugin install pm@nlyu
    ```
 
 5. Type `/` and confirm `/pm:scout` is in the list.
@@ -112,7 +111,7 @@ Leave Shift+Tab alone. It changes permission modes.
 - [ ] `claude` starts without asking you to sign in
 - [ ] `/pm:scout` reported `Ready` or `Ready with fallback`
 
-## On the day
+## Running the stages
 
 Open a terminal in the folder you picked in step 7 (`pm-workspace`, or your repository), type `claude`, then:
 
@@ -124,7 +123,7 @@ Open a terminal in the folder you picked in step 7 (`pm-workspace`, or your repo
 | | `/clear` |
 | PRD | `/pm:prd` |
 | | `/clear` |
-| Capstone (after the workshop, on your own) | `/pm:create-skill` |
+| Capstone (independent, any time) | `/pm:create-skill` |
 
 Every reply ends with a status line such as `Scout · step 5/10 · fetches 6/20 · 14 min`.
 
@@ -136,8 +135,8 @@ Every reply ends with a status line such as `Scout · step 5/10 · fetches 6/20 
 | `The token '&&' is not a valid statement separator` | You are in PowerShell. Use the Windows line in step 3 |
 | `'irm' is not recognized` | You are in the old Command Prompt. Open *Terminal* instead |
 | Browser sign-in does not complete | Copy the link from the terminal into your browser. On a company laptop, check whether a VPN blocks claude.ai |
-| Sign-in says your plan does not include Claude Code | Wrong account. Type `/logout`, then sign in with the workshop account |
-| `/pm:` commands missing | `/plugin marketplace update eyp-pm`, then `/plugin install pm@eyp-pm` |
+| Sign-in says your plan does not include Claude Code | Wrong account. Type `/logout`, then sign in with the account that includes Claude Code |
+| `/pm:` commands missing | `/plugin marketplace update nlyu`, then `/plugin install pm@nlyu` |
 | Git missing | Step 4, then reopen the terminal and run `/pm:scout` |
 | Path-too-long error on Windows | `git config --global core.longpaths true`, then `/pm:scout` |
 | Web search policy error | Ignore it. Send the error text to whoever manages your Claude account |
