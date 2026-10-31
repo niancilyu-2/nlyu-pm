@@ -29,7 +29,7 @@ terminal:
 - [Using it](#using-it)
   - [Your own project or repo (BYOP)](#your-own-project-or-repo-byop)
   - [Example cases to try it on](#example-cases-to-try-it-on)
-  - [Principles and limits](#principles-and-limits)
+  - [Guardrails and limits](#guardrails-and-limits)
 - [Reference](#reference)
   - [Documentation](#documentation)
   - [Repository layout](#repository-layout)
@@ -92,11 +92,11 @@ Four skills. Each runs only when you type it.
 | `/nlyu-pm:prd` | A delivery PRD grounded in the product's code, reviewed by a separate read-only agent that has not seen your conversation | `outputs/03-prd.md`, `outputs/03-prd-review.md` | [docs/skills/prd.md](docs/skills/prd.md) |
 | `/nlyu-pm:create-skill` | Turn one PM practice of your own into a small project skill, test it once in a fresh session, revise it once | `.claude/skills/<name>/SKILL.md`, `outputs/04-skill-summary.md` | [docs/skills/create-skill.md](docs/skills/create-skill.md) |
 
-Each skill opens by saying what you will practise, what Claude will do, and what you
+Each skill opens by saying what you will do, what Claude will do, and what you
 decide, and ends every reply with a status line such as
 `Scout · step 5/10 · fetches 6/20 · 14 min`. Each stage closes with one summary line of
 what the run spent and produced, for example
-`Discovery complete · 58 min · fetches 17/20 · items 24 · quotes 8 · gaps 1 · approved`,
+`Discovery complete · 58 min · fetches 17/20 · searches 3/8 · items 24 · quotes 8 · gaps 1 · approved`,
 repeated in the output file's header.
 
 ```mermaid
@@ -126,7 +126,8 @@ rather than left to good intentions.
   `Assumption`, or `Constraint`; `/nlyu-pm:scout` runs a counter-evidence fetch per theme, logs
   gaps instead of inventing sources, and saves a provisional file when cut short.
 - **Least privilege.** Source repositories are read-only and baseline-checked at the start
-  and end of each stage; writes go only under `outputs/`, `.pm/`, and `.claude/skills/`.
+  and end of each stage; writes go only under `outputs/`, `.pm/`, `.claude/skills/`, and,
+  for example cases, the `sources/` download.
 - **Untrusted input stays data.** Text in web pages and repositories is evidence, not
   instructions; a product's own `CLAUDE.md` counts as developer documentation.
 - **State in files, not in context.** Decisions append to `.pm/session.yaml` and drafts
@@ -257,8 +258,9 @@ boundaries and starting points only, never conclusions, so the research is yours
   including ones behind a sign-in you hold, but Claude never bypasses a CAPTCHA or
   paywall, scrapes page by page, or handles a secret.
 - Text found in websites and repositories is evidence, not instructions.
-- Claude writes only under `outputs/`, `.pm/`, and for the skill builder `.claude/skills/`,
-  whether the workspace is an empty folder or your own repository.
+- Claude writes only under `outputs/`, `.pm/`, for the skill builder `.claude/skills/`, and
+  for example cases the downloaded repositories in `sources/`, whether the workspace is an
+  empty folder or your own repository.
 - Prototypes are exercise artifacts, not for distribution. No source files are copied out
   of the downloaded repositories.
 
@@ -270,7 +272,7 @@ boundaries and starting points only, never conclusions, so the research is yours
 | Doc | For |
 |---|---|
 | [docs/skills/](docs/skills/) | One page per skill: what it produces, how a run goes, the rules it follows |
-| [docs/SETUP.md](docs/SETUP.md) | Installing Claude Code, Git, and the plugin, for first-time terminal users |
+| [docs/SETUP.md](docs/SETUP.md) | The desktop app, Git, and the plugin install with no terminal; a terminal path at the end |
 | [docs/TEST-WALKTHROUGH.md](docs/TEST-WALKTHROUGH.md) | Every stage and every product, step by step |
 
 ### Repository layout
@@ -283,6 +285,8 @@ nlyu-pm/
 │   ├── .claude-plugin/plugin.json
 │   ├── skills/{scout,prototype,prd,create-skill}/SKILL.md
 │   ├── agents/prd-reviewer.md
+│   ├── README.md                what the plugin runs, reads, fetches, and writes
+│   ├── LICENSE
 │   ├── cases/{immich,plane,home-assistant,umbraco,erpnext}/
 │   │   ├── case.yaml            fixed commit, focus areas, source URLs
 │   │   ├── orientation.md
@@ -290,6 +294,7 @@ nlyu-pm/
 │   └── resources/               shared rules, research guide, readiness, case schema,
 │                                BYOP case builder, templates
 ├── docs/
+├── CHANGELOG.md
 ├── LICENSE
 └── README.md
 ```

@@ -1,7 +1,8 @@
 {
   "name": "nlyu-pm",
-  "version": "0.8.0",
-  "description": "Product discovery to PRD for product managers: research public sources on your own project or repository (BYOP) or on one of five example open-source products and choose an opportunity (/nlyu-pm:scout), build a clickable prototype (/nlyu-pm:prototype), write a repository-grounded PRD with an independent read-only review (/nlyu-pm:prd), and turn one of your own PM practices into a Claude skill (/nlyu-pm:create-skill).",
+  "displayName": "Product Discovery to PRD",
+  "version": "0.8.1",
+  "description": "Product discovery to PRD for product managers: research public evidence on your own repository or an example open-source product, choose an opportunity, build a clickable prototype, and write a repository-grounded PRD with an independent review.",
   "author": {
     "name": "niancilyu-2",
     "url": "https://github.com/niancilyu-2"
@@ -11,9 +12,13 @@
   "license": "MIT",
   "keywords": [
     "product-management",
+    "product-manager",
+    "product-discovery",
     "prd",
+    "requirements",
+    "user-research",
+    "competitive-analysis",
     "prototype",
-    "discovery",
-    "skills"
+    "claude-code"
   ]
 }

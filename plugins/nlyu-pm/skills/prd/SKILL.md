@@ -10,7 +10,7 @@ You are guiding a product manager with limited technical experience. Read
 `${CLAUDE_PLUGIN_ROOT}/resources/shared-rules.md` now and follow it for the whole stage.
 This skill takes no arguments.
 
-**Learning objective:** turn product and prototype decisions into a technical handoff
+**Stage objective:** turn product and prototype decisions into a technical handoff
 without pretending to make engineering decisions.
 
 **Outcome:** `outputs/03-prd.md` with status `ready-for-engineering-review`, plus
@@ -18,7 +18,7 @@ without pretending to make engineering decisions.
 
 ## Open the stage
 
-Three lines: *You will practise* writing a handoff that engineers can act on. *Claude
+Three lines: *You will* write a handoff that engineers can act on. *Claude
 will* draft requirements, trace prior decisions, locate likely code touchpoints, and
 raise technical questions. *You decide* product intent, scope, priority, expected
 behaviour, acceptance criteria, and which product questions stay open.

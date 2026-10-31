@@ -27,6 +27,7 @@ at the end of this page.
 | Folder | A folder on your laptop. Everything Claude writes lands in the folder you pick in step 3. |
 | Git | A free tool that downloads a product's code. Claude uses it for you; you never type Git commands. |
 | Repository | A product's source code, stored on a site like GitHub. Claude reads it; it never changes it. |
+| Case and lane | A case is one prepared example product. A lane is one focus area inside it: a part of the product you research for an hour and prototype as a single flow. Your own product (BYOP) is the other choice. |
 
 ## 1. Account and app
 
@@ -76,11 +77,14 @@ asks which folder to work in. If it asks whether you trust the folder, say yes.
 
 ## 6. Run the readiness check
 
-1. Type `/nlyu-pm:scout` and press Enter. It checks the folder and Git, tests web access,
-   and ends with `Ready`, `Ready with fallback`, or `Blocked`. For `Blocked`, do the
-   action it prints and run `/nlyu-pm:scout` again.
-2. It also asks whether you want BYOP or an example case. Answer now so the code
-   downloads today, or choose *decide later*.
+1. Type `/nlyu-pm:scout` and press Enter. It checks the folder and Git, opens a test page
+   in your browser and asks whether it appeared, tests web access, and asks you to type
+   `/design` and say what happened (all of this is normal). It ends with `Ready`, `Ready
+   with fallback`, or `Blocked`. For `Blocked`, do the action it prints and run
+   `/nlyu-pm:scout` again.
+2. In an empty folder it then asks whether you want BYOP or an example case. Answer now so
+   the code downloads today, or choose *decide later*. If you opened your own repository,
+   it instead asks you to confirm that this repository is the product.
 3. When asked, choose *stop after setup*.
 
 Claude asks permission the first time it fetches a website, runs Git, or writes a file.
@@ -92,7 +96,7 @@ Pick the option that stops asking for the session.
 |---|---|
 | Send | Enter |
 | New line without sending | Shift+Enter |
-| See available commands | type `/`, or `/nl` to show only this plugin's four commands, then Enter |
+| See available commands | type `/`, or `/nl` to show only this plugin's four commands, then pick one from the list |
 | Stop Claude mid-reply | Escape, or the stop button |
 | Answer a multiple-choice question | click an option, or type your own answer |
 | Move to the next stage | start a new session in the same folder |

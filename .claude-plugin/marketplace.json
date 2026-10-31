@@ -5,22 +5,28 @@
     "url": "https://github.com/niancilyu-2"
   },
   "metadata": {
-    "description": "nlyu-pm: a Claude Code plugin that takes a product manager from public evidence to a selected opportunity, a clickable prototype, and an engineering-ready PRD on a real product: your own project or repository (BYOP) or one of five example open-source cases, plus a skill builder for writing your own PM skill.",
-    "version": "0.8.0"
+    "description": "Product discovery to PRD for product managers: research public evidence on your own repository or an example open-source product, choose an opportunity, build a clickable prototype, and write a repository-grounded PRD with an independent review.",
+    "version": "0.8.1"
   },
   "plugins": [
     {
       "name": "nlyu-pm",
       "source": "./plugins/nlyu-pm",
-      "description": "Product discovery to PRD for PMs. /nlyu-pm:scout researches public sources on your own repository (BYOP) or an example open-source product and picks an opportunity, /nlyu-pm:prototype builds a clickable flow, /nlyu-pm:prd writes a repository-grounded PRD with an independent review, /nlyu-pm:create-skill turns one of your practices into a skill.",
-      "version": "0.8.0",
+      "description": "Four commands: scout (research public sources and choose an opportunity), prototype (one clickable flow), prd (repository-grounded PRD with a read-only review), create-skill (turn one PM practice into a skill). Works on your own repository (BYOP) or five example open-source products.",
+      "version": "0.8.1",
       "category": "productivity",
       "keywords": [
         "product-management",
+        "product-manager",
+        "product-discovery",
         "prd",
+        "requirements",
+        "user-research",
+        "competitive-analysis",
         "prototype",
-        "discovery"
-      ]
+        "claude-code"
+      ],
+      "homepage": "https://github.com/niancilyu-2/nlyu-pm"
     }
   ]
 }

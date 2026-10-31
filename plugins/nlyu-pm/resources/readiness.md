@@ -45,7 +45,7 @@ Report only one of three words, then the next action:
    Record which of the two worked under `readiness.feeds`.
    While doing this, tell the PM: "Claude Code will ask permission the first time
    it fetches a new website or runs a git command. Choosing the option that stops asking
-   for this session will save you many clicks tomorrow."
+   for this session will save you many clicks later."
 6. **Claude Design.** Explain in one sentence: Claude Design is an optional way to generate
    the prototype visually; it needs a Pro, Max, Team, or Enterprise plan, and on Enterprise
    an administrator must switch it on. Ask the PM to type `/design` on its own
@@ -75,9 +75,9 @@ Report only one of three words, then the next action:
 
 Ask: "Stop here and continue later, or go straight into Discovery now?"
 
-- **Stop:** set `readiness.stopped_after_setup: true`. Tell them: next time, open a
-  terminal in this same folder, start a fresh `claude` session, and run `/nlyu-pm:scout`. It
-  will resume at case selection.
+- **Stop:** set `readiness.stopped_after_setup: true`. Tell them: next time, open this
+  same folder in a new session (the Code tab, or a terminal running `claude`) and run
+  `/nlyu-pm:scout`. It will resume at case selection.
 - **Continue:** proceed to case selection in `/nlyu-pm:scout`.
 
 ## Rerunning readiness

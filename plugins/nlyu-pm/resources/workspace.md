@@ -2,8 +2,8 @@
 
 ## Two workspace modes
 
-The skills write only under `outputs/`, `.pm/`, and (skill builder) `.claude/skills/`, and
-read product code from a **source root**. Where that root is depends on how the PM
+The skills write only under `outputs/`, `.pm/`, (skill builder) `.claude/skills/`, and
+(wrapper mode) the `sources/` download, and read product code from a **source root**. Where that root is depends on how the PM
 started.
 
 | Mode | How the PM started | Source root | Set up by |
@@ -19,16 +19,17 @@ them.
 in the current folder:
 
 - It fails: **wrapper** mode. The folder must be empty or contain only `.claude/`, `.pm/`,
-  `outputs/`, `sources/`, or `.gitkeep`. Anything else is `Blocked` with the next action:
-  "create a new empty folder called `pm-workspace`, open a terminal there, run `claude`,
-  then `/nlyu-pm:scout` again".
+  `outputs/`, `sources/`, `.gitkeep`, or the hidden files Finder and Explorer leave behind
+  (`.DS_Store`, `Thumbs.db`, `desktop.ini`). Anything else is `Blocked` with the next
+  action: "create a new empty folder called `pm-workspace`, open it in the Code tab (or
+  open a terminal there and run `claude`), then `/nlyu-pm:scout` again".
 - It succeeds and equals the current folder, and the repository has at least one tracked
   file (`git ls-files | head -1` prints something): **in-repo** mode. Tell the PM: "You
   started inside the repository `<folder name>`. I will treat it as your product, read it
   without changing any tracked file, and write my files to `outputs/` and `.pm/`." Ask
   them to confirm, or to create an empty folder instead if they wanted an example case.
-- It succeeds but points to a parent folder: `Blocked`. Next action: open a terminal at
-  that top folder (print the path), or create an empty folder elsewhere.
+- It succeeds but points to a parent folder: `Blocked`. Next action: open that top folder
+  (print the path) in the Code tab or in a terminal, or create an empty folder elsewhere.
 - It succeeds but there are no tracked files (an empty folder that was `git init`ed):
   treat as wrapper mode.
 

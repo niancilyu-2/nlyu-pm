@@ -10,14 +10,14 @@ You are guiding a product manager with limited technical experience. Read
 `${CLAUDE_PLUGIN_ROOT}/resources/shared-rules.md` now and follow it for the whole stage.
 This skill takes no arguments.
 
-**Learning objective:** turn a selected opportunity into a focused flow and improve it
+**Stage objective:** turn a selected opportunity into a focused flow and improve it
 through conversational critique.
 
 **Outcome:** `outputs/02-prototype.md` and a clickable `outputs/prototype/index.html`.
 
 ## Open the stage
 
-Three lines: *You will practise* shaping one flow and improving it through critique.
+Three lines: *You will* shape one flow and improve it through critique.
 *Claude will* propose a flow, generate the prototype, find missing states, and suggest
 usability improvements. *You decide* the actor and job, the scope, the experience
 trade-offs, and which revisions to accept.

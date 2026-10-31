@@ -16,7 +16,7 @@ write `.pm/session.yaml`, does not require `outputs/01–03`, and never marks th
 It writes only `.claude/skills/<slug>/SKILL.md` and `outputs/04-skill-summary.md`, creating
 those folders if missing. Budget: 30 minutes.
 
-**Learning objective:** turn one recurring PM task into a reusable Claude skill while
+**Stage objective:** turn one recurring PM task into a reusable Claude skill while
 keeping domain judgment and approval with the PM, and learn when a skill beats a one-off
 prompt.
 

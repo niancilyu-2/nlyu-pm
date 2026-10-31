@@ -1,7 +1,8 @@
 # Test walkthrough
 
-How to run the whole flow yourself. Readiness and Discovery take about 75 minutes. The
-three product stages take about three hours; the skill builder is an independent 30-minute
+How to run the whole flow yourself. Readiness takes about 15 minutes and Discovery about
+60, plus about 15 to build the case when you bring your own product. The three product
+stages take about three hours in all; the skill builder is an independent 30-minute
 exercise. Everything Claude produces lands in files you can open in any text editor.
 
 Not installed yet? Do [SETUP.md](SETUP.md) first.
@@ -16,12 +17,13 @@ Claude desktop app's Code tab, or in a terminal by typing `claude` there.
 Type `/nlyu-pm:scout` (type `/nl` and pick it from the list). On the first run it:
 
 1. prints the plugin version
-2. checks the folder and Git
-3. opens a test page in your browser and asks whether it appeared
-4. fetches one public page and tries one web search
-5. asks you to type `/design` and say what happened
-6. offers to choose BYOP or an example case now so the download happens today
-7. prints `Ready`, `Ready with fallback`, or `Blocked`
+2. checks the folder and decides whether it is your own repository or an empty workspace
+3. checks Git
+4. opens a test page in your browser and asks whether it appeared
+5. fetches one public page and tries one web search
+6. asks you to type `/design` and say what happened
+7. offers to choose BYOP or an example case now so the download happens today
+8. prints `Ready`, `Ready with fallback`, or `Blocked`
 
 Choose *stop after setup* to continue another day, or *continue* to go straight on.
 
@@ -31,10 +33,13 @@ If it ever says `sources CHANGED`, stop and note the step.
 
 ## 3. Pick a track, a case, and a lane
 
-The first question is BYOP (bring your own project or repo) or an example case. Five
-example cases with three lanes each, fifteen combinations. Core cases are easier; ERPNext
-downloads two repositories. Core takes two clicks (core, then the product); BYOP and
-ERPNext take one.
+Three words. The *track* is which product you work on: your own (BYOP, bring your own
+project or repo) or an example case. A *case* is one prepared example product. A *lane*
+is one focus area inside it, a part of the product you research for an hour and prototype
+as a single flow. The first question is the track. Five example cases with three lanes
+each, fifteen combinations. Core cases are easier and take two choices (core, then the
+product); ERPNext is the advanced case, downloads two repositories, and takes one choice,
+as does BYOP.
 
 | Case | You play | Lane | Prototype screen | Download |
 |---|---|---|---|---|
@@ -61,8 +66,8 @@ no GitHub Discussions board.
 
 Fullest research demo: Immich or Home Assistant. Quickest run: Plane, Intake and triage.
 
-**BYOP.** Either start `claude` at the top folder of a local copy of your repository
-(Claude asks you to confirm it is the product), or choose *BYOP* at the first question and
+**BYOP.** Either open the top folder of a local copy of your repository (in the Code tab,
+or a terminal running `claude`; Claude asks you to confirm it is the product), or choose *BYOP* at the first question and
 give a repository URL, a folder path, or a zip file. Read access is enough; a private URL
 works if your computer is already signed in, and otherwise Claude asks you to run the
 clone line yourself or to use a zip. Claude then asks which built-in source groups to use,
@@ -74,7 +79,7 @@ package at a **case check-in**. About fifteen minutes before research starts. No
 is modified; `outputs/` and `.pm/` are the only new folders, and Claude offers to hide
 them from `git status`.
 
-## 4. Discovery: `/nlyu-pm:scout` (60 min)
+## 4. Discovery: `/nlyu-pm:scout` (60 min, plus 15 to build a BYOP case)
 
 Claude asks for the track, the case, then the lane, gives a short tour, downloads the
 repository, asks for two or three search words, shows the list of sources it will read in
@@ -114,7 +119,8 @@ Claude reads the product's design files and writes a brief. Then one of two path
   run `/nlyu-pm:prototype` again.
 - **Not available.** Claude writes the HTML file itself and opens it.
 
-Double-click `outputs/prototype/index.html`. Click through the main path, use the demo
+In your workspace folder, open `outputs/prototype/` and double-click `index.html`
+(Finder or File Explorer). Click through the main path, use the demo
 buttons to see the two alternate states, try Tab to move between controls.
 
 Claude walks the flow with you, lists findings, and proposes one change tied to evidence.
@@ -151,7 +157,7 @@ writing that file even if you allowed edits earlier; choose Yes.
 
 To test: open a second session in the same folder (a new Code tab session, or a second
 terminal running `claude`), type `/skills` and
-find your command, run it with sample input. Paste the result back into the first window.
+find your command, run it with sample input. Paste the result back into the first session.
 Claude proposes at most one revision and asks what the skill automates and what stays with
 you.
 
@@ -161,17 +167,17 @@ Files: `.claude/skills/<name>/SKILL.md`, `outputs/04-skill-summary.md`.
 
 | You see | Do |
 |---|---|
-| `/nlyu-pm:` commands missing | `/plugin marketplace update nlyu-pm`, then `/plugin install nlyu-pm@nlyu-pm` |
+| `/nlyu-pm:` commands missing | Desktop app: Settings, Plugins, check **nlyu-pm** is installed and enabled, then a new session. Terminal: `/plugin marketplace update nlyu-pm`, then `/plugin install nlyu-pm@nlyu-pm` |
 | Repeated permission prompts | Choose the option that stops asking for the session |
 | `Blocked` | Do the action printed, then `/nlyu-pm:scout` again |
 | Web search policy error | Continue. Send the error text to whoever manages your account |
 | A source returns 403 or 429 | Claude logs a gap and moves on |
-| Path-too-long error on Windows | `git config --global core.longpaths true`, then `/nlyu-pm:scout` |
+| Path-too-long error on Windows | Ask Claude to run `git config --global core.longpaths true`, then `/nlyu-pm:scout` |
 | `/design` does nothing | Claude uses the HTML path |
 | `sources CHANGED` in the status line | Stop and note the step. In your own repository, it may be your own edit in another window; Claude asks before assuming |
 | BYOP and most research sources are empty | Expected for a private or new product. Claude says so up front, uses the code, competitors, anything you paste, and any source you set up with your own sign-in, and marks the brief provisional |
 | Lost your place | Start a new session in the same folder (in a terminal, `/clear`), then the current stage command. It resumes from the files |
-| Your new skill not in `/skills` | Test from a new session in the same folder. The folder name must match the `name` line in the file |
+| Your new skill not in `/skills` | Test from a new session in the same folder. If it is still missing, tell Claude; the skill's folder name and its `name` line must match, and Claude fixes that for you |
 
 ## 9. Feedback
 
