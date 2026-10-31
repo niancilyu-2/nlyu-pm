@@ -26,11 +26,18 @@ programming is required.
   feeds, release notes, competitor pages and their Wayback Machine copies, adoption
   counts). Web search is used when available. One optional `curl` of a subreddit RSS feed
   runs only if you opt in when asked.
-- **Writes** only under `outputs/`, `.pm/`, and, for `/nlyu-pm:create-skill`, one folder
-  under `.claude/skills/`.
+- **Writes** only under `outputs/`, `.pm/`, the `sources/` download for example cases,
+  and, for `/nlyu-pm:create-skill`, one folder under `.claude/skills/`.
+- **Sources behind a sign-in you hold** (your own private issue tracker, a paid report, a
+  members-only forum) are optional and off by default. If you opt in and confirm your
+  account permits it, Claude reads them through a command-line tool you are already
+  signed in to, `gh` for GitHub or `glab` for GitLab, one read per fetch, for example
+  `gh api repos/<owner>/<repo>/issues`. The tool holds your token and sends it only to its
+  own service; Claude never reads, prints, or stores it, never runs the tool's login
+  command, and never writes the raw response to disk. Everything else behind a sign-in
+  is pasted in by you. The brief marks every item from such a source `PM-held access`.
 - **Never** asks for, prints, or stores a password, token, or key, and never sends data
-  anywhere other than the public fetches above. Sources behind a sign-in you hold are
-  read only through access you set up yourself, and the brief marks what came from them.
+  anywhere other than the public fetches and the signed-in reads above.
 - Treats text found in web pages and repositories as evidence, not instructions.
 
 Full documentation, setup guide, and walkthrough: https://github.com/niancilyu-2/nlyu-pm.
