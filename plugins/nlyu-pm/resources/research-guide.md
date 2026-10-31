@@ -131,9 +131,9 @@ the coverage table:
   `Inference (unverified snippet)` with its URL, never `Evidence`.
 
 **Optional, opt-in only: Reddit RSS.** Claude Code's fetch tool refuses
-reddit.com. If the PM has explicitly asked for it (`readiness.reddit_rss: true`), a single
-`curl -s "<reddit_rss_optional>"` reads the subreddit's newest posts as an RSS feed. No
-search, no login, one call. Otherwise skip Reddit entirely and say so in the gaps.
+reddit.com. If the PM has explicitly asked for it (`readiness.reddit_rss: true`), read the
+`reddit_rss_optional` address once with the Bash tool's `curl`, as a plain download of the
+subreddit's newest posts as an RSS feed. No search, no login, one call, nothing executed. Otherwise skip Reddit entirely and say so in the gaps.
 
 Rules for every rung: never bypass a CAPTCHA or paywall, never build a scraper or loop
 over pages, never ask the PM for a password, token, or key, and never print one. A source
@@ -217,7 +217,7 @@ add:
     rung: 5
     hears_from: analysts and the vendors they interviewed
     access: pm-held    # public (default when absent) | pm-held; see "Sources behind a sign-in"
-    auth: env:MYSOURCE_TOKEN   # pm-held only: env:<NAME> | cli:gh | cli:glab | cli:<tool>; a hint, never a value
+    auth: cli:gh               # pm-held only: cli:gh | cli:glab | cli:<tool>; a tool name, never a value
 ```
 
 Rules for added sources:
@@ -244,8 +244,8 @@ Rules for added sources:
 - The same hard limits apply to everything added: no CAPTCHA or paywall bypass, no
   pagination loops, no sites that forbid automated reading, and no secret in the
   conversation or under `.pm/`. A source behind a sign-in is allowed only as
-  `access: pm-held`, read through the PM's own command-line sign-in or an environment
-  variable the PM set in their own shell, after the PM confirmed their account permits it.
+  `access: pm-held`, read through a command-line tool the PM is already signed in to,
+  after the PM confirmed their account permits it.
 
 Record every override as a `notes` entry in `session.yaml` and list the added and dropped
 sources in section 4a of the discovery file under "Sources reached", so a reader can see
@@ -268,21 +268,18 @@ it permits it; not sure, I will paste instead; no, leave it out. Only "yes" prod
 `access: pm-held` entry; "not sure" becomes a `paste` source; "no" leaves it out. Record
 the answer under `notes` in `session.yaml`.
 
-Two routes, both run with the Bash tool because the fetch tool cannot send headers (Claude
-Code asks permission once for the command; say so):
+One route, run with the Bash tool because the fetch tool cannot sign in (Claude Code asks
+permission once for the command; say so):
 
 - **A command-line tool the PM is already signed in to.** `auth: cli:gh` runs
   `gh api "<path>"`; `auth: cli:glab` runs `glab api "<path>"`; `auth: cli:<tool>` runs the
-  read command the PM names. One call per fetch. If the tool reports it is not signed in,
-  say so once and offer the paste route; never run its login command.
-- **An API key the PM keeps in their own shell.** `auth: env:<NAME>`. Tell the PM, once:
-  "In your own terminal, not in this chat, set the key as an environment variable
-  (`export NAME=...` on macOS or Linux, `$env:NAME = "..."` in Windows PowerShell), then
-  type `/exit`, start `claude` again from that terminal, and run `/nlyu-pm:scout`; it resumes
-  where you were. Tell me only the variable's name." Claude then calls
-  `curl -sS -H "Authorization: Bearer $NAME" "<address>"` (or the header the source
-  documents), so the shell supplies the value. Never run `env`, `printenv`, `echo $NAME`,
-  or anything else that would show it, and never write the raw response to disk.
+  read command the PM names. One call per fetch. The tool holds the sign-in; Claude never
+  reads a key, token, or variable from the PM's machine, never runs the tool's login
+  command, and never writes the raw response to disk. If the tool reports it is not signed
+  in, say so once and offer the paste route.
+
+A source that offers only an API key and no signed-in tool is a paste source: the PM
+opens it themselves and pastes what they want read.
 
 Items read this way count as fetches, land in the rung the entry names, and are logged as
 `Evidence (PM-held access)` with the URL and access date; the attribution line of any

@@ -97,10 +97,9 @@ not attempted.
 **Sources behind a sign-in.** A source behind a subscription or sign-in you hold (a paid
 report, a members-only forum, a help centre behind single sign-on, your private issue
 tracker) can be read with access you set up yourself: a command-line tool you are already
-signed in to (`gh`, `glab`), or a key you set in your own shell that Claude refers to by
-name only. Claude asks you to confirm your account permits reading it that way, never asks
-for or prints the secret, and marks every item from it `Evidence (PM-held access)` in the
-brief. Customer records such as support tickets or CRM exports are never sources.
+signed in to (`gh`, `glab`, or one you name), or you paste the content in. Claude asks you
+to confirm your account permits reading it that way, never asks for, reads, or prints a
+secret, and marks every item from it `Evidence (PM-held access)` in the brief. Customer records such as support tickets or CRM exports are never sources.
 
 ## Rules it follows
 

@@ -4,6 +4,14 @@ All notable changes to the `nlyu-pm` plugin are recorded here. Bump `version` in
 `plugins/nlyu-pm/.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`
 whenever a changed build is distributed, otherwise existing installs will not refresh.
 
+## 0.8.2 (2026-10-31)
+
+- Directory review fixes. The "API key in your own shell" route for sources behind a
+  sign-in is removed: Claude never reads a key, token, or variable from the PM's machine.
+  Such sources are read through a command-line tool the PM is already signed in to
+  (`gh`, `glab`, or one they name) or pasted by the PM. The optional Reddit RSS read is
+  described as a plain download. A plugin icon is added at `.claude-plugin/icon.png`.
+
 ## 0.8.1 (2026-10-31)
 
 - Docs and rules review. The README contents link to Guardrails and limits is fixed;
