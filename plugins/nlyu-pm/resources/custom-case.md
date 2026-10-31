@@ -21,13 +21,17 @@ Decided by workspace mode (see `workspace.md`):
 
 - **In-repo mode.** The repository is the folder Claude is running in. `root: "."`.
 - **Wrapper mode.** If readiness recorded `case.origin`, use it without asking. Otherwise
-  ask one question with four options: a repository URL (GitHub, GitLab, or any other
-  host; public, or private if this computer already has read access; cloned shallow into
-  `sources/primary`), a folder already on this computer (a clone or an unpacked archive;
-  read in place; record its absolute path as `root`), an archive file (zip or tarball;
-  unpacked into `sources/primary`), or choose an example case instead (return to the
-  fork in `/nlyu-pm:scout` Step 2). `workspace.md` gives the commands and the
-  private-repository and archive rules. Read access is all that is needed; nothing is
+  ask one short question (header `Code`, "Where is the code?") with exactly three
+  options: a repository URL (GitHub, GitLab, or any other host; public, or private if
+  this computer already has read access; cloned shallow into `sources/primary`), a folder
+  already on this computer (a clone or an unpacked archive; read in place; record its
+  absolute path as `root`), or an archive file (zip or tarball; unpacked into
+  `sources/primary`). No other options: not "choose an example case instead", not "stop
+  for now". The PM chose BYOP a moment ago; if they change their mind they say so.
+  Then ask for the value in plain prose, not with the question tool: "Paste the
+  repository URL. Add a branch name after it if you want one other than the default."
+  (or the folder path, or the archive's path). Wait for the reply. `workspace.md` gives
+  the commands and the private-repository and archive rules. Read access is all that is needed; nothing is
   written to the repository in any option. If `sources/primary` already exists and holds
   a different repository (an example case pre-selected during readiness), rename it to
   `sources/_old-<case id>` as `workspace.md` describes, then clone.

@@ -63,9 +63,10 @@ Report only one of three words, then the next action:
    - Example case: easy asks the second question with the four easy products, as in
      `/nlyu-pm:scout` Step 2; advanced is ERPNext. Run the clone procedure in `workspace.md` and
      record `case.id`, `case.source: prepared`, `case.dir`, and `case.preselected: true`.
-   - BYOP: ask the question in `custom-case.md` Step A (URL, folder, or archive; its
-     fourth option returns to this fork), record `case.source: custom`, the URL or path
-     under `case.origin`, and `case.preselected: true`. The clone, the source questions,
+   - BYOP: ask the two questions in `custom-case.md` Step A (which kind of source, then
+     the URL or path in plain prose), record `case.source: custom`, the URL or path under
+     `case.origin`, and `case.preselected: true`. Do not offer "stop for now" or "choose
+     an example case instead" alongside them; the stop question comes after step 8. The clone, the source questions,
      and the case package are built when Discovery starts.
    - Decide later: skip.
 8. **Save.** Write `readiness` into `session.yaml` with `checked_at`, set

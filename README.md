@@ -12,7 +12,7 @@
 ║   4 skills · 1 adversarial reviewer agent · 5 example cases or BYOR               ║
 ║   Claude desktop app (Code tab) · Claude Code CLI                                 ║
 ║                                                                                   ║
-║   v0.8.3 · October 31, 2026 · MIT · Claude plugin directory: pending              ║
+║   v0.8.4 · October 31, 2026 · MIT · Claude plugin directory: pending              ║
 ║                                                                                   ║
 ╚═══════════════════════════════════════════════════════════════════════════════════╝
 ```
