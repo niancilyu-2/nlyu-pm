@@ -8,8 +8,8 @@ note the step number and check the problems table for your section.
 
 | Way | User profile |
 |---|---|
-| [**Claude desktop app** (Code tab)](#claude-desktop-app) | Recommended / non-technical users. About 15 minutes. |
-| [**Claude Code in a terminal** (CLI)](#claude-code-in-a-terminal-cli) | Recommended / technical people. About 20 minutes. |
+| [**Claude desktop app** (Code tab)](#claude-desktop-app-about-15-minutes) | Recommended / non-technical users. |
+| [**Claude Code in a terminal** (CLI)](#claude-code-in-a-terminal-cli-about-20-minutes) | Recommended / technical people. |
 | **claude.ai in a browser** | Not recommended (complex install and project setup process). |
 
 ## What you need
@@ -36,7 +36,9 @@ note the step number and check the problems table for your section.
 | Repository | A product's source code, stored on a site like GitHub. Claude reads it; it never changes it. |
 | Case and lane | A case is one prepared example product. A lane is one focus area inside it: a part of the product you research for an hour and prototype as a single flow. Your own product (BYOP) is the other choice. |
 
-## Claude desktop app
+---
+
+## Claude desktop app (about 15 minutes)
 
 Recommended for non-technical users: a few clicks, no terminal.
 
@@ -148,7 +150,9 @@ and every stage closes with a one-line summary of what it spent and produced.
 | Screen looks stuck | Escape or the stop button. If nothing changes, start a new session in the same folder and rerun the stage command |
 
 
-## Claude Code in a terminal (CLI)
+---
+
+## Claude Code in a terminal (CLI, about 20 minutes)
 
 Recommended for technical people. Same plugin and commands; type `/clear` between stages.
 
