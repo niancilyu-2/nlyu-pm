@@ -13,7 +13,7 @@ Claude desktop app's Code tab, or in a terminal by typing `claude` there.
 
 ## 2. Readiness
 
-Type `/nlyu-pm:scout`. On the first run it:
+Type `/nlyu-pm:scout` (type `/nl` and pick it from the list). On the first run it:
 
 1. prints the plugin version
 2. checks the folder and Git
