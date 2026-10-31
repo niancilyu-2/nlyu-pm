@@ -202,7 +202,7 @@ on. Pick a case and a focus area, and research starts at once; the output is the
 brief, prototype, and PRD as for your own repository. The product packages hold
 boundaries and starting points only, never conclusions, so the research is yours.
 
-### Principles and limits
+### Guardrails and limits
 
 
 - Public information and synthetic data by default. No private customer data or
