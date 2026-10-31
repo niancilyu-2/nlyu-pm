@@ -51,6 +51,11 @@ Start with, in this order:
   closely related questions.
 - Offer concrete options with plain-language descriptions. Always let the PM
   type their own answer.
+- When the only valid answer is a value the PM must type (a URL, a path, a name, a
+  branch), ask for it in plain prose and wait. Do not use the question tool for it, and
+  never make the expected answer the "Other" box under unrelated options such as "stop
+  for now" or "go back". Those exits are always available; the PM can say them at any
+  time.
 - The question tool shows at most four options plus the PM's own typed answer. Never put
   more than four candidates in one question; narrow first (BYOP or example case, easy or
   advanced), then list at most four.

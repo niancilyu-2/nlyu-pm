@@ -5,6 +5,13 @@ All notable changes to the `nlyu-pm` plugin are recorded here. Bump `version` in
 whenever a changed build is distributed, otherwise existing installs will not refresh.
 Update the version line in the README banner at the same time.
 
+## 0.8.4 (2026-10-31)
+
+- BYOP source step. "Where is the code?" offers only URL, folder, or archive, and the
+  URL or path is then asked for in plain prose, never as the "Other" box beside "stop for
+  now" or "choose an example case instead". New shared rule: a value the PM must type is
+  asked for in prose, not with the question tool.
+
 ## 0.8.3 (2026-10-31)
 
 - The product question's example-case options are "Example case (Easy)" and "Example case
