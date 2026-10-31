@@ -3,6 +3,7 @@
 All notable changes to the `nlyu-pm` plugin are recorded here. Bump `version` in
 `plugins/nlyu-pm/.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`
 whenever a changed build is distributed, otherwise existing installs will not refresh.
+Update the version line in the README banner at the same time.
 
 ## 0.8.2 (2026-10-31)
 
