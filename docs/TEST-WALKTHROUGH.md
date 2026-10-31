@@ -37,22 +37,21 @@ Three words. The *track* is which product you work on: your own (BYOP, bring you
 project or repo) or an example case. A *case* is one prepared example product. A *lane*
 is one focus area inside it, a part of the product you research for an hour and prototype
 as a single flow. The first question is the track. Five example cases with three lanes
-each, fifteen combinations. Core cases are easier and take two choices (core, then the
-product); ERPNext is the advanced case, downloads two repositories, and takes one choice,
+each, fifteen combinations. Easy cases take two choices (easy, then the product); ERPNext is the advanced case, downloads two repositories, and takes one choice,
 as does BYOP.
 
 | Case | You play | Lane | Prototype screen | Download |
 |---|---|---|---|---|
-| **Immich** (core) | Household media steward | Backup and status confidence | Phone, 390×844 | one repo, about 30 MB |
+| **Immich** (easy) | Household media steward | Backup and status confidence | Phone, 390×844 | one repo, about 30 MB |
 |  |  | Finding and organizing media | Desktop, 1440×900 |  |
 |  |  | Private sharing and collaboration | Phone, 390×844 |  |
-| **Plane** (core) | Product-operations lead | Intake and triage | Desktop, 1440×900 | one repo, about 20 MB |
+| **Plane** (easy) | Product-operations lead | Intake and triage | Desktop, 1440×900 | one repo, about 20 MB |
 |  |  | Planning and scheduling | Desktop, 1440×900 |  |
 |  |  | Cross-project status readout | Desktop, 1440×900 |  |
-| **Home Assistant** (core) | Household co-admin | Household dashboards and defaults | Tablet, 1024×768 | one repo, under 60 MB |
+| **Home Assistant** (easy) | Household co-admin | Household dashboards and defaults | Tablet, 1024×768 | one repo, under 60 MB |
 |  |  | Repairs, backups, and recovery from updates | Phone web, 390×844 |  |
 |  |  | Automation troubleshooting and safe edits | Desktop, 1440×900 |  |
-| **Umbraco** (core) | Content-operations editor | Draft to publish | Desktop backoffice, 1440×900 | one repo, under 60 MB |
+| **Umbraco** (easy) | Content-operations editor | Draft to publish | Desktop backoffice, 1440×900 | one repo, under 60 MB |
 |  |  | Pick and reuse media from the page | Desktop backoffice, 1440×900 |  |
 |  |  | Languages and variants | Desktop backoffice, 1440×900 |  |
 | **ERPNext** (advanced) | Inventory or procurement manager | Inventory quantity and valuation exceptions | Desktop, 1440×900 | two repos, under 60 MB each |

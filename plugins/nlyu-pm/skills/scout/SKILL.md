@@ -61,15 +61,14 @@ candidates in one question (shared rules section 3), and no table in the reply.
   1. **BYOP: bring your own project or repo.** A repository URL (any host; private works
      if this computer already has access), a folder on this computer, or a zip. Claude
      reads it, asks a few questions, and builds the case in about fifteen minutes.
-  2. **Example case, core: Immich, Plane, Home Assistant, or Umbraco.** Prepared
-     open-source products to try the workflow on, with verified sources and a fixed code
-     snapshot, one repository each. Research starts right after you pick a focus area.
-  3. **Example case, advanced: ERPNext (two repositories).** Inventory and procurement
-     operations in ERPNext, to try the workflow on a larger product. Downloads the
-     product and the Frappe framework it runs on.
+  2. **Example case (Easy): Immich, Plane, Home Assistant, or Umbraco.** A prepared
+     open-source product to try the workflow on. One repository; research starts as
+     soon as you pick a focus area.
+  3. **Example case (Advanced): ERPNext.** A larger business product, two repositories.
+     Same workflow, more code to read.
 
-  BYOP: set `case.source: custom` and go to Step 2b. Core: ask a second question (header
-  `Case`, "Which example case?") with the four core products as options, each described
+  BYOP: set `case.source: custom` and go to Step 2b. Easy: ask a second question (header
+  `Case`, "Which example case?") with the four easy products as options, each described
   in one line read from its `case.yaml` (`persona`, then `mandate`) under
   `${CLAUDE_PLUGIN_ROOT}/cases/`; do not write the descriptions from memory. Advanced:
   `case.id: erpnext`; state its persona and mandate in one line. Either way set
