@@ -71,6 +71,8 @@ asks which folder to work in. If it asks whether you trust the folder, say yes.
    install, choose your user account so it is available in every folder.
 5. Back in the session, type `/` in the prompt box and confirm `/nlyu-pm:scout` is in
    the list. If it is not, start a new session in the same folder and look again.
+   From now on, type `/nl` and pick the command from the list; you never need to type
+   the full name.
 
 ## 6. Run the readiness check
 
@@ -90,7 +92,7 @@ Pick the option that stops asking for the session.
 |---|---|
 | Send | Enter |
 | New line without sending | Shift+Enter |
-| See available commands | type `/` |
+| See available commands | type `/`, or `/nl` to show only this plugin's four commands, then Enter |
 | Stop Claude mid-reply | Escape, or the stop button |
 | Answer a multiple-choice question | click an option, or type your own answer |
 | Move to the next stage | start a new session in the same folder |
