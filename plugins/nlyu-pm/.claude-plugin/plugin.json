@@ -1,7 +1,7 @@
 {
   "name": "nlyu-pm",
   "displayName": "Product Discovery to PRD",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "description": "Product discovery to PRD for product managers: research public evidence on your own repository or an example open-source product, choose an opportunity, build a clickable prototype, with independent read-only reviews of both the evidence and the PRD.",
   "author": {
     "name": "niancilyu-2",
