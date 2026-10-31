@@ -168,7 +168,7 @@ leave out." Then accept changes at any point in the stage: "also read X", "skip 
 reviews", "spend ten more fetches".
 
 ```yaml
-# .pm/sources.yaml  (written by /pm:scout from what the PM said)
+# .pm/sources.yaml  (written by /nlyu-pm:scout from what the PM said)
 budget:
   fetches: 20          # raise only when the PM asks; the usage line shows the new denominator
   searches: 8
@@ -278,7 +278,7 @@ Code asks permission once for the command; say so):
 - **An API key the PM keeps in their own shell.** `auth: env:<NAME>`. Tell the PM, once:
   "In your own terminal, not in this chat, set the key as an environment variable
   (`export NAME=...` on macOS or Linux, `$env:NAME = "..."` in Windows PowerShell), then
-  type `/exit`, start `claude` again from that terminal, and run `/pm:scout`; it resumes
+  type `/exit`, start `claude` again from that terminal, and run `/nlyu-pm:scout`; it resumes
   where you were. Tell me only the variable's name." Claude then calls
   `curl -sS -H "Authorization: Bearer $NAME" "<address>"` (or the header the source
   documents), so the shell supplies the value. Never run `env`, `printenv`, `echo $NAME`,

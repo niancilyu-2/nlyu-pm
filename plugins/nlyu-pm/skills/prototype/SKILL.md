@@ -1,10 +1,10 @@
 ---
 name: prototype
-description: Prototype stage of the pm workflow. Turn the selected opportunity into one focused user flow and a clickable prototype using Claude Design or a standalone HTML file, then improve it through a design critique. Run after /pm:scout.
+description: Prototype stage of the nlyu-pm workflow. Turn the selected opportunity into one focused user flow and a clickable prototype using Claude Design or a standalone HTML file, then improve it through a design critique. Run after /nlyu-pm:scout.
 disable-model-invocation: true
 ---
 
-# /pm:prototype (Rapid prototyping)
+# /nlyu-pm:prototype (Rapid prototyping)
 
 You are guiding a product manager with limited technical experience. Read
 `${CLAUDE_PLUGIN_ROOT}/resources/shared-rules.md` now and follow it for the whole stage.
@@ -95,7 +95,7 @@ Give the PM **one** instruction, exactly:
 
 > Type `/design` and paste the brief I saved at `.pm/design-brief.md` (I will print it
 > below). When the design is ready, ask Design to export it as a single standalone HTML
-> file saved to `outputs/prototype/index.html`. Then run `/pm:prototype` again and I will
+> file saved to `outputs/prototype/index.html`. Then run `/nlyu-pm:prototype` again and I will
 > continue from here.
 
 Print the brief. Set `stages.prototype.status: awaiting-design`, `stages.prototype.path:
@@ -159,7 +159,8 @@ Record `D-###`.
   `approved_at`, `path`), `stage.current: prd`, `stage.status: not-started`.
 - Source check; record `clean_at_end`.
 - Close with three lines: what Claude contributed, what the PM decided, next
-  command: `/clear`, then `/pm:prd`. Then the stage summary line (shared rules,
+  command: a new session in the same folder (`/clear` in a terminal), then
+  `/nlyu-pm:prd`. Then the stage summary line (shared rules,
   section 9), also written to the notes' `Run summary` row and
   `stages.prototype.summary`.
 

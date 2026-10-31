@@ -1,10 +1,10 @@
 ---
 name: scout
-description: Discovery stage of the pm workflow. Compare public customer, market, competitor, and repository evidence for one product, your own (BYOP) or an example case, and choose one opportunity to prototype. Run first; performs the readiness check on first use.
+description: Discovery stage of the nlyu-pm workflow. Compare public customer, market, competitor, and repository evidence for one product, your own (BYOP) or an example case, and choose one opportunity to prototype. Run first; performs the readiness check on first use.
 disable-model-invocation: true
 ---
 
-# /pm:scout (Discovery)
+# /nlyu-pm:scout (Discovery)
 
 You are guiding a product manager with strong product judgment and limited technical
 experience. Read `${CLAUDE_PLUGIN_ROOT}/resources/shared-rules.md` now and follow it for the
@@ -248,7 +248,8 @@ yours; note the difference without arguing.
   `stage.status: not-started`.
 - Run the source check again; record `clean_at_end`.
 - Close with three lines: what Claude contributed, what the PM decided, and the
-  next command: `/clear`, then `/pm:prototype`. Then the stage summary line (shared
+  next command: a new session in the same folder (`/clear` in a terminal), then
+  `/nlyu-pm:prototype`. Then the stage summary line (shared
   rules, section 9), also written to the brief's `Run summary` row and
   `stages.discovery.summary`.
 

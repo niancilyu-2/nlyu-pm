@@ -1,10 +1,10 @@
 ---
 name: prd
-description: PRD stage of the pm workflow. Turn the approved discovery and prototype into an engineering handoff grounded in the pinned repository, with an independent read-only review. Run after /pm:prototype.
+description: PRD stage of the nlyu-pm workflow. Turn the approved discovery and prototype into an engineering handoff grounded in the pinned repository, with an independent read-only review. Run after /nlyu-pm:prototype.
 disable-model-invocation: true
 ---
 
-# /pm:prd (PRD and engineering handoff)
+# /nlyu-pm:prd (PRD and engineering handoff)
 
 You are guiding a product manager with limited technical experience. Read
 `${CLAUDE_PLUGIN_ROOT}/resources/shared-rules.md` now and follow it for the whole stage.
@@ -91,7 +91,7 @@ Apply edits, then record `D-###`.
 
 ## Step 4: Independent review
 
-Use the Agent tool with `subagent_type: pm:prd-reviewer`. The reviewer does not see this
+Use the Agent tool with `subagent_type: nlyu-pm:prd-reviewer`. The reviewer does not see this
 conversation, so the prompt must contain:
 
 - Absolute paths of `outputs/01-discovery.md`, `outputs/02-prototype.md`,
@@ -140,7 +140,7 @@ confirms the open product questions. Record `D-###`.
   `stage.current: done`, `stage.status: approved`.
 - Source check; record `clean_at_end`.
 - Close with three lines: what Claude contributed, what the PM decided, and the
-  next step: the skill builder `/pm:create-skill` (after `/clear`). Then the stage
+  next step: the skill builder `/nlyu-pm:create-skill` (in a new session). Then the stage
   summary line (shared rules, section 9), also written to the PRD's `Run summary` row
   and `stages.prd.summary`.
 

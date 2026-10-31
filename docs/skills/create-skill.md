@@ -1,4 +1,4 @@
-# /pm:create-skill
+# /nlyu-pm:create-skill
 
 The skill builder. It turns one repeatable practice of your own into a small Claude skill that
 lives in your project, tests it once in a fresh session, and revises it once. It is
@@ -27,7 +27,8 @@ what stays with you, the test and its result, the revision, and reuse instructio
    file is written.
 5. **Write and validate.** One file, under 1,000 words, manual invocation only so it cannot
    fire unexpectedly. Claude runs a self-check and the plugin validator.
-6. **Test in a fresh session.** You open a second terminal in the same folder, confirm the
+6. **Test in a fresh session.** You open a second session in the same folder (a new Code tab session or a second
+   terminal), confirm the
    skill is listed, run it on the agreed example, and paste the result back. Claude reviews
    it for trigger clarity, missing context, usefulness, unsupported assumptions, and
    ownership. If nothing comes back, the summary says "not tested".
@@ -45,5 +46,5 @@ what stays with you, the test and its result, the revision, and reuse instructio
 
 ## Where the details live
 
-`plugins/pm/skills/create-skill/SKILL.md` is the skill and
-`plugins/pm/resources/project-skill-template.md` the template and self-check.
+`plugins/nlyu-pm/skills/create-skill/SKILL.md` is the skill and
+`plugins/nlyu-pm/resources/project-skill-template.md` the template and self-check.

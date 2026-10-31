@@ -1,6 +1,6 @@
-# Readiness check (first run of `/pm:scout`)
+# Readiness check (first run of `/nlyu-pm:scout`)
 
-Run this the first time `/pm:scout` starts in a workspace, or whenever `readiness.status`
+Run this the first time `/nlyu-pm:scout` starts in a workspace, or whenever `readiness.status`
 is `not-run` or `blocked`. It should take under ten minutes. Run it before you plan to start so
 problems surface early.
 
@@ -15,7 +15,7 @@ Report only one of three words, then the next action:
 ## Checks, in order
 
 1. **Plugin version.** Read `${CLAUDE_PLUGIN_ROOT}/.claude-plugin/plugin.json` and say
-   "You are running the pm plugin version X." (This is how a stale install is spotted.)
+   "You are running the nlyu-pm plugin version X." (This is how a stale install is spotted.)
 2. **Workspace folder and mode.** Apply the folder checks in `workspace.md` to decide
    between wrapper mode (an empty folder; an example case, or BYOP by URL, path, or zip)
    and in-repo mode (the PM started inside their own repository, which is BYOP). In in-repo mode confirm
@@ -55,13 +55,13 @@ Report only one of three words, then the next action:
 7. **Choose the track (optional pre-selection).** In in-repo mode the product is already
    known: say "BYOP: this repository", record `case.source: custom`, and skip to step 8;
    the case itself is built when Discovery starts. In wrapper mode ask the fork question
-   from `/pm:scout` Step 2 (header `Product`, "Which product do you want to work on?")
+   from `/nlyu-pm:scout` Step 2 (header `Product`, "Which product do you want to work on?")
    with its three options, BYOP, example case core, example case advanced, plus a fourth,
-   **Decide later** (nothing downloads today; `/pm:scout` asks again when Discovery
+   **Decide later** (nothing downloads today; `/nlyu-pm:scout` asks again when Discovery
    starts). Say that picking now means the code downloads today and that they may change
    their mind when Discovery starts. No table in the reply.
    - Example case: core asks the second question with the four core products, as in
-     `/pm:scout` Step 2; advanced is ERPNext. Run the clone procedure in `workspace.md` and
+     `/nlyu-pm:scout` Step 2; advanced is ERPNext. Run the clone procedure in `workspace.md` and
      record `case.id`, `case.source: prepared`, `case.dir`, and `case.preselected: true`.
    - BYOP: ask the question in `custom-case.md` Step A (URL, folder, or archive; its
      fourth option returns to this fork), record `case.source: custom`, the URL or path
@@ -76,13 +76,13 @@ Report only one of three words, then the next action:
 Ask: "Stop here and continue later, or go straight into Discovery now?"
 
 - **Stop:** set `readiness.stopped_after_setup: true`. Tell them: next time, open a
-  terminal in this same folder, start a fresh `claude` session, and run `/pm:scout`. It
+  terminal in this same folder, start a fresh `claude` session, and run `/nlyu-pm:scout`. It
   will resume at case selection.
-- **Continue:** proceed to case selection in `/pm:scout`.
+- **Continue:** proceed to case selection in `/nlyu-pm:scout`.
 
 ## Rerunning readiness
 
-If `/pm:scout` starts and `readiness.status` is `ready` or `ready-with-fallback`, do not
+If `/nlyu-pm:scout` starts and `readiness.status` is `ready` or `ready-with-fallback`, do not
 repeat the checks. Print "Readiness: <status> on <date>" and continue. Repeat only when the
 PM asks or when a check obviously fails during the stage (for example, web fetch
 now denied).

@@ -110,4 +110,4 @@ prototype at the neutral defaults in `prototype-html-guide.md`. Under 700 words.
 Anyone can prepare a case package for a product they want a group to work on: copy an
 example case folder, replace every field, verify each feed URL once in a browser, and
 place the folder at `.pm/case/` in the workspace (or add it under the plugin's `cases/`
-for distribution). `/pm:scout` detects a case at `.pm/case/` and offers it first.
+for distribution). `/nlyu-pm:scout` detects a case at `.pm/case/` and offers it first.

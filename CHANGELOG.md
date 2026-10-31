@@ -1,12 +1,19 @@
 # Changelog
 
-All notable changes to the `pm` plugin are recorded here. Bump `version` in
-`plugins/pm/.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`
+All notable changes to the `nlyu-pm` plugin are recorded here. Bump `version` in
+`plugins/nlyu-pm/.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`
 whenever a changed build is distributed, otherwise existing installs will not refresh.
 
 ## 0.8.0 (unreleased)
 
-- `/pm:create-skill` is now called the skill builder in every doc, status line, and
+- Plugin renamed from `pm` to `nlyu-pm` (the name `pm` is taken in Anthropic's plugin
+  directory), so commands are `/nlyu-pm:scout`, `/nlyu-pm:prototype`, `/nlyu-pm:prd`, and
+  `/nlyu-pm:create-skill`, and the plugin folder is `plugins/nlyu-pm/`. Entries below
+  0.8.0 keep the old names they shipped with.
+- Desktop-first setup: the Claude desktop app installs the plugin from Settings without
+  a terminal; the terminal path stays as an alternative. The plugin folder gains its own
+  README and LICENSE for directory submission.
+- `/nlyu-pm:create-skill` is now called the skill builder in every doc, status line, and
   template (it was the capstone). The informational `session.yaml` key is
   `stages.skill_builder`.
 - Stage summary line. Every stage closes with one line of what the run spent and
@@ -19,7 +26,7 @@ whenever a changed build is distributed, otherwise existing installs will not re
   guidance. The group-run page is removed and
   all wording is product-neutral: the plugin and its docs address a PM working alone or
   with a team.
-- Which product, asked up front. The first question `/pm:scout` asks (and readiness
+- Which product, asked up front. The first question `/nlyu-pm:scout` asks (and readiness
   check 7 offers in advance) is which product: *BYOP: bring your own project or repo*,
   the normal path, or an example case to try the workflow on, *core* (Immich, Plane, Home
   Assistant, or Umbraco; a second question picks the product) or *advanced* (ERPNext).
@@ -27,7 +34,7 @@ whenever a changed build is distributed, otherwise existing installs will not re
   chosen. Readiness and case selection never offer more than four
   options per question, so all five example products are visible; the five-row table that
   rendered as four options plus "type something" is gone.
-- BYOP. `/pm:scout` recognises when Claude was started inside a repository (in-repo mode)
+- BYOP. `/nlyu-pm:scout` recognises when Claude was started inside a repository (in-repo mode)
   and otherwise takes a URL, a local folder, or a zip. A new `custom-case.md` procedure
   builds a case package at `.pm/case/` from any repository: README, tree, and manifest
   read; persona, brief, and focus area asked; entry points proposed; research feeds

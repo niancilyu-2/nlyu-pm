@@ -1,4 +1,4 @@
-# /pm:prd
+# /nlyu-pm:prd
 
 The delivery PRD skill. It turns the approved discovery brief and prototype into an
 engineering handoff grounded in the product's code, and has a separate read-only agent
@@ -58,7 +58,7 @@ flowchart LR
   REQ --> PRD
   AC --> PRD
   CON --> PRD
-  PRD --> REV["pm:prd-reviewer<br/>read-only, no conversation"]
+  PRD --> REV["nlyu-pm:prd-reviewer<br/>read-only, no conversation"]
 ```
 
 ## Rules it follows
@@ -76,6 +76,6 @@ flowchart LR
 
 ## Where the details live
 
-`plugins/pm/skills/prd/SKILL.md` is the skill, `plugins/pm/agents/prd-reviewer.md` the
-reviewer, `plugins/pm/resources/prd-review-checklist.md` what it checks, and
-`plugins/pm/resources/templates/03-prd.md` the PRD template.
+`plugins/nlyu-pm/skills/prd/SKILL.md` is the skill, `plugins/nlyu-pm/agents/prd-reviewer.md` the
+reviewer, `plugins/nlyu-pm/resources/prd-review-checklist.md` what it checks, and
+`plugins/nlyu-pm/resources/templates/03-prd.md` the PRD template.

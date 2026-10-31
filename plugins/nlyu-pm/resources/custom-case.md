@@ -1,6 +1,6 @@
 # Building a case for BYOP (bring your own project or repo)
 
-`/pm:scout` runs this when the PM chooses **BYOP** instead of an example case. The result
+`/nlyu-pm:scout` runs this when the PM chooses **BYOP** instead of an example case. The result
 is a case package at `.pm/case/` (`case.yaml`, `orientation.md`, `design-notes.md`) in the
 schema from `case-schema.md`, so every later stage reads it exactly as it would read a
 prepared one, plus `.pm/sources.yaml` with the PM's source choices. Budget: about fifteen
@@ -26,7 +26,7 @@ Decided by workspace mode (see `workspace.md`):
   `sources/primary`), a folder already on this computer (a clone or an unpacked archive;
   read in place; record its absolute path as `root`), an archive file (zip or tarball;
   unpacked into `sources/primary`), or choose an example case instead (return to the
-  fork in `/pm:scout` Step 2). `workspace.md` gives the commands and the
+  fork in `/nlyu-pm:scout` Step 2). `workspace.md` gives the commands and the
   private-repository and archive rules. Read access is all that is needed; nothing is
   written to the repository in any option. If `sources/primary` already exists and holds
   a different repository (an example case pre-selected during readiness), rename it to
@@ -126,7 +126,7 @@ from the research guide once, as written there. Items read this way are logged a
 identifiable customers are not sources; if offered, decline and continue.
 
 Now write `.pm/sources.yaml`: `budget` at the defaults, `drop` from Step B, `add` from
-Steps C and D. Append one `notes` entry per override. `/pm:scout` Step 5 re-reads and
+Steps C and D. Append one `notes` entry per override. `/nlyu-pm:scout` Step 5 re-reads and
 updates this file; it never recreates it.
 
 ## Step E. Read the repository, then confirm with the PM
@@ -276,13 +276,13 @@ PM confirms or edits. Record `D-###` with `checkin: case-check`.
 
 Save `.pm/case/case.yaml` with `tier: custom`, `generated: true`, `generated_at`, and
 the two markdown files. Set `case.source: custom`, `case.dir: .pm/case`, `case.id`,
-`case.lane`, and `case.chosen_at` in `session.yaml`. Continue with `/pm:scout` Step 3,
+`case.lane`, and `case.chosen_at` in `session.yaml`. Continue with `/nlyu-pm:scout` Step 3,
 skipping the three-word definitions if the PM already knows what a repository and a
 commit are (ask in one line).
 
 ## Re-running on the same product
 
-If `.pm/case/case.yaml` exists when `/pm:scout` starts, offer to keep it (same product,
+If `.pm/case/case.yaml` exists when `/nlyu-pm:scout` starts, offer to keep it (same product,
 same lane), change the lane only (re-run Steps E.3, F, and the lane parts of I), or build
 fresh. Keeping it reuses the feeds and `.pm/sources.yaml`; the `pinned_sha` is refreshed
 from `git rev-parse HEAD` and the change is noted if it moved. Building fresh rebuilds
