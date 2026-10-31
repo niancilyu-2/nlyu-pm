@@ -1,10 +1,10 @@
-# PRD review checklist (passed to `pm:prd-reviewer`)
+# PRD review checklist (passed to `nlyu-pm:prd-reviewer`)
 
-The reviewer does not see the conversation. `/pm:prd` sends it: the paths of
+The reviewer does not see the conversation. `/nlyu-pm:prd` sends it: the paths of
 `outputs/01-discovery.md`, `outputs/02-prototype.md`, `outputs/03-prd.md`, the source
 roots with their commits, the case id and lane, the selected opportunity ID, and this
 checklist.
-The reviewer reads only; it returns findings as text. `/pm:prd` writes them to
+The reviewer reads only; it returns findings as text. `/nlyu-pm:prd` writes them to
 `outputs/03-prd-review.md`.
 
 ## What to check

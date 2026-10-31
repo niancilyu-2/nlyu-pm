@@ -81,7 +81,7 @@ stages:
     revision: 0
     approved_at: null
     summary: null                # stage summary line, written at close
-  skill_builder:                 # informational only; /pm:create-skill does NOT write this file
+  skill_builder:                 # informational only; /nlyu-pm:create-skill does NOT write this file
     note: "See outputs/04-skill-summary.md if present."
 
 stale: []                        # e.g. [prototype, prd]
@@ -99,7 +99,7 @@ notes: []                        # free-text events worth remembering, newest la
 ```
 
 Source overrides (added, dropped, or reordered research sources and a raised budget) live
-in a separate file, `.pm/sources.yaml`, written by `/pm:scout` from what the PM said (for
+in a separate file, `.pm/sources.yaml`, written by `/nlyu-pm:scout` from what the PM said (for
 BYOP, during the case build); its shape is in `research-guide.md`. An `add:` entry for a
 source behind a sign-in carries `access: pm-held` and an `auth:` hint (a variable name or
 tool name, never a value); the PM's terms confirmation for it is appended to `notes`. Each
@@ -114,11 +114,11 @@ sparse-clone` as itself. Rewrite the file as `schema: 2` on the next write.
 
 | Key | Written by |
 |---|---|
-| `schema`, `plugin_version`, `created_at`, `workspace`, `workspace_mode`, `outputs_dir`, `readiness`, `case`, `sources` | `/pm:scout` |
+| `schema`, `plugin_version`, `created_at`, `workspace`, `workspace_mode`, `outputs_dir`, `readiness`, `case`, `sources` | `/nlyu-pm:scout` |
 | `sources[].baseline`, `clean_at_start`, `clean_at_end`, `moved_to` | any stage skill, at its start and end |
 | `stage`, `stale` | any stage skill that changes the current stage |
-| `stages.discovery` | `/pm:scout` |
-| `stages.prototype`, `readiness.design` | `/pm:prototype` |
-| `stages.prd` | `/pm:prd` |
+| `stages.discovery` | `/nlyu-pm:scout` |
+| `stages.prototype`, `readiness.design` | `/nlyu-pm:prototype` |
+| `stages.prd` | `/nlyu-pm:prd` |
 | `decisions`, `notes` | any skill (append only) |
-| anything | never `/pm:create-skill` |
+| anything | never `/nlyu-pm:create-skill` |

@@ -8,11 +8,12 @@ Not installed yet? Do [SETUP.md](SETUP.md) first.
 
 ## 1. Start
 
-Open a terminal in your `pm-workspace` folder (or, for BYOP, at the top folder of your repository) and type `claude`.
+Open your `pm-workspace` folder (or, for BYOP, the top folder of your repository) in the
+Claude desktop app's Code tab, or in a terminal by typing `claude` there.
 
 ## 2. Readiness
 
-Type `/pm:scout`. On the first run it:
+Type `/nlyu-pm:scout`. On the first run it:
 
 1. prints the plugin version
 2. checks the folder and Git
@@ -73,7 +74,7 @@ package at a **case check-in**. About fifteen minutes before research starts. No
 is modified; `outputs/` and `.pm/` are the only new folders, and Claude offers to hide
 them from `git status`.
 
-## 4. Discovery: `/pm:scout` (60 min)
+## 4. Discovery: `/nlyu-pm:scout` (60 min)
 
 Claude asks for the track, the case, then the lane, gives a short tour, downloads the
 repository, asks for two or three search words, shows the list of sources it will read in
@@ -97,9 +98,10 @@ Evidence item has a link and dates; Claude's recommendation and your decision ar
 blocks.
 
 Files: `outputs/01-discovery.md`, `.pm/session.yaml`. The stage closes with a summary
-line: minutes, fetches, items, quotes, gaps, status. Type `/clear`.
+line: minutes, fetches, items, quotes, gaps, status. Then start a new session in the
+same folder (in a terminal, type `/clear`).
 
-## 5. Prototype: `/pm:prototype` (60 min)
+## 5. Prototype: `/nlyu-pm:prototype` (60 min)
 
 Claude shows the quotes behind your chosen opportunity and asks: one actor, one job, where
 the task starts and ends, the main action, two alternate states. **Flow check-in:** approve
@@ -109,7 +111,7 @@ Claude reads the product's design files and writes a brief. Then one of two path
 
 - **Claude Design available.** Claude prints one instruction: type `/design`, paste the
   brief, ask Design to export a single HTML file to `outputs/prototype/index.html`, then
-  run `/pm:prototype` again.
+  run `/nlyu-pm:prototype` again.
 - **Not available.** Claude writes the HTML file itself and opens it.
 
 Double-click `outputs/prototype/index.html`. Click through the main path, use the demo
@@ -118,9 +120,10 @@ buttons to see the two alternate states, try Tab to move between controls.
 Claude walks the flow with you, lists findings, and proposes one change tied to evidence.
 **Prototype check-in:** approve the revised version, note any trade-offs.
 
-Files: `outputs/02-prototype.md`, `outputs/prototype/index.html`. Type `/clear`.
+Files: `outputs/02-prototype.md`, `outputs/prototype/index.html`. Then a new session in
+the same folder (in a terminal, `/clear`).
 
-## 6. PRD: `/pm:prd` (45 min)
+## 6. PRD: `/nlyu-pm:prd` (45 min)
 
 Claude reads the earlier files, looks at the code for likely touchpoints, and drafts the
 PRD. **Scope check-in:** approve goals, non-goals, behaviour, alternate states, acceptance
@@ -134,9 +137,10 @@ Check: technical statements are labelled Verified with a file path, Inferred, or
 Engineering-owned; no estimates, delivery dates, or story points; status reads
 `ready-for-engineering-review`.
 
-Files: `outputs/03-prd.md`, `outputs/03-prd-review.md`. Type `/clear`.
+Files: `outputs/03-prd.md`, `outputs/03-prd-review.md`. Then a new session in the same
+folder (in a terminal, `/clear`).
 
-## 7. Skill builder: `/pm:create-skill` (30 min, any time)
+## 7. Skill builder: `/nlyu-pm:create-skill` (30 min, any time)
 
 Independent of the other stages; run it in the same folder whenever you like. Bring one
 repeated task from your job, or paste a checklist you already use.
@@ -145,7 +149,8 @@ Claude asks four questions, shows a proposed skill at the **scope check-in**, th
 `.claude/skills/<name>/SKILL.md` and validates it. Claude Code asks permission before
 writing that file even if you allowed edits earlier; choose Yes.
 
-To test: open a second terminal in the same folder, type `claude`, type `/skills` and
+To test: open a second session in the same folder (a new Code tab session, or a second
+terminal running `claude`), type `/skills` and
 find your command, run it with sample input. Paste the result back into the first window.
 Claude proposes at most one revision and asks what the skill automates and what stays with
 you.
@@ -156,16 +161,16 @@ Files: `.claude/skills/<name>/SKILL.md`, `outputs/04-skill-summary.md`.
 
 | You see | Do |
 |---|---|
-| `/pm:` commands missing | `/plugin marketplace update nlyu-pm`, then `/plugin install pm@nlyu-pm` |
+| `/nlyu-pm:` commands missing | `/plugin marketplace update nlyu-pm`, then `/plugin install nlyu-pm@nlyu-pm` |
 | Repeated permission prompts | Choose the option that stops asking for the session |
-| `Blocked` | Do the action printed, then `/pm:scout` again |
+| `Blocked` | Do the action printed, then `/nlyu-pm:scout` again |
 | Web search policy error | Continue. Send the error text to whoever manages your account |
 | A source returns 403 or 429 | Claude logs a gap and moves on |
-| Path-too-long error on Windows | `git config --global core.longpaths true`, then `/pm:scout` |
+| Path-too-long error on Windows | `git config --global core.longpaths true`, then `/nlyu-pm:scout` |
 | `/design` does nothing | Claude uses the HTML path |
 | `sources CHANGED` in the status line | Stop and note the step. In your own repository, it may be your own edit in another window; Claude asks before assuming |
 | BYOP and most research sources are empty | Expected for a private or new product. Claude says so up front, uses the code, competitors, anything you paste, and any source you set up with your own sign-in, and marks the brief provisional |
-| Lost your place | `/clear`, then the current stage command. It resumes from the files |
+| Lost your place | Start a new session in the same folder (in a terminal, `/clear`), then the current stage command. It resumes from the files |
 | Your new skill not in `/skills` | Test from a new session in the same folder. The folder name must match the `name` line in the file |
 
 ## 9. Feedback

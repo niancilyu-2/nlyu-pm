@@ -1,4 +1,4 @@
-# /pm:prototype
+# /nlyu-pm:prototype
 
 The prototype skill. It turns the opportunity you chose into one focused user flow, builds a
 clickable prototype of it, and improves it once through a design critique.
@@ -32,7 +32,7 @@ skill stops and asks you to rerun discovery first.
    it.
 5. **Build.** If Claude Design is available, Claude gives you one instruction: run
    `/design` with the brief, export a single HTML file to the prototype folder, then run
-   `/pm:prototype` again. If not, Claude writes the HTML itself and opens it.
+   `/nlyu-pm:prototype` again. If not, Claude writes the HTML itself and opens it.
 6. **Walkthrough.** You and Claude click through the main path and both states, checking
    labels, navigation, keyboard use, whether each state is clear, and contrast. This is a
    design critique, not user testing.
@@ -57,7 +57,7 @@ skill stops and asks you to rerun discovery first.
 
 ## Where the details live
 
-`plugins/pm/skills/prototype/SKILL.md` is the skill. The brief template is
-`plugins/pm/resources/design-brief.md`, the HTML contract and walkthrough checklist
-`plugins/pm/resources/prototype-html-guide.md`, and the notes template
-`plugins/pm/resources/templates/02-prototype.md`.
+`plugins/nlyu-pm/skills/prototype/SKILL.md` is the skill. The brief template is
+`plugins/nlyu-pm/resources/design-brief.md`, the HTML contract and walkthrough checklist
+`plugins/nlyu-pm/resources/prototype-html-guide.md`, and the notes template
+`plugins/nlyu-pm/resources/templates/02-prototype.md`.

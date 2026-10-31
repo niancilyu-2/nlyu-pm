@@ -1,4 +1,4 @@
-# /pm:scout
+# /nlyu-pm:scout
 
 The discovery skill. It runs a readiness check the first time, sets up the product (BYOP,
 your own project or repo, or one of five example cases), then researches one focus area from
@@ -122,8 +122,8 @@ brief. Customer records such as support tickets or CRM exports are never sources
 
 ## Where the details live
 
-`plugins/pm/skills/scout/SKILL.md` is the skill itself. The research rules are in
-`plugins/pm/resources/research-guide.md`, the readiness procedure in
-`plugins/pm/resources/readiness.md`, the BYOP case builder in
-`plugins/pm/resources/custom-case.md` with its contract in `case-schema.md`, and the
-brief's template in `plugins/pm/resources/templates/01-discovery.md`.
+`plugins/nlyu-pm/skills/scout/SKILL.md` is the skill itself. The research rules are in
+`plugins/nlyu-pm/resources/research-guide.md`, the readiness procedure in
+`plugins/nlyu-pm/resources/readiness.md`, the BYOP case builder in
+`plugins/nlyu-pm/resources/custom-case.md` with its contract in `case-schema.md`, and the
+brief's template in `plugins/nlyu-pm/resources/templates/01-discovery.md`.

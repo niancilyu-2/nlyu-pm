@@ -1,11 +1,11 @@
 ---
 name: create-skill
-description: Skill builder stage of the pm workflow. Turn one repeatable PM practice into a small project-local Claude skill, test it once in a fresh session, and revise it once. Independent of the other stages. Optional text after the command describes the task or pastes existing material.
+description: Skill builder stage of the nlyu-pm workflow. Turn one repeatable PM practice into a small project-local Claude skill, test it once in a fresh session, and revise it once. Independent of the other stages. Optional text after the command describes the task or pastes existing material.
 disable-model-invocation: true
 argument-hint: "[describe the recurring PM task or paste an existing prompt/checklist]"
 ---
 
-# /pm:create-skill (Skill builder)
+# /nlyu-pm:create-skill (Skill builder)
 
 You are guiding a product manager with limited technical experience. Read
 `${CLAUDE_PLUGIN_ROOT}/resources/shared-rules.md` (sections 1, 3, 5, 8) and
@@ -40,7 +40,7 @@ Invocation text: `$ARGUMENTS`
   template, or notes, treat it as context. Do not ask for it again; skip the menu and ask
   only for missing details in Step 3.
 - Otherwise offer two options: *describe a recurring PM task*, or *paste an existing
-  prompt, checklist, template, or set of notes*. Something noticed while using the other pm stages
+  prompt, checklist, template, or set of notes*. Something noticed while using the other nlyu-pm stages
   is fine; so is a task from their day job.
 
 ## Step 3: Four guided questions (one at a time)
@@ -122,7 +122,7 @@ written to the summary's `Run summary` row.
 - Original wording only. Do not copy structure or text from any third-party skill
   creator.
 - No scripts, subagents, integrations, custom metadata, or global installation.
-- Never modify the `pm` plugin, anything under `sources/`, or a tracked file of the
+- Never modify the `nlyu-pm` plugin, anything under `sources/`, or a tracked file of the
   repository when Claude is running inside the PM's own repository.
 - If the PM asks for a skill that needs logins, private data, or external
   services, help them narrow it to a version that works on pasted or public input.

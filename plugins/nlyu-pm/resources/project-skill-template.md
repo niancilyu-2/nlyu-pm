@@ -1,6 +1,6 @@
 # Project skill template and self-check (skill builder)
 
-`/pm:create-skill` writes exactly one file: `.claude/skills/<slug>/SKILL.md`. Nothing else
+`/nlyu-pm:create-skill` writes exactly one file: `.claude/skills/<slug>/SKILL.md`. Nothing else
 goes in the folder in the first version: no scripts, no subagents, no extra files.
 
 ## Slug rules
@@ -77,8 +77,9 @@ Run through this list and fix anything that fails, then run
 The authoring conversation can hide missing instructions, so test from a **new** Claude
 Code session in the same workspace folder:
 
-1. Ask the PM to open a second terminal window in the same folder and run
-   `claude` (or quit this session, run `claude`, and later return with `claude --continue`).
+1. Ask the PM to open a second session in the same folder: a new session in the desktop
+   app's Code tab, or a second terminal window running `claude` (or quit this session,
+   run `claude`, and later return with `claude --continue`).
 2. In the new session, type `/skills` and confirm `/<slug>` is listed. Then run
    `/<slug>` with the agreed public or synthetic test input.
 3. Copy the result and paste it back into the authoring session.
@@ -90,4 +91,4 @@ success.
 
 Copying the folder `.claude/skills/<slug>/` into another project's `.claude/skills/` makes
 the skill available there. The first version is not installed globally, published,
-committed, or added to the `pm` plugin.
+committed, or added to the `nlyu-pm` plugin.

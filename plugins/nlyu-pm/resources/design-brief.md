@@ -1,6 +1,6 @@
 # Design brief template (`.pm/design-brief.md`)
 
-`/pm:prototype` writes this file after the flow check-in. It is the single input to either
+`/nlyu-pm:prototype` writes this file after the flow check-in. It is the single input to either
 Claude Design (`/design`) or the HTML fallback, so both paths start from the same brief.
 Keep it under 500 words. Fill every field; write `none` rather than leaving a blank.
 

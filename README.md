@@ -1,4 +1,4 @@
-# pm: product discovery to PRD for Claude Code
+# nlyu-pm: product discovery to PRD for Claude Code
 
 A Claude Code plugin that takes a product manager from public evidence to a selected
 opportunity, a clickable prototype, and an engineering-ready PRD, on your own project or
@@ -8,9 +8,13 @@ and challenges. The PM decides, and every stage records which was which.
 No programming required. The product's source code is read and never changed. One PM
 can run it alone, or a team can run it together.
 
+In the Claude desktop app: **Settings**, **Plugins**, **Add**, **Add marketplace**, **Add from
+a repo**, paste `https://github.com/niancilyu-2/nlyu-pm`, then install **nlyu-pm**. In a
+terminal:
+
 ```text
 /plugin marketplace add niancilyu-2/nlyu-pm
-/plugin install pm@nlyu-pm
+/plugin install nlyu-pm@nlyu-pm
 ```
 
 ## Contents
@@ -83,10 +87,10 @@ Four skills. Each runs only when you type it.
 
 | Skill | What it does | You leave with | Details |
 |---|---|---|---|
-| `/pm:scout` | Readiness check on first run, a case built from your own repository (or an example case to try it on), then a research pass over a fixed sequence of public sources, repository constraints, three opportunities, and your choice of one | `outputs/01-discovery.md`, the discovery brief | [docs/skills/scout.md](docs/skills/scout.md) |
-| `/pm:prototype` | One actor, one job, one flow. A clickable prototype in Claude Design or as a standalone HTML file, a design critique, one revision | `outputs/02-prototype.md`, `outputs/prototype/index.html` | [docs/skills/prototype.md](docs/skills/prototype.md) |
-| `/pm:prd` | A delivery PRD grounded in the product's code, reviewed by a separate read-only agent that has not seen your conversation | `outputs/03-prd.md`, `outputs/03-prd-review.md` | [docs/skills/prd.md](docs/skills/prd.md) |
-| `/pm:create-skill` | Turn one PM practice of your own into a small project skill, test it once in a fresh session, revise it once | `.claude/skills/<name>/SKILL.md`, `outputs/04-skill-summary.md` | [docs/skills/create-skill.md](docs/skills/create-skill.md) |
+| `/nlyu-pm:scout` | Readiness check on first run, a case built from your own repository (or an example case to try it on), then a research pass over a fixed sequence of public sources, repository constraints, three opportunities, and your choice of one | `outputs/01-discovery.md`, the discovery brief | [docs/skills/scout.md](docs/skills/scout.md) |
+| `/nlyu-pm:prototype` | One actor, one job, one flow. A clickable prototype in Claude Design or as a standalone HTML file, a design critique, one revision | `outputs/02-prototype.md`, `outputs/prototype/index.html` | [docs/skills/prototype.md](docs/skills/prototype.md) |
+| `/nlyu-pm:prd` | A delivery PRD grounded in the product's code, reviewed by a separate read-only agent that has not seen your conversation | `outputs/03-prd.md`, `outputs/03-prd-review.md` | [docs/skills/prd.md](docs/skills/prd.md) |
+| `/nlyu-pm:create-skill` | Turn one PM practice of your own into a small project skill, test it once in a fresh session, revise it once | `.claude/skills/<name>/SKILL.md`, `outputs/04-skill-summary.md` | [docs/skills/create-skill.md](docs/skills/create-skill.md) |
 
 Each skill opens by saying what you will practise, what Claude will do, and what you
 decide, and ends every reply with a status line such as
@@ -97,11 +101,11 @@ repeated in the output file's header.
 
 ```mermaid
 flowchart LR
-  S["/pm:scout<br/>public-source research, 3 opportunities"] -->|"01-discovery.md<br/>discovery brief"| P["/pm:prototype<br/>one flow, HTML or Design"]
-  P -->|"02-prototype.md<br/>index.html"| R["/pm:prd<br/>PRD + read-only review"]
+  S["/nlyu-pm:scout<br/>public-source research, 3 opportunities"] -->|"01-discovery.md<br/>discovery brief"| P["/nlyu-pm:prototype<br/>one flow, HTML or Design"]
+  P -->|"02-prototype.md<br/>index.html"| R["/nlyu-pm:prd<br/>PRD + read-only review"]
   R --> H["03-prd.md, delivery PRD<br/>03-prd-review.md"]
   P -. "opportunity changed" .-> stale["prototype and PRD marked stale"]
-  C["/pm:create-skill<br/>independent skill builder"] --> K["SKILL.md<br/>04-skill-summary.md"]
+  C["/nlyu-pm:create-skill<br/>independent skill builder"] --> K["SKILL.md<br/>04-skill-summary.md"]
 ```
 
 ### Agentic design principles
@@ -109,17 +113,17 @@ flowchart LR
 A few rules govern how Claude and the PM share the work, each enforced in the skill files
 rather than left to good intentions.
 
-- **Plan first** `/pm:scout` shows its source plan before the first fetch,
-  `/pm:prototype` confirms one actor, one job, and one flow before building, and `/pm:prd`
+- **Plan first** `/nlyu-pm:scout` shows its source plan before the first fetch,
+  `/nlyu-pm:prototype` confirms one actor, one job, and one flow before building, and `/nlyu-pm:prd`
   agrees scope before drafting.
 - **Human in the loop at every judgement.** Ranking the opportunities, approving the flow,
   setting PRD scope, and dispositioning review findings happen at check-ins that show
   *Claude's recommendation* and *Your decision* as separate blocks.
-- **Adversarial review.** `/pm:prd` hands the draft to a read-only reviewer agent that has
+- **Adversarial review.** `/nlyu-pm:prd` hands the draft to a read-only reviewer agent that has
   not seen the conversation; it reopens every `Verified` code path, and blocking findings
   must be fixed, not deferred.
 - **Evidence over confidence.** Every claim is labelled `Evidence`, `Inference`,
-  `Assumption`, or `Constraint`; `/pm:scout` runs a counter-evidence fetch per theme, logs
+  `Assumption`, or `Constraint`; `/nlyu-pm:scout` runs a counter-evidence fetch per theme, logs
   gaps instead of inventing sources, and saves a provisional file when cut short.
 - **Least privilege.** Source repositories are read-only and baseline-checked at the start
   and end of each stage; writes go only under `outputs/`, `.pm/`, and `.claude/skills/`.
@@ -128,37 +132,39 @@ rather than left to good intentions.
 - **State in files, not in context.** Decisions append to `.pm/session.yaml` and drafts
   are promoted on approval, so `/clear` between stages loses nothing and an upstream change
   marks later stages stale.
-- **Budgets and observability.** `/pm:scout` runs on a fixed fetch budget with a
+- **Budgets and observability.** `/nlyu-pm:scout` runs on a fixed fetch budget with a
   coverage-based stop rule, and every reply ends with a status line of step, fetches,
   minutes, and source status.
 - **One job per skill, tested in isolation.** Each skill runs only when typed; the skill
-  written in `/pm:create-skill` is tested in a fresh session before its one revision.
+  written in `/nlyu-pm:create-skill` is tested in a fresh session before its one revision.
 
 ## Setup
 
 ### Requirements
 
 
-- Claude Code on Windows or macOS, with a Claude Pro, Max, Team, or Enterprise account
-  (the free plan does not include Claude Code).
+- The Claude desktop app's Code tab, or Claude Code in a terminal, on Windows or macOS,
+  with a Claude Pro, Max, Team, or Enterprise account (the free plan does not include
+  Claude Code).
 - Git.
 - Web fetch enabled. Web search and Claude Design are optional; both have fallbacks.
 
-First time in a terminal? [docs/SETUP.md](docs/SETUP.md) walks through installing Claude
-Code and Git and the handful of keys you need, in about 20 minutes.
+New to this? [docs/SETUP.md](docs/SETUP.md) walks through the desktop app, Git, and the
+plugin install with no terminal, in about 15 minutes, with a terminal path at the end.
 
 ### Getting started
 
 
-1. Open a terminal at the top folder of a local copy of your repository, or in a new
-   empty folder if you will give a URL or a zip instead (or want to try an example case).
-2. Start `claude`, install the plugin with the two install lines above, and run `/pm:scout`.
+1. Open the top folder of a local copy of your repository, or a new empty folder if you
+   will give a URL or a zip instead (or want to try an example case), in the desktop
+   app's Code tab or in a terminal running `claude`.
+2. Install the plugin as above and run `/nlyu-pm:scout`.
 3. The readiness check ends with `Ready`, `Ready with fallback`, or `Blocked` with one
-   next action. `/pm:scout` then asks which product: your own (BYOP, bring your own
+   next action. `/nlyu-pm:scout` then asks which product: your own (BYOP, bring your own
    project or repo) or one of the example cases. You can also decide later; either way,
-   `/pm:scout` resumes.
-4. Run the stages in order. Type `/clear` between them; each resumes from the files you
-   approved.
+   `/nlyu-pm:scout` resumes.
+4. Run the stages in order, one session each: start a new session in the same folder
+   between them (`/clear` in a terminal); each resumes from the files you approved.
 
 [docs/TEST-WALKTHROUGH.md](docs/TEST-WALKTHROUGH.md) shows every stage step by step with
 what to expect at each check-in.
@@ -170,12 +176,12 @@ what to expect at each check-in.
 This is the normal path. The three stages run on any repository. Read access is all you need; no mode
 writes into the repository. Ways in:
 
-- **Start inside a local copy.** Open a terminal at the top folder of a clone you already
-  have, start `claude`, run `/pm:scout`. Claude treats that repository as the product,
+- **Start inside a local copy.** Open the top folder of a clone you already have in the
+  Code tab or in a terminal running `claude`, then run `/nlyu-pm:scout`. Claude treats that repository as the product,
   never edits a tracked file, and writes only `outputs/` and `.pm/` (offering to hide them
   from `git status`).
 - **Start in an empty folder and point at it.** Choose *BYOP* at the first question
-  `/pm:scout` asks, then give one of: a repository URL (public, or private if your computer
+  `/nlyu-pm:scout` asks, then give one of: a repository URL (public, or private if your computer
   already has read access through SSH, a saved credential, or a signed-in `gh`); a folder
   on your computer; or a zip of the repository, from the hosting site's *Download ZIP*
   button or from an engineer. Claude never asks for a password or token; if a private
@@ -205,12 +211,12 @@ be included through access you set up yourself; Claude never asks for or sees th
 and the brief marks what came from it.
 
 Anyone can also prepare a case package by hand for a product a team will work on; see
-`plugins/pm/resources/case-schema.md`.
+`plugins/nlyu-pm/resources/case-schema.md`.
 
 ### Example cases to try it on
 
 To see the workflow before pointing it at your own code, choose an example case when
-`/pm:scout` asks which product. Five open-source products come prepared, each with
+`/nlyu-pm:scout` asks which product. Five open-source products come prepared, each with
 verified research sources, a fixed code snapshot from a set date, and only the folders
 the focus areas need, tens of megabytes rather than hundreds. You work on the product as
 its PM, designing for one of the users it serves, and pick one focus area within it. The
@@ -273,7 +279,7 @@ boundaries and starting points only, never conclusions, so the research is yours
 ```text
 nlyu-pm/
 ├── .claude-plugin/marketplace.json
-├── plugins/pm/
+├── plugins/nlyu-pm/
 │   ├── .claude-plugin/plugin.json
 │   ├── skills/{scout,prototype,prd,create-skill}/SKILL.md
 │   ├── agents/prd-reviewer.md
@@ -288,15 +294,15 @@ nlyu-pm/
 └── README.md
 ```
 
-Everything a skill needs at runtime lives under `plugins/pm`. When you publish a changed
-build, bump `version` in both `plugins/pm/.claude-plugin/plugin.json` and
+Everything a skill needs at runtime lives under `plugins/nlyu-pm`. When you publish a changed
+build, bump `version` in both `plugins/nlyu-pm/.claude-plugin/plugin.json` and
 `.claude-plugin/marketplace.json`, otherwise existing installs will not refresh. To
 develop locally:
 
 ```bash
 claude plugin validate . --strict
-claude plugin validate ./plugins/pm --strict
-claude --plugin-dir ./plugins/pm
+claude plugin validate ./plugins/nlyu-pm --strict
+claude --plugin-dir ./plugins/nlyu-pm
 ```
 
 ### Licence and credits
