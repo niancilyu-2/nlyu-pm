@@ -8,9 +8,12 @@ the Problems table at the end.
 
 | Way | User profile |
 |---|---|
-| **Claude desktop app** (Code tab) | Recommended for non-technical people. The steps below are written for it. |
-| **Claude Code in a terminal** (CLI) | Recommended for technical people. See *Terminal path* at the end of this page. |
-| **claude.ai in a browser** | Not recommended: installing the plugin there is complicated. |
+| **Claude desktop app** (Code tab) | Recommended / non-technical users. |
+| **Claude Code in a terminal** (CLI) | Recommended / technical people. |
+| **claude.ai in a browser** | Not recommended (complex install and project setup process). |
+
+The steps below are written for the desktop app. Terminal users: see *Terminal path* at the
+end of this page.
 
 ## What you need
 
