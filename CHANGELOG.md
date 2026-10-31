@@ -5,6 +5,30 @@ All notable changes to the `nlyu-pm` plugin are recorded here. Bump `version` in
 whenever a changed build is distributed, otherwise existing installs will not refresh.
 Update the version line in the README banner at the same time.
 
+## 0.9.0 (2026-10-31)
+
+- New read-only agent `nlyu-pm:discovery-reviewer`, run by `/nlyu-pm:scout` as Step 9
+  before the priority check-in. It verifies every quote against the text saved from its
+  fetch, confirms every `Evidence` item was fetched in the session, opens every
+  constraint's cited line in the code, checks recurrence labels and counter-evidence
+  entries, recounts each opportunity's evidence line, and applies a fixed coverage floor
+  (two rungs with evidence, five evidence items, two confirmed constraints, one verified
+  quote per opportunity). Findings go to `outputs/01-discovery-review.md`; blocking ones
+  are fixed, never deferred; a floor not met makes the brief `provisional` with no
+  override. Checklist in `resources/discovery-review-checklist.md`, template
+  `templates/01-discovery-review.md`.
+- Scout saves what every research fetch returns under `.pm/fetches/` (`F-###.txt`,
+  `P-###.txt` for pasted material, `S-###.txt` for searches, plus `index.md`) before
+  logging from it. Quotes are copied from the saved file and their attribution line ends
+  with `from F-###`; evidence items carry `Saved: F-###`. PM-held sources stay unsaved.
+- Counter-evidence is earned: every opportunity's evidence line names the fetch that
+  looked for the opposite (`SIG-###` or `looked (F-###), none`); "none found" without a
+  fetch is not allowed.
+- Scout is now 11 steps; status and summary lines updated (`quotes 8/9 verified`,
+  `findings 3, blocking 1, all resolved`). `session.yaml` gains
+  `stages.discovery.review` and `fetches`; `evidence-review` joins the check-in kinds.
+  Shared rule added for saving fetches. README banner counts two reviewer agents.
+
 ## 0.8.5 (2026-10-31)
 
 - Priority check-in asks two questions: which opportunity is Now (single choice), then

@@ -19,6 +19,27 @@ is up. Record the start time with `date` and show elapsed time at the research c
 Do not exceed the limits to "finish the set". A provisional result with stated gaps is a
 correct outcome.
 
+## Saving what you fetched
+
+Every fetch is saved before anything is logged from it, so that quotes and labels can be
+checked later against what was actually read, not against memory. Ask the fetch tool for
+the page's text as written, not a summary; save exactly what it returns.
+
+- Page or feed text goes to `.pm/fetches/F-###.txt` (JSON feeds as returned), numbered in
+  fetch order, under a four-line header: `url:`, `rung:`, `accessed:`, and `truncated:
+  yes/no` as far as you can tell. Material the PM pastes goes to `.pm/fetches/P-###.txt`
+  with `url:` set to the page they pasted from. Search results go to
+  `.pm/fetches/S-###.txt` with the query in the header; snippets are never quotes.
+- Append one line per file to `.pm/fetches/index.md`: `F-004 · <url> · rung 1 · accessed
+  2026-10-01 · SIG-002, SIG-005` (the signal IDs are added as you log them).
+- A source read with PM-held access is the exception: its response is never written to
+  disk (plugin README). Log its items with `Saved: PM-held, not saved`; the reviewer
+  reports quotes from it as `not checked (PM-held)`.
+
+The saved file is what Claude's fetch tool returned, so the check proves a quote came
+from text fetched in this session, not that the live page still says it; the URL remains
+the trace to the page.
+
 ## Target coverage (a target, not a quota)
 
 | Kind | Count | Notes |
@@ -311,8 +332,9 @@ Store reviewers and adoption numbers do not). Keep at most three decision-releva
 Counter-evidence pass. For each of those themes, spend one fetch looking for the opposite:
 an issue closed as working as intended, a maintainer reply, a release note that already
 shipped it, a review that praises the very thing others complain about. Log what you find
-under Contradictions even when it weakens the theme, and note when you looked and found
-nothing. Themes marked "sources disagree" are the first candidate for the PM's
+under Contradictions even when it weakens the theme, and when you looked and found
+nothing write `looked (F-###), none` so the fetch stands behind the claim. Every
+opportunity later carries the same kind of entry (scout, Step 8). Themes marked "sources disagree" are the first candidate for the PM's
 extra fetch at the check-in.
 
 Then write three or four sentences under "Who we heard from": which crowds the rungs you
@@ -324,13 +346,18 @@ the table in section 4a.
 
 While walking the ladder, collect the PM's future evidence in the users' own
 words. Target eight quotes across at least three rungs. Quotes come only from text you
-fetched in this session: forum post bodies, GitHub issue and discussion bodies and
-comments, App Store review text, Lemmy and Mastodon posts, Hacker News comments. A search
-snippet is never a quote.
+fetched in this session and saved under `.pm/fetches/`: forum post bodies, GitHub issue
+and discussion bodies and comments, App Store review text, Lemmy and Mastodon posts,
+Hacker News comments. Copy the words from the saved file, never from memory. A search
+snippet is never a quote. Before the priority check-in a read-only reviewer opens each
+quote's saved file and reports it `verified`, `differs`, or `not found`; a quote that is
+not found is removed.
 
 Rules:
 
 - Verbatim. At most 40 words. Mark cuts with an ellipsis. Do not fix grammar or spelling.
+- The attribution line ends with `from F-###` (or `P-###`), the saved file the words were
+  copied from; `from PM-held` for a source whose response is not saved.
 - If the fetched page was truncated, log what you have and add `partial`. Never complete a
   sentence from memory.
 - Author as a role, not a handle: "a forum user", "an App Store reviewer", "a GitHub
@@ -348,7 +375,7 @@ one attribution line, with a blank line before the next quote:
 > "...the widget is great but I still open the app twice a day to check whether last night's
 > photos actually went up."
 
-QUO-003 · an App Store reviewer · 2026-08-16 · supports SIG-002 · rating 5/5 · https://apps.apple.com/us/app/immich/id1613945652 · accessed 2026-10-01
+QUO-003 · an App Store reviewer · 2026-08-16 · supports SIG-002 · rating 5/5 · https://apps.apple.com/us/app/immich/id1613945652 · accessed 2026-10-01 · from F-011
 ```
 
 Add `partial` to the attribution line when the fetched page was truncated. The same
@@ -370,6 +397,7 @@ SIG-001 · Evidence · customer/community · GitHub discussion (rung 1)
   Claim: Users ask for private or protected albums; open since 2023.
   Source: https://github.com/<owner>/<repo>/discussions/1234 · published 2023-05-17 · accessed 2026-10-01
   Weight: 551 upvotes, 196 comments
+  Saved: F-004
   Note: overlaps SIG-004 (forum) and SIG-006 (App Store review)
 ```
 
@@ -397,7 +425,8 @@ stage reopens every constraint at that path and range before labelling anything
 Rules:
 
 - `Evidence` needs a direct URL you opened, the source type and rung, publication date
-  when shown, and today's access date. A search snippet is not evidence.
+  when shown, today's access date, and the saved file (`Saved: F-###`). A URL you did not
+  fetch in this session is `Inference` at best. A search snippet is not evidence.
 - Record disagreement. If two items contradict, keep both and write one line under
   "Contradictions" in the discovery file.
 - Do not calculate a composite score. Compare opportunities in words across five lenses:
@@ -405,7 +434,9 @@ Rules:
   uncertainty.
 - Every opportunity carries one evidence line so the PM can see how much stands behind it,
   in this fixed shape and no longer:
-  `Evidence: 4 signals, 2 source types · strongest: 12-like thread · counter-evidence: none found · constraints: CON-002 helps`
+  `Evidence: 4 signals, 2 source types · strongest: 12-like thread · counter-evidence: looked (F-014), none · constraints: CON-002 helps`
+  The counter-evidence field is a `SIG-###` or `looked (F-###), none`; it always names a
+  fetch. The reviewer recounts the signals and source types against the cited IDs.
   Signal density feeds the evidence-strength lens; it does not decide the order. When the
   recommended `Now` is not the densest, the recommendation says so and gives the reason in
   one sentence, for example "OPP-002 has more signal, but 18.1.0 shipped most of it".

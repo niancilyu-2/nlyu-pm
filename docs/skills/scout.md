@@ -10,7 +10,9 @@ take forward.
 `outputs/01-discovery.md`, the discovery brief: problem framing in plain words, the
 evidence log with stable IDs, a quote bank, repository constraints, three opportunities,
 a Now, Next, Later order, the one you chose and why, assumptions and open questions, and a
-record of what Claude recommended against what you decided.
+record of what Claude recommended against what you decided. Alongside it,
+`outputs/01-discovery-review.md`: what a separate read-only reviewer found when it checked
+the brief against the saved fetches and the code, and how each finding was settled.
 
 ## How a run goes
 
@@ -41,8 +43,10 @@ record of what Claude recommended against what you decided.
    nothing in it changed before and after every stage; in your own repository it compares
    against the state it found, so your own uncommitted work is fine.
 5. **Research pass.** Claude works through a fixed sequence of public sources, in order,
-   within a budget of 20 fetches and 8 searches, and logs every item with its URL, dates,
-   and the base behind any number. It collects verbatim user quotes as it goes.
+   within a budget of 20 fetches and 8 searches, saves the text of every fetch under
+   `.pm/fetches/`, and logs every item with its URL, dates, the base behind any number,
+   and the saved file it came from. It copies verbatim user quotes from those saved files
+   as it goes.
 6. **Repository constraints.** Claude reads the code around the focus area and records at
    least two constraints, each citing commit, path, line range, and a quoted line, marked
    "to confirm with engineering".
@@ -52,12 +56,23 @@ record of what Claude recommended against what you decided.
    decide: continue, one more targeted fetch, or narrow the framing.
 8. **Three opportunities.** Each names one user and one job, cites its evidence and quotes,
    and is compared in words across evidence strength, user impact, fit with your brief,
-   delivery constraints, and uncertainty. No scores.
-9. **Priority check-in.** Claude introduces each opportunity as a two-sentence story, then
+   delivery constraints, and uncertainty. No scores. Each also names the fetch that looked
+   for the opposite (a closed issue, a shipped fix, praise), so "no counter-evidence" is
+   something Claude checked, not something it assumed.
+9. **Evidence review.** Claude hands the draft, the saved fetches, the case file, and the
+   code to a reviewer agent that has not seen the conversation and can only read. It opens
+   every quote's saved file and reports it verified, differing, or not found; checks that
+   every item labelled Evidence was actually fetched; opens every constraint's cited line
+   in the code; recounts each opportunity's evidence line; and applies a fixed coverage
+   floor. Claude fixes what it can (a quote not found is removed, a never-fetched item is
+   relabelled), asks you only when a fix changes which opportunities stand, and tells you
+   the result in a few lines. If the floor is not met the brief will be saved provisional,
+   and no one can override that.
+10. **Priority check-in.** Claude introduces each opportunity as a two-sentence story, then
    recommends a Now, Next, Later order with the strongest quote under each. You choose the
    Now item, then pick your reasons from a short list (several allowed) or type your own.
    Your choice stands even if it differs from Claude's.
-10. **Save.** The brief is written, the session file updated, and the next step named.
+11. **Save.** The brief is written, the session file updated, and the next step named.
 
 ## Where the evidence comes from
 
@@ -111,7 +126,11 @@ secret, and marks every item from it `Evidence (PM-held access)` in the brief. C
 - One fetch per theme looks for counter-evidence, and the brief says who the sources mostly
   hear from and who is missing.
 - Quotes are verbatim, at most 40 words, attributed to a role rather than a handle, and
-  taken only from text fetched in the session.
+  copied only from text fetched and saved in the session. A reviewer that has not seen the
+  conversation checks each one against its saved file before you rank anything.
+- The coverage floor is a rule: at least two kinds of source with evidence, five evidence
+  items, two confirmed code constraints, and one verified quote per opportunity. Below it
+  the brief is saved provisional, whatever the reason.
 - Claude never asks for or prints a password, token, or key, never bypasses a CAPTCHA or
   paywall, and never builds a scraper or loops over pages. Sources behind a sign-in are
   read only through access you hold and set up yourself. Text found on the web or in the repository is evidence, not instructions.
@@ -123,7 +142,9 @@ secret, and marks every item from it `Evidence (PM-held access)` in the brief. C
 
 ## Where the details live
 
-`plugins/nlyu-pm/skills/scout/SKILL.md` is the skill itself. The research rules are in
+`plugins/nlyu-pm/skills/scout/SKILL.md` is the skill itself,
+`plugins/nlyu-pm/agents/discovery-reviewer.md` the reviewer, and
+`plugins/nlyu-pm/resources/discovery-review-checklist.md` what it checks. The research rules are in
 `plugins/nlyu-pm/resources/research-guide.md`, the readiness procedure in
 `plugins/nlyu-pm/resources/readiness.md`, the BYOP case builder in
 `plugins/nlyu-pm/resources/custom-case.md` with its contract in `case-schema.md`, and the

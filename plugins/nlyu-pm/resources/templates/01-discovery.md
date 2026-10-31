@@ -8,6 +8,7 @@
 | Code snapshot | <owner/repo or folder name @ short sha> (primary; add "working tree has uncommitted changes" if true); <companion, if any> |
 | Research window | <start> to <end> · fetches <n>/20 · searches <n>/8 |
 | Chosen opportunity | OPP-### |
+| Evidence review | <n> findings · <n> blocking, all resolved · quotes <k>/<n> verified · floor <met / not met> · outputs/01-discovery-review.md |
 | Run summary | <stage summary line, written at close> |
 
 ## 1. The decision
@@ -47,7 +48,7 @@ Who we heard from: <3 or 4 sentences: which crowds the sources sample, and who i
 - For: <user> · Job: <job>
 - Supported by: <SIG/CON IDs>
 - In their words: <QUO IDs>
-- Evidence: <n signals, k source types · strongest: … · counter-evidence: … · constraints: …>
+- Evidence: <n signals, k source types · strongest: … · counter-evidence: SIG-### or looked (F-###), none · constraints: …>
 - Evidence strength / user impact / fit with the brief / delivery constraints / uncertainty: <one short phrase each>
 - Exclusions check: <none triggered, or what and why>
 
@@ -71,7 +72,7 @@ Queries used: <exact search terms, one per line>
 Sources reached: <which kinds returned results; which were empty or unreachable; sources added, dropped, or read with PM-held access>
 
 Triangulation (at most three decision-relevant themes):
-| Theme | Forum, GitHub | Lemmy, Mastodon, HN | Reviews | Numbers, competitors, official | Recurrence (recurring / concentrated / isolated) | Same crowd? | Counter-evidence (SIG-### or "looked, none") |
+| Theme | Forum, GitHub | Lemmy, Mastodon, HN | Reviews | Numbers, competitors, official | Recurrence (recurring / concentrated / isolated) | Same crowd? | Counter-evidence (SIG-### or "looked (F-###), none") |
 |---|---|---|---|---|---|---|---|
 | | SIG-### | | | | | | |
 
@@ -83,14 +84,14 @@ Contradictions: <one line each, citing the IDs that disagree, or "none">
 
 > "<verbatim quote, at most 40 words>"
 
-QUO-001 · <role> · <post date> · supports SIG-### · <weight> · <URL> · accessed <date>
+QUO-001 · <role> · <post date> · supports SIG-### · <weight> · <URL> · accessed <date> · from F-###
 
 > "<verbatim quote>"
 
-QUO-002 · <role> · <post date> · supports SIG-### · <weight> · <URL> · accessed <date>
+QUO-002 · <role> · <post date> · supports SIG-### · <weight> · <URL> · accessed <date> · from F-###
 
 ### 4c. Evidence log
-<One block per SIG-### in the research-guide format.>
+<One block per SIG-### in the research-guide format, each with its `Saved: F-###` line.>
 
 ### 4d. Repository constraints
 <One block per CON-###: claim, path with line range and commit, one quoted line, implication, and `Status: to confirm with engineering`.>
@@ -103,4 +104,5 @@ QUO-002 · <role> · <post date> · supports SIG-### · <weight> · <URL> · acc
 | Check-in | Recommendation | Your decision | Reason |
 |---|---|---|---|
 | Research check | | | |
+| Evidence review (only if a finding needed your call) | | | |
 | Priority check | | | |

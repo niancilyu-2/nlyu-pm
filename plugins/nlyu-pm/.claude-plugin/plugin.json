@@ -1,8 +1,8 @@
 {
   "name": "nlyu-pm",
   "displayName": "Product Discovery to PRD",
-  "version": "0.8.5",
-  "description": "Product discovery to PRD for product managers: research public evidence on your own repository or an example open-source product, choose an opportunity, build a clickable prototype, and write a repository-grounded PRD with an independent review.",
+  "version": "0.9.0",
+  "description": "Product discovery to PRD for product managers: research public evidence on your own repository or an example open-source product, choose an opportunity, build a clickable prototype, with independent read-only reviews of both the evidence and the PRD.",
   "author": {
     "name": "niancilyu-2",
     "url": "https://github.com/niancilyu-2"

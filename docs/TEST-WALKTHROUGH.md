@@ -28,7 +28,7 @@ Type `/nlyu-pm:scout` (type `/nl` and pick it from the list). On the first run i
 Choose *stop after setup* to continue another day, or *continue* to go straight on.
 
 From here every reply ends with a status line:
-`Scout · step 5/10 · fetches 6/20 · searches 0/8 · items 5 · quotes 3/8 · 14 min · sources clean`.
+`Scout · step 5/11 · fetches 6/20 · searches 0/8 · items 5 · quotes 3/8 · 14 min · sources clean`.
 If it ever says `sources CHANGED`, stop and note the step.
 
 ## 3. Pick a track, a case, and a lane
@@ -90,19 +90,26 @@ App Store reviews, adoption numbers, competitor pages against their copy from a 
 release notes. It shows one number or quote per source and collects user quotes as it
 goes.
 
-Two check-ins:
+Two check-ins, with a review between them:
 
 1. **Research check.** Coverage, a triangulation table, the two strongest quotes,
    contradictions, gaps. You say continue, ask for one more fetch, or narrow the framing.
-2. **Priority check.** Three opportunities in Now, Next, Later order with a quote under
+2. **Evidence review** (no decision from you unless a finding changes which opportunities
+   stand). A separate read-only reviewer checks every quote against the text saved when
+   it was fetched, every Evidence label against what was fetched, every constraint against
+   the code, and a fixed coverage floor. Claude reports what it found and fixed in a few
+   lines; a floor not met means the brief is saved provisional.
+3. **Priority check.** Three opportunities in Now, Next, Later order with a quote under
    each. You pick the Now item, then your reasons (several allowed, or your own words).
 
 Check: every claim is labelled Evidence, Inference, Assumption, or Constraint; every
-Evidence item has a link and dates; Claude's recommendation and your decision are separate
-blocks.
+Evidence item has a link, dates, and a saved file; `outputs/01-discovery-review.md` lists
+every quote as verified, differing, or not found; Claude's recommendation and your
+decision are separate blocks.
 
-Files: `outputs/01-discovery.md`, `.pm/session.yaml`. The stage closes with a summary
-line: minutes, fetches, items, quotes, gaps, status. Then start a new session in the
+Files: `outputs/01-discovery.md`, `outputs/01-discovery-review.md`, `.pm/fetches/`,
+`.pm/session.yaml`. The stage closes with a summary line: minutes, fetches, items, quotes
+verified, gaps, findings, status. Then start a new session in the
 same folder (in a terminal, type `/clear`).
 
 ## 5. Prototype: `/nlyu-pm:prototype` (60 min)

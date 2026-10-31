@@ -9,10 +9,10 @@
 ║   ╚═╝  ╚═══╝ ╚══════╝  ╚═╝     ╚═════╝           ╚═╝      ╚═╝     ╚═╝             ║
 ║                                                                                   ║
 ║   Product discovery to PRD rapid cycle                                            ║
-║   4 skills · 1 adversarial reviewer agent · 5 example cases or BYOR               ║
+║   4 skills · 2 adversarial reviewer agents · 5 example cases or BYOR              ║
 ║   Claude desktop app (Code tab) · Claude Code CLI                                 ║
 ║                                                                                   ║
-║   v0.8.5 · October 31, 2026 · MIT · Claude plugin directory: pending              ║
+║   v0.9.0 · October 31, 2026 · MIT · Claude plugin directory: pending              ║
 ║                                                                                   ║
 ╚═══════════════════════════════════════════════════════════════════════════════════╝
 ```
@@ -109,16 +109,16 @@ Four skills. Each runs only when you type it.
 
 | Skill | What it does | You leave with | Details |
 |---|---|---|---|
-| `/nlyu-pm:scout` | Readiness check on first run, a case built from your own repository (or an example case to try it on), then a research pass over a fixed sequence of public sources, repository constraints, three opportunities, and your choice of one | `outputs/01-discovery.md`, the discovery brief | [docs/skills/scout.md](docs/skills/scout.md) |
+| `/nlyu-pm:scout` | Readiness check on first run, a case built from your own repository (or an example case to try it on), then a research pass over a fixed sequence of public sources, repository constraints, three opportunities checked by a separate read-only reviewer, and your choice of one | `outputs/01-discovery.md`, the discovery brief, and `outputs/01-discovery-review.md` | [docs/skills/scout.md](docs/skills/scout.md) |
 | `/nlyu-pm:prototype` | One actor, one job, one flow. A clickable prototype in Claude Design or as a standalone HTML file, a design critique, one revision | `outputs/02-prototype.md`, `outputs/prototype/index.html` | [docs/skills/prototype.md](docs/skills/prototype.md) |
 | `/nlyu-pm:prd` | A delivery PRD grounded in the product's code, reviewed by a separate read-only agent that has not seen your conversation | `outputs/03-prd.md`, `outputs/03-prd-review.md` | [docs/skills/prd.md](docs/skills/prd.md) |
 | `/nlyu-pm:create-skill` | Turn one PM practice of your own into a small project skill, test it once in a fresh session, revise it once | `.claude/skills/<name>/SKILL.md`, `outputs/04-skill-summary.md` | [docs/skills/create-skill.md](docs/skills/create-skill.md) |
 
 Each skill opens by saying what you will do, what Claude will do, and what you
 decide, and ends every reply with a status line such as
-`Scout · step 5/10 · fetches 6/20 · 14 min`. Each stage closes with one summary line of
+`Scout · step 5/11 · fetches 6/20 · 14 min`. Each stage closes with one summary line of
 what the run spent and produced, for example
-`Discovery complete · 58 min · fetches 17/20 · searches 3/8 · items 24 · quotes 8 · gaps 1 · approved`,
+`Discovery complete · 58 min · fetches 17/20 · searches 3/8 · items 24 · quotes 8/9 verified · gaps 1 · findings 3, blocking 1, all resolved · approved`,
 repeated in the output file's header.
 
 ```mermaid
@@ -141,12 +141,15 @@ rather than left to good intentions.
 - **Human in the loop at every judgement.** Ranking the opportunities, approving the flow,
   setting PRD scope, and dispositioning review findings happen at check-ins that show
   *Claude's recommendation* and *Your decision* as separate blocks.
-- **Adversarial review.** `/nlyu-pm:prd` hands the draft to a read-only reviewer agent that has
-  not seen the conversation; it reopens every `Verified` code path, and blocking findings
-  must be fixed, not deferred.
+- **Adversarial review.** `/nlyu-pm:scout` and `/nlyu-pm:prd` each hand their draft to a
+  read-only reviewer agent that has not seen the conversation. The discovery reviewer opens
+  every quote's saved fetch, every constraint's cited line, and applies a coverage floor
+  that cannot be overridden; the PRD reviewer reopens every `Verified` code path. Blocking
+  findings must be fixed, not deferred.
 - **Evidence over confidence.** Every claim is labelled `Evidence`, `Inference`,
-  `Assumption`, or `Constraint`; `/nlyu-pm:scout` runs a counter-evidence fetch per theme, logs
-  gaps instead of inventing sources, and saves a provisional file when cut short.
+  `Assumption`, or `Constraint`; `/nlyu-pm:scout` saves the text of every fetch, names the
+  fetch that looked for counter-evidence under every opportunity, logs gaps instead of
+  inventing sources, and saves a provisional file when cut short.
 - **Least privilege.** Source repositories are read-only and baseline-checked at the start
   and end of each stage; writes go only under `outputs/`, `.pm/`, `.claude/skills/`, and,
   for example cases, the `sources/` download.
@@ -306,7 +309,7 @@ nlyu-pm/
 ├── plugins/nlyu-pm/
 │   ├── .claude-plugin/plugin.json
 │   ├── skills/{scout,prototype,prd,create-skill}/SKILL.md
-│   ├── agents/prd-reviewer.md
+│   ├── agents/{discovery-reviewer,prd-reviewer}.md
 │   ├── README.md                what the plugin runs, reads, fetches, and writes
 │   ├── LICENSE
 │   ├── cases/{immich,plane,home-assistant,umbraco,erpnext}/

@@ -134,7 +134,7 @@ Open your workspace folder in the Code tab (step 4), then run one stage per sess
 | | new session |
 | Skill builder (independent, any time) | `/nlyu-pm:create-skill` |
 
-Every reply ends with a status line such as `Scout · step 5/10 · fetches 6/20 · 14 min`,
+Every reply ends with a status line such as `Scout · step 5/11 · fetches 6/20 · 14 min`,
 and every stage closes with a one-line summary of what it spent and produced.
 
 ### Problems
@@ -281,7 +281,7 @@ Open a terminal in the folder you picked in step 7 (`pm-workspace`, or your repo
 | | `/clear` |
 | Skill builder (independent, any time) | `/nlyu-pm:create-skill` |
 
-Every reply ends with a status line such as `Scout · step 5/10 · fetches 6/20 · 14 min`.
+Every reply ends with a status line such as `Scout · step 5/11 · fetches 6/20 · 14 min`.
 
 ### Problems
 
