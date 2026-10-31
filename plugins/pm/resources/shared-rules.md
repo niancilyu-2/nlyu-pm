@@ -183,6 +183,25 @@ reply shows `revision 1` in this reply). `sources clean` reflects the last
 in capitals if it was not empty. During readiness, the line is
 `Setup · check 3/8 · <n> min`.
 
+**Stage summary line.** When a stage closes (its "Save and close" or "Summary and close"
+step), print one summary line after the closing lines, and write the same text into the
+`Run summary` row of the output file's header table (and, for the three product stages,
+into `stages.<stage>.summary` in `session.yaml`). It states what the run spent and what
+it produced, from the counters you already keep and the start time you recorded:
+
+| Stage | Format |
+|---|---|
+| Discovery | `Discovery complete · 58 min · fetches 17/20 · searches 3/8 · items 24 · quotes 8 · gaps 1 · approved` |
+| Prototype | `Prototype complete · 52 min · path html · walkthrough findings 4 · revisions 1 · approved` |
+| PRD | `PRD complete · 41 min · REQ 8 · AC 12 · findings 5, blocking 2, all resolved · ready-for-engineering-review` |
+| Capstone | `Capstone complete · 27 min · skill meeting-recap · tested once · revised once` |
+
+Write `provisional` in place of `approved` when the stage was cut short. Minutes are
+elapsed time from the recorded start, including any resume. Do not report token counts
+or cost: you cannot observe them, and an invented number breaks the evidence rule. If
+the PM asks, point them to Claude Code's `/cost` command, which reports the session
+total on API billing and says usage is included on a subscription.
+
 ## 10. Finding the case
 
 A case is the product package a stage reads: `case.yaml`, `orientation.md`, and

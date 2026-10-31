@@ -9,6 +9,7 @@
 | Source commits | <owner/repo @ sha>; <companion @ sha> |
 | Based on | 01-discovery.md rev <n> (OPP-###) · 02-prototype.md rev <n> |
 | Review | outputs/03-prd-review.md |
+| Run summary | <stage summary line, written at close> |
 
 ## Summary for engineering
 <Five sentences at most: what this changes for which user, why now (the strongest evidence), what is out of scope, the riskiest open question, and what you need from engineering first.>

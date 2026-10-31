@@ -96,7 +96,8 @@ Check: every claim is labelled Evidence, Inference, Assumption, or Constraint; e
 Evidence item has a link and dates; Claude's recommendation and your decision are separate
 blocks.
 
-Files: `outputs/01-discovery.md`, `.pm/session.yaml`. Type `/clear`.
+Files: `outputs/01-discovery.md`, `.pm/session.yaml`. The stage closes with a summary
+line: minutes, fetches, items, quotes, gaps, status. Type `/clear`.
 
 ## 5. Prototype: `/pm:prototype` (60 min)
 

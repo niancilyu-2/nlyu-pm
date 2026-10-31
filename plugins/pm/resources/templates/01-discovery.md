@@ -8,6 +8,7 @@
 | Code snapshot | <owner/repo or folder name @ short sha> (primary; add "working tree has uncommitted changes" if true); <companion, if any> |
 | Research window | <start> to <end> · fetches <n>/20 · searches <n>/8 |
 | Chosen opportunity | OPP-### |
+| Run summary | <stage summary line, written at close> |
 
 ## 1. The decision
 

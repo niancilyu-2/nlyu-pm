@@ -90,7 +90,10 @@ Four skills. Each runs only when you type it.
 
 Each skill opens by saying what you will practise, what Claude will do, and what you
 decide, and ends every reply with a status line such as
-`Scout · step 5/10 · fetches 6/20 · 14 min`.
+`Scout · step 5/10 · fetches 6/20 · 14 min`. Each stage closes with one summary line of
+what the run spent and produced, for example
+`Discovery complete · 58 min · fetches 17/20 · items 24 · quotes 8 · gaps 1 · approved`,
+repeated in the output file's header.
 
 ```mermaid
 flowchart LR

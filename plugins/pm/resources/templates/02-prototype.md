@@ -7,6 +7,7 @@
 | Path used | Claude Design / HTML fallback |
 | File | outputs/prototype/index.html |
 | Surface · viewport | <surface> · <w>×<h> |
+| Run summary | <stage summary line, written at close> |
 
 ## 1. Actor, job, and user story
 - Actor: <…> · Job: <…>

@@ -159,7 +159,9 @@ Record `D-###`.
   `approved_at`, `path`), `stage.current: prd`, `stage.status: not-started`.
 - Source check; record `clean_at_end`.
 - Close with three lines: what Claude contributed, what the PM decided, next
-  command: `/clear`, then `/pm:prd`.
+  command: `/clear`, then `/pm:prd`. Then the stage summary line (shared rules,
+  section 9), also written to the notes' `Run summary` row and
+  `stages.prototype.summary`.
 
 ## If things go wrong
 

@@ -114,7 +114,8 @@ the revision, reuse instructions, and both check-ins.
 
 Close with: where the file is, how to reuse it in another project (copy the folder into
 that project's `.claude/skills/`), and a reminder that it is not installed globally,
-published, or committed.
+published, or committed. Then the stage summary line (shared rules, section 9), also
+written to the summary's `Run summary` row.
 
 ## Boundaries
 
