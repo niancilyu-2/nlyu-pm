@@ -59,7 +59,7 @@ Report only one of three words, then the next action:
    with its three options, BYOP, example case core, example case advanced, plus a fourth,
    **Decide later** (nothing downloads today; `/pm:scout` asks again when Discovery
    starts). Say that picking now means the code downloads today and that they may change
-   their mind on the day. No table in the reply.
+   their mind when Discovery starts. No table in the reply.
    - Example case: core asks the second question with the four core products, as in
      `/pm:scout` Step 2; advanced is ERPNext. Run the clone procedure in `workspace.md` and
      record `case.id`, `case.source: prepared`, `case.dir`, and `case.preselected: true`.

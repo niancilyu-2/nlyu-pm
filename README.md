@@ -6,11 +6,11 @@ repository. Five open-source example cases are included to try it on first. Clau
 and challenges. The PM decides, and every stage records which was which.
 
 No programming required. The product's source code is read and never changed. One PM
-can run it alone; a group can run it together.
+can run it alone, or a team can run it together.
 
 ```text
-/plugin marketplace add niancilyu-2/eyp-pm
-/plugin install pm@eyp-pm
+/plugin marketplace add niancilyu-2/nlyu
+/plugin install pm@nlyu
 ```
 
 ## Contents
@@ -169,7 +169,7 @@ or sign-in you hold (a paid report, a members-only forum, your private issue tra
 be included through access you set up yourself; Claude never asks for or sees the secret,
 and the brief marks what came from it.
 
-Anyone can also prepare a case package by hand for a product a group will work on; see
+Anyone can also prepare a case package by hand for a product a team will work on; see
 `plugins/pm/resources/case-schema.md`.
 
 ### Example cases to try it on
@@ -231,13 +231,12 @@ boundaries and starting points only, never conclusions, so the research is yours
 | [docs/skills/](docs/skills/) | One page per skill: what it produces, how a run goes, the rules it follows |
 | [docs/SETUP.md](docs/SETUP.md) | Installing Claude Code, Git, and the plugin, for first-time terminal users |
 | [docs/TEST-WALKTHROUGH.md](docs/TEST-WALKTHROUGH.md) | Every stage and every product, step by step |
-| [docs/FACILITATOR.md](docs/FACILITATOR.md) | Running it with a group: suggested schedule, checks, troubleshooting |
 
 ### Repository layout
 
 
 ```text
-eyp-pm/
+nlyu/
 ├── .claude-plugin/marketplace.json
 ├── plugins/pm/
 │   ├── .claude-plugin/plugin.json
@@ -254,7 +253,10 @@ eyp-pm/
 └── README.md
 ```
 
-Everything a skill needs at runtime lives under `plugins/pm`. To develop locally:
+Everything a skill needs at runtime lives under `plugins/pm`. When you publish a changed
+build, bump `version` in both `plugins/pm/.claude-plugin/plugin.json` and
+`.claude-plugin/marketplace.json`, otherwise existing installs will not refresh. To
+develop locally:
 
 ```bash
 claude plugin validate . --strict
@@ -270,9 +272,6 @@ licences: Immich and Plane AGPL-3.0, Home Assistant Apache-2.0, Umbraco MIT, ERP
 GPL-3.0, Frappe MIT. Nothing from them is redistributed here, and nothing from your own
 repository is copied into the outputs.
 
-- The earlier [eyp-pm-skills](https://github.com/niancilyu-2/eyp-pm-skills) repository
-  informed the evidence labelling, check-in pattern, HTML fallback, and prototype-to-PRD
-  traceability.
 - Dean Peters' [PM Skill Creator](https://github.com/deanpeters/Product-Manager-Skills)
   (CC BY-NC-SA 4.0) was conceptual inspiration for conversational skill authoring and the
   one-job rule. The capstone is written independently and shares no wording, metadata,
