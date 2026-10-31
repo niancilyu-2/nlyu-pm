@@ -2,8 +2,15 @@
 
 Do this once before your first run. It takes about 15 minutes in the Claude desktop app,
 with no terminal and no coding knowledge. If you get stuck, note the step number and check
-the Problems table at the end. If you would rather work in a terminal, see *Terminal path*
-at the end of this page.
+the Problems table at the end.
+
+## Three ways to run it
+
+| Way | Verdict | Why |
+|---|---|---|
+| **Claude desktop app** (Code tab) | Recommended for non-technical people | Install the plugin from Settings with a few clicks, no terminal, and the steps below are written for it. |
+| **Claude Code in a terminal** (CLI) | Recommended for technical people | Same plugin, same commands, with `/clear` between stages; see *Terminal path* at the end of this page. |
+| **claude.ai in a browser** | Not recommended | Cannot run this plugin at all: it has no Code tab, so it cannot read a repository or write files on your laptop. |
 
 ## What you need
 
@@ -12,8 +19,8 @@ at the end of this page.
 - **A paid Claude subscription.** Claude Code is part of the Claude Pro plan, currently
   US$20 a month, and of the Max, Team, and Enterprise plans. The free plan does not
   include it. Check current prices at https://claude.com/pricing.
-- **The Claude desktop app**, downloaded from https://claude.ai/download. The web
-  version at claude.ai cannot run this plugin; the desktop app can, through its Code tab.
+- **The Claude desktop app**, downloaded from https://claude.ai/download, or Claude Code
+  in a terminal if you chose the CLI above.
 - **About 15 minutes.**
 
 ## Words used in this guide
