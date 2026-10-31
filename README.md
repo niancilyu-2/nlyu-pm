@@ -1,3 +1,25 @@
+```text
+╔═══════════════════════════════════════════════════════════════════════════════════╗
+║                                                                                   ║
+║   ███╗   ██╗ ██╗      ██╗   ██╗ ██╗   ██╗        ██████╗  ███╗   ███╗             ║
+║   ████╗  ██║ ██║      ╚██╗ ██╔╝ ██║   ██║        ██╔══██╗ ████╗ ████║             ║
+║   ██╔██╗ ██║ ██║       ╚████╔╝  ██║   ██║ █████╗ ██████╔╝ ██╔████╔██║             ║
+║   ██║╚██╗██║ ██║        ╚██╔╝   ██║   ██║ ╚════╝ ██╔═══╝  ██║╚██╔╝██║             ║
+║   ██║ ╚████║ ███████╗    ██║    ╚██████╔╝        ██║      ██║ ╚═╝ ██║             ║
+║   ╚═╝  ╚═══╝ ╚══════╝    ╚═╝     ╚═════╝         ╚═╝      ╚═╝     ╚═╝             ║
+║                                                                                   ║
+║   Product discovery to PRD for Claude Code                                        ║
+║   4 skills · 1 read-only reviewer agent · 5 example cases · bring your own repo   ║
+║   Claude desktop app (Code tab) · Claude Code terminal                            ║
+║                                                                                   ║
+║   v0.8.2 · October 31, 2026 · MIT · Claude plugin directory: pending              ║
+║                                                                                   ║
+╚═══════════════════════════════════════════════════════════════════════════════════╝
+```
+
+Public evidence to a chosen opportunity, a clickable prototype, and an engineering-ready
+PRD, grounded in the product's own code. No programming required.
+
 # nlyu-pm: product discovery to PRD for Claude Code
 
 A Claude Code plugin that takes a product manager from public evidence to a selected
@@ -301,7 +323,8 @@ nlyu-pm/
 
 Everything a skill needs at runtime lives under `plugins/nlyu-pm`. When you publish a changed
 build, bump `version` in both `plugins/nlyu-pm/.claude-plugin/plugin.json` and
-`.claude-plugin/marketplace.json`, otherwise existing installs will not refresh. To
+`.claude-plugin/marketplace.json`, otherwise existing installs will not refresh, and
+update the version line in the banner at the top of this README. To
 develop locally:
 
 ```bash
