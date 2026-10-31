@@ -1,15 +1,38 @@
 # Setup
 
-Do this once before your first run. It takes about 20 minutes. If you get stuck, note the
-step number and check the Problems table at the end.
+Do this once before your first run. It takes about 20 minutes and needs no coding
+knowledge. If you get stuck, note the step number and check the Problems table at the end.
 
-Claude Code is Claude running in a text window on your laptop. You type in plain English
-and it replies in the same window. You will type a few commands that start with a slash, such as `/pm:scout`, and answer questions in ordinary sentences.
+## What you need
 
-## 1. Account
+- **A Mac or Windows laptop** that you can install software on. If it is a company
+  laptop, you may need IT to allow the installs in steps 3 and 4.
+- **A paid Claude subscription.** Claude Code is part of the Claude Pro plan, currently
+  US$20 a month, and of the Max, Team, and Enterprise plans. The free plan does not
+  include it. Check current prices at https://claude.com/pricing.
+- **The Claude desktop app**, downloaded from https://claude.ai/download. The web
+  version at claude.ai works, but the app is the better home for this: it keeps you signed
+  in, and it is where Claude Code can be opened later without a terminal.
+- **About 20 minutes.**
 
-You need a Claude Pro, Max, Team, or Enterprise account. If your company provides Claude,
-use that sign-in.
+## Words used in this guide
+
+| Word | What it means here |
+|---|---|
+| Terminal | A plain text window on your laptop where you type a line and press Enter. Nothing happens until you press Enter. |
+| Command | A line you type into the terminal. Commands for this plugin start with a slash, such as `/pm:scout`. |
+| Claude Code | Claude running inside that terminal. You type in plain English; it replies in the same window. |
+| Plugin | An add-on that gives Claude Code the `/pm:` commands used here. |
+| Folder | A folder on your laptop, the same thing as a directory. All the files Claude writes land in the folder you pick in step 7. |
+| Git | A free tool that downloads repositories. Claude Code uses it for you; you never type Git commands yourself. |
+| Repository | A product's source code, stored on a site like GitHub. Claude reads it; it never changes it. |
+
+## 1. Account and app
+
+1. Subscribe to Claude Pro, or sign in to the account your company provides. Pro, Max,
+   Team, and Enterprise all include Claude Code.
+2. Download and install the Claude desktop app from https://claude.ai/download, open
+   it, and sign in with that account. Use the app rather than the browser from here on.
 
 ## 2. Open a terminal
 
@@ -18,12 +41,14 @@ with `PS`.
 
 **macOS.** Press Command and Space, type `Terminal`, press Enter.
 
-Type a command at the prompt and press Enter to run it. Paste with Ctrl+V on Windows,
-Command+V on macOS.
+A terminal shows a short line ending in a symbol such as `$` or `>`. That is where you
+type. Type a command and press Enter to run it. Paste with Ctrl+V on Windows, Command+V
+on macOS. Nothing you type here can break your laptop; the worst case is an error
+message.
 
 ## 3. Install Claude Code
 
-Paste one line and press Enter.
+Paste one line and press Enter. It downloads Claude Code and may take a minute.
 
 Windows:
 
@@ -43,7 +68,8 @@ Close the terminal, open a new one, and check:
 claude --version
 ```
 
-You should see a version number.
+You should see a version number such as `2.0.14`. If you see "not recognized" or
+"command not found", see the Problems table.
 
 ## 4. Install Git
 
@@ -57,12 +83,14 @@ If you see a version number, skip to step 5. If not:
 
 - **Windows.** Download Git for Windows from https://git-scm.com/downloads/win, run the
   installer, accept the defaults. Close and reopen the terminal.
-- **macOS.** A dialog offers to install the tools. Click *Install*.
+- **macOS.** A dialog offers to install the command line tools. Click *Install* and wait
+  for it to finish, then run the check again.
 
 ## 5. Sign in
 
-Type `claude` and press Enter. Your browser opens. Sign in and return to the terminal.
-When it asks whether you trust the folder, say yes. Type `/exit`.
+Type `claude` and press Enter. Your browser opens a Claude sign-in page once; sign in with
+the same account as the app and return to the terminal. When it asks whether you trust
+the folder, say yes. Type `/exit` to leave.
 
 ## 6. Keys and commands
 
@@ -84,17 +112,18 @@ Leave Shift+Tab alone. It changes permission modes.
 
 ## 7. Workspace folder and plugin
 
-1. Pick the folder. Example cases: create an empty folder called `pm-workspace` on your
-   Desktop. BYOP (bring your own project or repo): use the top folder of a local copy of
-   your repository, or an empty folder if you will give a URL or a zip instead.
+1. Pick the folder. To try an example case: create an empty folder called `pm-workspace`
+   on your Desktop. To work on your own product (BYOP, bring your own project or repo):
+   use the top folder of a local copy of your repository, or an empty folder if you will
+   give a URL or a zip instead.
 2. Open a terminal in it. Windows: right-click the folder, *Open in Terminal*. macOS:
    right-click the folder, *New Terminal at Folder*.
 3. Type `claude`. Say yes to trusting the folder.
-4. Type these two lines, one at a time:
+4. Type these two lines, one at a time, pressing Enter after each:
 
    ```text
-   /plugin marketplace add niancilyu-2/nlyu
-   /plugin install pm@nlyu
+   /plugin marketplace add niancilyu-2/nlyu-pm
+   /plugin install pm@nlyu-pm
    ```
 
 5. Type `/` and confirm `/pm:scout` is in the list.
@@ -106,6 +135,7 @@ Leave Shift+Tab alone. It changes permission modes.
 
 ## Checklist
 
+- [ ] The Claude desktop app is installed and signed in
 - [ ] `claude --version` prints a version
 - [ ] `git --version` prints a version
 - [ ] `claude` starts without asking you to sign in
@@ -135,8 +165,8 @@ Every reply ends with a status line such as `Scout · step 5/10 · fetches 6/20 
 | `The token '&&' is not a valid statement separator` | You are in PowerShell. Use the Windows line in step 3 |
 | `'irm' is not recognized` | You are in the old Command Prompt. Open *Terminal* instead |
 | Browser sign-in does not complete | Copy the link from the terminal into your browser. On a company laptop, check whether a VPN blocks claude.ai |
-| Sign-in says your plan does not include Claude Code | Wrong account. Type `/logout`, then sign in with the account that includes Claude Code |
-| `/pm:` commands missing | `/plugin marketplace update nlyu`, then `/plugin install pm@nlyu` |
+| Sign-in says your plan does not include Claude Code | You are on the free plan or the wrong account. Type `/logout`, then sign in with a Pro, Max, Team, or Enterprise account |
+| `/pm:` commands missing | `/plugin marketplace update nlyu-pm`, then `/plugin install pm@nlyu-pm` |
 | Git missing | Step 4, then reopen the terminal and run `/pm:scout` |
 | Path-too-long error on Windows | `git config --global core.longpaths true`, then `/pm:scout` |
 | Web search policy error | Ignore it. Send the error text to whoever manages your Claude account |

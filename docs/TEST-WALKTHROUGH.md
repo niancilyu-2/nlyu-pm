@@ -155,7 +155,7 @@ Files: `.claude/skills/<name>/SKILL.md`, `outputs/04-skill-summary.md`.
 
 | You see | Do |
 |---|---|
-| `/pm:` commands missing | `/plugin marketplace update nlyu`, then `/plugin install pm@nlyu` |
+| `/pm:` commands missing | `/plugin marketplace update nlyu-pm`, then `/plugin install pm@nlyu-pm` |
 | Repeated permission prompts | Choose the option that stops asking for the session |
 | `Blocked` | Do the action printed, then `/pm:scout` again |
 | Web search policy error | Continue. Send the error text to whoever manages your account |

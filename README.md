@@ -9,8 +9,8 @@ No programming required. The product's source code is read and never changed. On
 can run it alone, or a team can run it together.
 
 ```text
-/plugin marketplace add niancilyu-2/nlyu
-/plugin install pm@nlyu
+/plugin marketplace add niancilyu-2/nlyu-pm
+/plugin install pm@nlyu-pm
 ```
 
 ## Contents
@@ -105,7 +105,8 @@ flowchart LR
 ### Requirements
 
 
-- Claude Code on Windows or macOS, with a Claude Pro, Max, Team, or Enterprise account.
+- Claude Code on Windows or macOS, with a Claude Pro, Max, Team, or Enterprise account
+  (the free plan does not include Claude Code).
 - Git.
 - Web fetch enabled. Web search and Claude Design are optional; both have fallbacks.
 
@@ -236,7 +237,7 @@ boundaries and starting points only, never conclusions, so the research is yours
 
 
 ```text
-nlyu/
+nlyu-pm/
 ├── .claude-plugin/marketplace.json
 ├── plugins/pm/
 │   ├── .claude-plugin/plugin.json

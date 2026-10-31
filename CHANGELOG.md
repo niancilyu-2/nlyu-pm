@@ -6,7 +6,9 @@ whenever a changed build is distributed, otherwise existing installs will not re
 
 ## 0.8.0 (unreleased)
 
-- Repository renamed to `nlyu`; install lines updated. The group-run page is removed and
+- Repository renamed to `nlyu-pm`; install lines updated. Setup guide rewritten for
+  non-technical readers: what you need, a short glossary, subscription and desktop-app
+  guidance. The group-run page is removed and
   all wording is product-neutral: the plugin and its docs address a PM working alone or
   with a team.
 - Which product, asked up front. The first question `/pm:scout` asks (and readiness
