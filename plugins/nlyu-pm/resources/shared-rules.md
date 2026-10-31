@@ -52,7 +52,7 @@ Start with, in this order:
 - Offer concrete options with plain-language descriptions. Always let the PM
   type their own answer.
 - The question tool shows at most four options plus the PM's own typed answer. Never put
-  more than four candidates in one question; narrow first (BYOP or example case, core or
+  more than four candidates in one question; narrow first (BYOP or example case, easy or
   advanced), then list at most four.
 - Never require the PM to edit code, YAML, or file paths. If something must
   change in a file, change it yourself and say what you did.

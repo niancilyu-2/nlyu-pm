@@ -5,6 +5,12 @@ All notable changes to the `nlyu-pm` plugin are recorded here. Bump `version` in
 whenever a changed build is distributed, otherwise existing installs will not refresh.
 Update the version line in the README banner at the same time.
 
+## 0.8.3 (2026-10-31)
+
+- The product question's example-case options are "Example case (Easy)" and "Example case
+  (Advanced)" with shorter descriptions; docs say easy instead of core. The `tier: core`
+  value in case files is unchanged.
+
 ## 0.8.2 (2026-10-31)
 
 - Directory review fixes. The "API key in your own shell" route for sources behind a
