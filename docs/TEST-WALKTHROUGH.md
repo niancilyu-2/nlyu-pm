@@ -5,7 +5,8 @@ How to run the whole flow yourself. Readiness takes about 15 minutes and Discove
 stages take about three hours in all; the skill builder is an independent 30-minute
 exercise. Everything Claude produces lands in files you can open in any text editor.
 
-Not installed yet? Do [SETUP.md](SETUP.md) first.
+Not installed yet? Do [SETUP.md](SETUP.md) (desktop app) or [SETUP-CLI.md](SETUP-CLI.md)
+(terminal) first.
 
 ## 1. Start
 

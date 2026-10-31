@@ -173,7 +173,8 @@ rather than left to good intentions.
 - Web fetch enabled. Web search and Claude Design are optional; both have fallbacks.
 
 New to this? [docs/SETUP.md](docs/SETUP.md) walks through the desktop app, Git, and the
-plugin install with no terminal, in about 15 minutes, with a terminal path at the end.
+plugin install with no terminal, in about 15 minutes. Terminal users:
+[docs/SETUP-CLI.md](docs/SETUP-CLI.md).
 
 ### Getting started
 
@@ -294,7 +295,8 @@ boundaries and starting points only, never conclusions, so the research is yours
 | Doc | For |
 |---|---|
 | [docs/skills/](docs/skills/) | One page per skill: what it produces, how a run goes, the rules it follows |
-| [docs/SETUP.md](docs/SETUP.md) | The desktop app, Git, and the plugin install with no terminal; a terminal path at the end |
+| [docs/SETUP.md](docs/SETUP.md) | Setup in the Claude desktop app: Git and the plugin install with no terminal |
+| [docs/SETUP-CLI.md](docs/SETUP-CLI.md) | Setup in a terminal: installing Claude Code, Git, and the plugin |
 | [docs/TEST-WALKTHROUGH.md](docs/TEST-WALKTHROUGH.md) | Every stage and every product, step by step |
 
 ### Repository layout

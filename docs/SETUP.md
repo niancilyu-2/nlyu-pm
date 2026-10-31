@@ -8,12 +8,9 @@ the Problems table at the end.
 
 | Way | User profile |
 |---|---|
-| **Claude desktop app** (Code tab) | Recommended / non-technical users. |
-| **Claude Code in a terminal** (CLI) | Recommended / technical people. |
+| **Claude desktop app** (Code tab) | Recommended / non-technical users. This guide. |
+| **Claude Code in a terminal** (CLI) | Recommended / technical people. [CLI setup guide](SETUP-CLI.md). |
 | **claude.ai in a browser** | Not recommended (complex install and project setup process). |
-
-The steps below are written for the desktop app. Terminal users: see *Terminal path* at the
-end of this page.
 
 ## What you need
 
@@ -22,8 +19,7 @@ end of this page.
 - **A paid Claude subscription.** Claude Code is part of the Claude Pro plan, currently
   US$20 a month, and of the Max, Team, and Enterprise plans. The free plan does not
   include it. Check current prices at https://claude.com/pricing.
-- **The Claude desktop app**, downloaded from https://claude.ai/download, or Claude Code
-  in a terminal if you chose the CLI above.
+- **The Claude desktop app**, downloaded from https://claude.ai/download.
 - **About 15 minutes.**
 
 ## Words used in this guide
@@ -147,27 +143,3 @@ and every stage closes with a one-line summary of what it spent and produced.
 | Screen looks stuck | Escape or the stop button. If nothing changes, start a new session in the same folder and rerun the stage command |
 
 Stage-by-stage walkthrough: [TEST-WALKTHROUGH.md](TEST-WALKTHROUGH.md).
-
-## Terminal path
-
-If you prefer the terminal, or use Claude Code on a machine without the desktop app:
-
-1. Install Claude Code. Windows, in Terminal: `irm https://claude.ai/install.ps1 | iex`.
-   macOS: `curl -fsSL https://claude.ai/install.sh | bash`. Open a new terminal and check
-   with `claude --version`.
-2. Install Git (step 2 above). On macOS, `git --version` in the terminal triggers the
-   install dialog.
-3. Open a terminal in your workspace folder, type `claude`, sign in through the browser
-   page that opens, and say yes to trusting the folder.
-4. Install the plugin by typing these two lines, one at a time:
-
-   ```text
-   /plugin marketplace add niancilyu-2/nlyu-pm
-   /plugin install nlyu-pm@nlyu-pm
-   ```
-
-5. Run `/nlyu-pm:scout` as in step 6. Between stages, type `/clear` instead of starting a
-   new session. `/exit` quits.
-
-Terminal problems: `claude` not recognized means open a new terminal window; `'irm' is
-not recognized` means you are in the old Command Prompt, so open *Terminal* instead.
