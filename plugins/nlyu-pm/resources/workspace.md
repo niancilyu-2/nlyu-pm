@@ -125,8 +125,7 @@ authentication error:
    `null`.
 
 The same principle covers research sources behind a sign-in: the PM's own command-line
-sign-in or an environment variable they set themselves, never a secret in the
-conversation. See `research-guide.md`, "Sources behind a sign-in".
+sign-in, never a secret in the conversation or read from their machine. See `research-guide.md`, "Sources behind a sign-in".
 
 ### BYOP from an archive (wrapper mode)
 

@@ -112,16 +112,14 @@ Options:
 - **Yes, through a command-line tool I am already signed in to.** `gh` or `glab` for a
   private GitHub or GitLab tracker, or another tool the PM names. One read per fetch with
   their sign-in; Claude never sees a password.
-- **Yes, through an API key I keep myself.** The PM sets the key as a variable in their own
-  terminal and tells Claude only its name. Claude never prints, reads, or stores it.
 - **Yes, but I will paste the content myself.** Logged as pasted by the PM with its address.
 
 For each "Yes": ask the source's name and address, which group it joins (rung), and who it
 mostly hears from; then the terms confirmation from the research guide ("Sources behind a
 sign-in"). Only "yes, it permits it" produces an entry with `access: pm-held` and `auth:`
-(`cli:gh`, `cli:glab`, `cli:<tool>`, or `env:<NAME>`); "not sure" becomes a `paste`
-entry; "no" leaves it out. Give the environment-variable or command-line instruction text
-from the research guide once, as written there. Items read this way are logged as
+(`cli:gh`, `cli:glab`, or `cli:<tool>`); "not sure" becomes a `paste`
+entry; "no" leaves it out. Give the command-line instruction text from the research guide
+once, as written there. A source with only an API key is a `paste` source. Items read this way are logged as
 `Evidence (PM-held access)`. Record each confirmation under `notes` in `session.yaml`. Support tickets, analytics, CRM exports, chat logs, and anything about
 identifiable customers are not sources; if offered, decline and continue.
 
@@ -216,7 +214,7 @@ listing you know of, with a one-line note each. An empty list is acceptable.
 
 Sources added in Steps C and D go under `feeds.extra` in the `add:` shape from the
 research guide, including `access` and `auth` for pm-held ones (a hint such as
-`env:NAME` or `cli:gh`, never a value). The PM can also add or drop sources later, during
+`cli:gh` or another tool name, never a value). The PM can also add or drop sources later, during
 the research pass itself.
 
 ## Step H. Generic exclusions and synthetic data rules
