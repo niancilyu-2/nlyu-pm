@@ -5,7 +5,7 @@
     "url": "https://github.com/niancilyu-2"
   },
   "metadata": {
-    "description": "pm: a Claude Code plugin that takes a product manager from public evidence to a selected opportunity, a clickable prototype, and an engineering-ready PRD on a real product: your own project or repository (BYOP) or one of five example open-source cases, plus a capstone for writing your own PM skill.",
+    "description": "pm: a Claude Code plugin that takes a product manager from public evidence to a selected opportunity, a clickable prototype, and an engineering-ready PRD on a real product: your own project or repository (BYOP) or one of five example open-source cases, plus a skill builder for writing your own PM skill.",
     "version": "0.8.0"
   },
   "plugins": [

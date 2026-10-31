@@ -2,7 +2,7 @@
 
 ## Two workspace modes
 
-The skills write only under `outputs/`, `.pm/`, and (capstone) `.claude/skills/`, and
+The skills write only under `outputs/`, `.pm/`, and (skill builder) `.claude/skills/`, and
 read product code from a **source root**. Where that root is depends on how the PM
 started.
 
@@ -48,7 +48,7 @@ Layout created by setup (wrapper mode; in-repo mode omits `sources/`):
 ```text
 <workspace>/
 ├── .claude/
-│   └── skills/                 # empty; capstone writes here
+│   └── skills/                 # empty; the skill builder writes here
 ├── sources/
 │   ├── primary/                # clone (sparse and pinned for an example case; shallow for a URL)
 │   └── companion/              # only for a case that defines one

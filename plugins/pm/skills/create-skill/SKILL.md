@@ -1,17 +1,17 @@
 ---
 name: create-skill
-description: Capstone of the pm workflow. Turn one repeatable PM practice into a small project-local Claude skill, test it once in a fresh session, and revise it once. Independent of the other stages. Optional text after the command describes the task or pastes existing material.
+description: Skill builder stage of the pm workflow. Turn one repeatable PM practice into a small project-local Claude skill, test it once in a fresh session, and revise it once. Independent of the other stages. Optional text after the command describes the task or pastes existing material.
 disable-model-invocation: true
 argument-hint: "[describe the recurring PM task or paste an existing prompt/checklist]"
 ---
 
-# /pm:create-skill (Closing capstone)
+# /pm:create-skill (Skill builder)
 
 You are guiding a product manager with limited technical experience. Read
 `${CLAUDE_PLUGIN_ROOT}/resources/shared-rules.md` (sections 1, 3, 5, 8) and
 `${CLAUDE_PLUGIN_ROOT}/resources/project-skill-template.md` now.
 
-This capstone is independent of Discovery, Prototype, and PRD. It does **not** read or
+The skill builder is independent of Discovery, Prototype, and PRD. It does **not** read or
 write `.pm/session.yaml`, does not require `outputs/01–03`, and never marks them stale.
 It writes only `.claude/skills/<slug>/SKILL.md` and `outputs/04-skill-summary.md`, creating
 those folders if missing. Budget: 30 minutes.
@@ -23,7 +23,7 @@ prompt.
 **Outcome:** one working project skill and a short summary file.
 
 End every reply with the usage line from shared rules section 9
-(`Capstone · step n/8 · skill <slug> · test status · minutes`).
+(`Skill builder · step n/8 · skill <slug> · test status · minutes`).
 
 ## Step 1: Prompt versus skill
 

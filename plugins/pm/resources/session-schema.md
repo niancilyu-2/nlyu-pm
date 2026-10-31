@@ -81,7 +81,7 @@ stages:
     revision: 0
     approved_at: null
     summary: null                # stage summary line, written at close
-  capstone:                      # informational only; /pm:create-skill does NOT write this file
+  skill_builder:                 # informational only; /pm:create-skill does NOT write this file
     note: "See outputs/04-skill-summary.md if present."
 
 stale: []                        # e.g. [prototype, prd]

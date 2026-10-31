@@ -1,4 +1,4 @@
-# Project skill template and self-check (capstone)
+# Project skill template and self-check (skill builder)
 
 `/pm:create-skill` writes exactly one file: `.claude/skills/<slug>/SKILL.md`. Nothing else
 goes in the folder in the first version: no scripts, no subagents, no extra files.

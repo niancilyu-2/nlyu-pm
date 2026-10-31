@@ -6,6 +6,9 @@ whenever a changed build is distributed, otherwise existing installs will not re
 
 ## 0.8.0 (unreleased)
 
+- `/pm:create-skill` is now called the skill builder in every doc, status line, and
+  template (it was the capstone). The informational `session.yaml` key is
+  `stages.skill_builder`.
 - Stage summary line. Every stage closes with one line of what the run spent and
   produced (minutes from the recorded start, fetches and searches, item and quote counts,
   gaps, findings, status), repeated in the output file's `Run summary` header row and in

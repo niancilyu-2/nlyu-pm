@@ -1,6 +1,6 @@
 # /pm:create-skill
 
-The capstone. It turns one repeatable practice of your own into a small Claude skill that
+The skill builder. It turns one repeatable practice of your own into a small Claude skill that
 lives in your project, tests it once in a fresh session, and revises it once. It is
 independent of the other three skills and needs none of their files.
 

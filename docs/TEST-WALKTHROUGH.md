@@ -1,7 +1,7 @@
 # Test walkthrough
 
 How to run the whole flow yourself. Readiness and Discovery take about 75 minutes. The
-three product stages take about three hours; the capstone is an independent 30-minute
+three product stages take about three hours; the skill builder is an independent 30-minute
 exercise. Everything Claude produces lands in files you can open in any text editor.
 
 Not installed yet? Do [SETUP.md](SETUP.md) first.
@@ -136,7 +136,7 @@ Engineering-owned; no estimates, delivery dates, or story points; status reads
 
 Files: `outputs/03-prd.md`, `outputs/03-prd-review.md`. Type `/clear`.
 
-## 7. Capstone: `/pm:create-skill` (30 min, any time)
+## 7. Skill builder: `/pm:create-skill` (30 min, any time)
 
 Independent of the other stages; run it in the same folder whenever you like. Bring one
 repeated task from your job, or paste a checklist you already use.
@@ -166,7 +166,7 @@ Files: `.claude/skills/<name>/SKILL.md`, `outputs/04-skill-summary.md`.
 | `sources CHANGED` in the status line | Stop and note the step. In your own repository, it may be your own edit in another window; Claude asks before assuming |
 | BYOP and most research sources are empty | Expected for a private or new product. Claude says so up front, uses the code, competitors, anything you paste, and any source you set up with your own sign-in, and marks the brief provisional |
 | Lost your place | `/clear`, then the current stage command. It resumes from the files |
-| Capstone skill not in `/skills` | Test from a new session in the same folder. The folder name must match the `name` line in the file |
+| Your new skill not in `/skills` | Test from a new session in the same folder. The folder name must match the `name` line in the file |
 
 ## 9. Feedback
 
