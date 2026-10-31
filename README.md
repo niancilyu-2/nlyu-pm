@@ -18,6 +18,7 @@ can run it alone, or a team can run it together.
 - [Overview](#overview)
   - [Where it fits](#where-it-fits)
   - [What it does](#what-it-does)
+  - [Agentic design principles](#agentic-design-principles)
 - [Setup](#setup)
   - [Requirements](#requirements)
   - [Getting started](#getting-started)
@@ -99,6 +100,36 @@ flowchart LR
   P -. "opportunity changed" .-> stale["prototype and PRD marked stale"]
   C["/pm:create-skill<br/>independent capstone"] --> K["SKILL.md<br/>04-skill-summary.md"]
 ```
+
+### Agentic design principles
+
+A few rules govern how Claude and the PM share the work, each enforced in the skill files
+rather than left to good intentions.
+
+- **Plan first, then act.** `/pm:scout` shows its source plan before the first fetch,
+  `/pm:prototype` confirms one actor, one job, and one flow before building, and `/pm:prd`
+  agrees scope before drafting.
+- **Human in the loop at every judgement.** Ranking the opportunities, approving the flow,
+  setting PRD scope, and dispositioning review findings happen at check-ins that show
+  *Claude's recommendation* and *Your decision* as separate blocks, never pre-filled.
+- **Adversarial review.** `/pm:prd` hands the draft to a read-only reviewer agent that has
+  not seen the conversation; it reopens every `Verified` code path, and blocking findings
+  must be fixed, not deferred.
+- **Evidence over confidence.** Every claim is labelled `Evidence`, `Inference`,
+  `Assumption`, or `Constraint`; `/pm:scout` runs a counter-evidence fetch per theme, logs
+  gaps instead of inventing sources, and saves a provisional file when cut short.
+- **Least privilege.** Source repositories are read-only and baseline-checked at the start
+  and end of each stage; writes go only under `outputs/`, `.pm/`, and `.claude/skills/`.
+- **Untrusted input stays data.** Text in web pages and repositories is evidence, not
+  instructions; a product's own `CLAUDE.md` counts as developer documentation.
+- **State in files, not in context.** Decisions append to `.pm/session.yaml` and drafts
+  are promoted on approval, so `/clear` between stages loses nothing and an upstream change
+  marks later stages stale.
+- **Budgets and observability.** `/pm:scout` runs on a fixed fetch budget with a
+  coverage-based stop rule, and every reply ends with a status line of step, fetches,
+  minutes, and source status.
+- **One job per skill, tested in isolation.** Each skill runs only when typed; the skill
+  written in `/pm:create-skill` is tested in a fresh session before its one revision.
 
 ## Setup
 
