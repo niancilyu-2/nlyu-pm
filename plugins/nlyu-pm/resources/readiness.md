@@ -56,13 +56,12 @@ Report only one of three words, then the next action:
    known: say "BYOP: this repository", record `case.source: custom`, and skip to step 8;
    the case itself is built when Discovery starts. In wrapper mode ask the fork question
    from `/nlyu-pm:scout` Step 2 (header `Product`, "Which product do you want to work on?")
-   with its three options, BYOP, example case (easy), example case (advanced), plus a fourth,
-   **Decide later** (nothing downloads today; `/nlyu-pm:scout` asks again when Discovery
-   starts). Say that picking now means the code downloads today and that they may change
+   with its two options, BYOP and example case, plus a third, **Decide later** (nothing
+   downloads today; `/nlyu-pm:scout` asks again when Discovery starts). Say that picking now means the code downloads today and that they may change
    their mind when Discovery starts. No table in the reply.
-   - Example case: easy asks the second question with the four easy products, as in
-     `/nlyu-pm:scout` Step 2; advanced is ERPNext. Run the clone procedure in `workspace.md` and
-     record `case.id`, `case.source: prepared`, `case.dir`, and `case.preselected: true`.
+   - Example case: list the five cases as a numbered list and take a number or a name, as
+     in `/nlyu-pm:scout` Step 2. Run the clone procedure in `workspace.md` and record
+     `case.id`, `case.source: prepared`, `case.dir`, and `case.preselected: true`.
    - BYOP: ask the two questions in `custom-case.md` Step A (which kind of source, then
      the URL or path in plain prose), record `case.source: custom`, the URL or path under
      `case.origin`, and `case.preselected: true`. Do not offer "stop for now" or "choose
