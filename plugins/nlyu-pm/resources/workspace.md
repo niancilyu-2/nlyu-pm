@@ -57,6 +57,8 @@ Layout created by setup (wrapper mode; in-repo mode omits `sources/`):
 │   └── prototype/
 └── .pm/
     ├── session.yaml
+    ├── fetches/                # text saved from every research fetch, with index.md
+    ├── drafts/
     └── case/                   # BYOP case package, when one was built or provided
 ```
 

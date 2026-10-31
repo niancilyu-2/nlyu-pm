@@ -10,7 +10,7 @@ programming is required.
 
 | Command | What it does |
 |---|---|
-| `/nlyu-pm:scout` | Readiness check, case setup, public-source research, repository constraints, three opportunities, your choice of one |
+| `/nlyu-pm:scout` | Readiness check, case setup, public-source research, repository constraints, three opportunities checked by a separate read-only agent, your choice of one |
 | `/nlyu-pm:prototype` | One actor, one job, one flow: a clickable prototype in Claude Design or as a standalone HTML file, a design critique, one revision |
 | `/nlyu-pm:prd` | A delivery PRD grounded in the product's code, reviewed by a separate read-only agent |
 | `/nlyu-pm:create-skill` | Turn one of your own PM practices into a small project skill, test it once, revise it once |
@@ -26,8 +26,9 @@ programming is required.
   feeds, release notes, competitor pages and their Wayback Machine copies, adoption
   counts). Web search is used when available. One optional `curl` of a subreddit RSS feed
   runs only if you opt in when asked.
-- **Writes** only under `outputs/`, `.pm/`, the `sources/` download for example cases,
-  and, for `/nlyu-pm:create-skill`, one folder under `.claude/skills/`.
+- **Writes** only under `outputs/`, `.pm/` (including the text of each public fetch,
+  saved under `.pm/fetches/` so quotes can be checked), the `sources/` download for
+  example cases, and, for `/nlyu-pm:create-skill`, one folder under `.claude/skills/`.
 - **Sources behind a sign-in you hold** (your own private issue tracker, a paid report, a
   members-only forum) are optional and off by default. If you opt in and confirm your
   account permits it, Claude reads them through a command-line tool you are already

@@ -63,8 +63,10 @@ stages:
     revision: 1                  # increments on each approved save
     approved_at: "2026-10-01T10:15:00Z"
     selected_opportunity: OPP-002
-    provisional: false           # true when saved under a time cut or with weak coverage
-    summary: "Discovery complete · 58 min · fetches 17/20 · searches 3/8 · items 24 · quotes 8 · gaps 1 · approved"
+    provisional: false           # true when saved under a time cut, or when the review's coverage floor was not met
+    review: outputs/01-discovery-review.md
+    fetches: .pm/fetches         # saved fetch text, one file per fetch, with index.md
+    summary: "Discovery complete · 58 min · fetches 17/20 · searches 3/8 · items 24 · quotes 8/9 verified · gaps 1 · findings 3, blocking 1, all resolved · approved"
   prototype:
     status: not-started          # not-started | in-progress | awaiting-design | approved | stale
     output: outputs/02-prototype.md
@@ -89,7 +91,7 @@ stale: []                        # e.g. [prototype, prd]
 decisions:                       # append-only
   - id: D-001
     stage: discovery
-    checkin: research-check      # case-check | research-check | priority-check | flow-check | prototype-check | scope-check | handoff-check
+    checkin: research-check      # case-check | research-check | evidence-review | priority-check | flow-check | prototype-check | scope-check | handoff-check
     claude_recommended: "Coverage is thin on mobile backup; continue with framing X"
     pm_decided: "Continue; accept the gap"
     reason: "Gap is documented; enough to prototype"

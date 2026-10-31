@@ -25,7 +25,7 @@ uncertainty you accept.
 
 Then state the stage boundary from the shared rules. From here on, end every reply with
 the usage line described in shared rules section 9 (during readiness use the `Setup ·
-check n/8` form) (`Scout · step n/10 · fetches · searches · items · quotes · minutes · sources`).
+check n/8` form) (`Scout · step n/11 · fetches · searches · items · quotes · minutes · sources`).
 
 ## Step 1: Readiness and workspace
 
@@ -180,10 +180,12 @@ snippets if `readiness.search` is `ok`. Reddit only if `readiness.reddit_rss` is
 
 Respect the budget: 20 fetches, 8 searches (or the figures in `.pm/sources.yaml` if the
 PM raised them; the usage line shows the current denominator), stop at 8 usable items or
-when the PM says time is up. As you read, fill the quote bank (research guide, "Quote
-bank"): verbatim, role not handle, linked to a signal, only from text fetched in this
-session. Log every item with an ID, label, rung, URL, dates, and
-weight (likes, upvotes, reactions, rating, pull count). Keep a running draft in
+when the PM says time is up. Save what every fetch returns before you log anything from
+it (research guide, "Saving what you fetched"): the text to `.pm/fetches/F-###.txt`, one
+line to `.pm/fetches/index.md`. As you read, fill the quote bank (research guide, "Quote
+bank"): copied from the saved file, verbatim, role not handle, linked to a signal and to
+the file it came from (`from F-###`). Log every item with an ID, label, rung, URL, dates,
+weight (likes, upvotes, reactions, rating, pull count), and the saved file. Keep a running draft in
 `.pm/drafts/01-discovery.md` from `${CLAUDE_PLUGIN_ROOT}/resources/templates/01-discovery.md`
 so nothing is lost if the session is interrupted. Tell the PM which rung you are
 on as you go, and show one striking number or quote per rung so they can see the breadth.
@@ -221,9 +223,57 @@ guide's fixed shape (signals, source types, strongest weight, counter-evidence, 
 user impact, mandate fit, delivery constraints, uncertainty. Do not compute a score. Check
 each against the case `exclusions`; drop and replace anything excluded.
 
-## Step 9: Priority check-in (check-in 2)
+Counter-evidence is earned, not asserted. Every opportunity's evidence line names the
+fetch that looked for the opposite: a closed issue, a maintainer reply, a release note
+that already shipped it, praise for the very thing others complain about. When the
+opportunity comes from a theme whose counter-evidence pass already ran, cite that
+(`SIG-###` or `looked (F-###), none`). Otherwise spend one fetch or search on it now,
+within budget, and save it like any other. "None found" without a fetch behind it is not
+allowed.
 
-Introduce each opportunity as a two-sentence story a newcomer understands: who is stuck,
+## Step 9: Evidence review (read-only reviewer)
+
+Use the Agent tool with `subagent_type: nlyu-pm:discovery-reviewer`. The reviewer does not
+see this conversation, so the prompt must contain:
+
+- Absolute paths of `.pm/drafts/01-discovery.md`, the folder `.pm/fetches/` and its
+  `index.md`, and the case file (`<case.dir>/case.yaml`) for its `exclusions`.
+- Absolute path of each source root and its pinned SHA, with a note when the working
+  tree has uncommitted changes. In in-repo mode tell the reviewer it must not read
+  `outputs/` or `.pm/` as product code and must not open anything outside the given paths.
+- Case id, lane id, and whether the case is an example case or BYOP.
+- The full text of `${CLAUDE_PLUGIN_ROOT}/resources/discovery-review-checklist.md`.
+- The instruction to return findings in the checklist's output format and to write no
+  files.
+
+Tell the PM the review is running and what it checks, in one sentence each: every quote
+against the text saved when it was fetched, every evidence label against what was
+actually fetched, every constraint against the code, and a fixed coverage floor.
+
+Write the reviewer's output into `outputs/01-discovery-review.md` using
+`${CLAUDE_PLUGIN_ROOT}/resources/templates/01-discovery-review.md`. Then disposition
+every finding, blocking ones first, and record each disposition in that file:
+
+- **Fix in brief.** Apply it yourself and say what changed: a quote `not found` is
+  removed (or replaced from the saved file, if the words are there with the correct
+  cut); a quote that `differs` is corrected to the saved text; an `Evidence` item never
+  fetched becomes `Inference`; a wrong recurrence label or count is corrected; a missing
+  counter-evidence fetch is made now, within budget.
+- **Needs your call.** Only when the fix changes which opportunities stand (an
+  opportunity loses its last quote, or an exclusion covers it). Ask the PM one question,
+  record `D-###` with `checkin: evidence-review`, and apply the answer.
+- **Accept with note.** Minor items only. Record why.
+
+A blocking finding is never accepted with a note. Then tell the PM, in under 150 words:
+how many quotes were checked and how many survived, what labels or counts changed, and
+the floor verdict. If the verdict is `provisional required`, say now that the brief will
+be saved `provisional` and which floor row failed; the PM cannot override the floor, but
+can add fetches within budget and rerun the review once.
+
+## Step 10: Priority check-in (check-in 2)
+
+Open with one line on the review result (quotes verified, findings fixed, floor met or
+not), then introduce each opportunity as a two-sentence story a newcomer understands: who is stuck,
 what happens to them today, what would change, followed by its evidence line. Then
 recommend a `Now / Next / Later` order with one sentence of reasoning per slot and the main
 trade-off between the top two. Name the lens that tipped the order. If the recommended
@@ -245,15 +295,17 @@ Record the reason as the picked labels joined with "; " plus anything typed, ver
 Record `D-###`. The PM's choice wins even if it differs from yours; note the difference
 without arguing.
 
-## Step 10: Save and close
+## Step 11: Save and close
 
 - Complete the draft, copy it to `outputs/01-discovery.md`, delete the draft. Section 1 is
   written last and first-read: the chosen opportunity, your reason as typed, the lens that
-  tipped the order, and the other two with why they were placed later. Status `approved` (or `provisional` if the research
-  was cut short or coverage was weak; say so in the status line and in section 4a),
-  selected opportunity, assumptions, open questions, decision record.
+  tipped the order, and the other two with why they were placed later. Status `approved`
+  only when the review verdict was `approved allowed` and no blocking finding remains;
+  otherwise `provisional`, with the reason (floor row failed, research cut short) in the
+  status line and in section 4a. Fill the header's `Evidence review` row from the review
+  file. Selected opportunity, assumptions, open questions, decision record.
 - Update `session.yaml`: `stages.discovery` (`status: approved`, `revision` +1,
-  `approved_at`, `selected_opportunity`, `provisional`), `stage.current: prototype`,
+  `approved_at`, `selected_opportunity`, `provisional`, `review`), `stage.current: prototype`,
   `stage.status: not-started`.
 - Run the source check again; record `clean_at_end`.
 - Close with three lines: what Claude contributed, what the PM decided, and the
@@ -266,6 +318,9 @@ without arguing.
 
 - Web unavailable mid-stage: log the gap, continue with repository constraints and any
   items already collected, and save a `provisional` file. Never fabricate a source.
+- The reviewer agent fails to start or returns nothing usable: say so, run the quote
+  check yourself (grep each quote in its saved file) and record in the review file that
+  the review was self-run; the floor still applies.
 - The GitHub API returns 403 or 429: switch to the `_html` templates in `feeds:` at once;
   everyone on the same network shares one address and the limit. Any other rung that refuses or
   rate-limits: log `GAP` and move to the next. Do not retry in a loop.
