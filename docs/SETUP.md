@@ -74,9 +74,8 @@ asks which folder to work in. If it asks whether you trust the folder, say yes.
 
 ## 6. Run the readiness check
 
-1. Type `/nlyu-pm:scout` and press Enter. It checks the folder and Git, offers to add the
-   short commands `/scout`, `/prototype`, `/prd`, and `/create-skill` to this folder (say
-   yes), tests web access, and ends with `Ready`, `Ready with fallback`, or `Blocked`. For `Blocked`, do the
+1. Type `/nlyu-pm:scout` and press Enter. It checks the folder and Git, tests web access,
+   and ends with `Ready`, `Ready with fallback`, or `Blocked`. For `Blocked`, do the
    action it prints and run `/nlyu-pm:scout` again.
 2. It also asks whether you want BYOP or an example case. Answer now so the code
    downloads today, or choose *decide later*.
@@ -108,17 +107,13 @@ Open your workspace folder in the Code tab (step 4), then run one stage per sess
 
 | Stage | Type |
 |---|---|
-| Discovery | `/scout` |
+| Discovery | `/nlyu-pm:scout` |
 | | new session |
-| Prototype | `/prototype` |
+| Prototype | `/nlyu-pm:prototype` |
 | | new session |
-| PRD | `/prd` |
+| PRD | `/nlyu-pm:prd` |
 | | new session |
-| Skill builder (independent, any time) | `/create-skill` |
-
-The short forms work in a folder where you said yes at readiness. The full forms
-`/nlyu-pm:scout`, `/nlyu-pm:prototype`, `/nlyu-pm:prd`, and `/nlyu-pm:create-skill` work
-everywhere.
+| Skill builder (independent, any time) | `/nlyu-pm:create-skill` |
 
 Every reply ends with a status line such as `Scout · step 5/10 · fetches 6/20 · 14 min`,
 and every stage closes with a one-line summary of what it spent and produced.
@@ -130,7 +125,6 @@ and every stage closes with a one-line summary of what it spent and produced.
 | No **Code** tab in the app | Update the app from https://claude.ai/download, then sign in again |
 | Sign-in says your plan does not include Claude Code | You are on the free plan or the wrong account. Sign out and sign in with a Pro, Max, Team, or Enterprise account |
 | `/nlyu-pm:` commands missing | Settings, Plugins: check **nlyu-pm** is installed and enabled, then start a new session in the same folder |
-| `/scout` not offered | You said no at readiness, or this is a different folder. Use `/nlyu-pm:scout`, or rerun it and say yes |
 | Readiness says Git is missing | Step 2, then run `/nlyu-pm:scout` again |
 | Path-too-long error on Windows | Ask Claude in the session to run `git config --global core.longpaths true`, then `/nlyu-pm:scout` |
 | Web search policy error | Ignore it. Send the error text to whoever manages your Claude account |

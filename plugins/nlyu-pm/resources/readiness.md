@@ -22,10 +22,7 @@ Report only one of three words, then the next action:
    with the PM that this repository is the product. Create `.claude/skills/`,
    `outputs/prototype/`, `.pm/`, and in wrapper mode `sources/`. Write `.pm/session.yaml`
    with `readiness.status: not-run`, `workspace_mode`, and `outputs_dir` if it does not
-   exist. Then ask once: "Add the short commands `/scout`, `/prototype`, `/prd`, and
-   `/create-skill` to this folder? (Recommended; the full names `/nlyu-pm:scout` and so on
-   work either way.)" On yes, write the four forwarders described in
-   `short-commands.md`; skip any that already exist.
+   exist.
 3. **Git.** Run `git --version`. Missing git is `Blocked`; the next action is to install
    Git for Windows or Xcode command-line tools, then rerun.
 4. **Open a local HTML file.** Write a tiny file `outputs/readiness.html` (one heading that

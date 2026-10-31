@@ -16,8 +16,7 @@ Claude desktop app's Code tab, or in a terminal by typing `claude` there.
 Type `/nlyu-pm:scout`. On the first run it:
 
 1. prints the plugin version
-2. checks the folder and Git, and offers the short commands `/scout`, `/prototype`,
-   `/prd`, and `/create-skill` for this folder (say yes; the full names work regardless)
+2. checks the folder and Git
 3. opens a test page in your browser and asks whether it appeared
 4. fetches one public page and tries one web search
 5. asks you to type `/design` and say what happened
