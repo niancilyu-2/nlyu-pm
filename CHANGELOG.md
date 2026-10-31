@@ -4,7 +4,7 @@ All notable changes to the `nlyu-pm` plugin are recorded here. Bump `version` in
 `plugins/nlyu-pm/.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`
 whenever a changed build is distributed, otherwise existing installs will not refresh.
 
-## 0.8.0 (unreleased)
+## 0.8.0 (2026-10-31)
 
 - Plugin renamed from `pm` to `nlyu-pm` (the name `pm` is taken in Anthropic's plugin
   directory), so commands are `/nlyu-pm:scout`, `/nlyu-pm:prototype`, `/nlyu-pm:prd`, and
