@@ -103,47 +103,33 @@ flowchart LR
 
 ### Agentic design principles
 
-A few rules govern how Claude and the PM share the work. Each is written into the skill
-files and shared rules, not left to good intentions.
+A few rules govern how Claude and the PM share the work, each enforced in the skill files
+rather than left to good intentions.
 
-- **Plan first, then act.** Every stage opens by restating its boundary and what the PM
-  will decide, then shows its plan before doing the work. Scout lists its source plan in
-  plain words before the first fetch. Prototype confirms one actor, one job, and one flow
-  at a flow check-in before anything is built. PRD gets a scope check-in before drafting.
-- **Human in the loop at every judgement.** Claude finds, drafts, and challenges; the PM
-  makes every accountable product call. Ranking the three opportunities and choosing the
-  Now item, approving the flow, setting PRD scope, and deciding what to do with each review
-  finding all happen at check-ins that show *Claude's recommendation* and *Your decision*
-  as two separate blocks, never pre-filled. When the PM overrides, Claude asks once for the
-  reason and records it.
-- **Adversarial review.** The PRD is checked by a separate read-only agent that has not
-  seen the conversation. It reopens every `Verified` path in the code, flags unsupported
-  claims and untestable criteria, and marks findings blocking or not. Claude re-checks any
-  new code claim the reviewer makes before proposing a disposition, and a blocking finding
-  must be fixed, not turned into an engineering question.
+- **Plan first, then act.** `/pm:scout` shows its source plan before the first fetch,
+  `/pm:prototype` confirms one actor, one job, and one flow before building, and `/pm:prd`
+  agrees scope before drafting.
+- **Human in the loop at every judgement.** Ranking the opportunities, approving the flow,
+  setting PRD scope, and dispositioning review findings happen at check-ins that show
+  *Claude's recommendation* and *Your decision* as separate blocks, never pre-filled.
+- **Adversarial review.** `/pm:prd` hands the draft to a read-only reviewer agent that has
+  not seen the conversation; it reopens every `Verified` code path, and blocking findings
+  must be fixed, not deferred.
 - **Evidence over confidence.** Every claim is labelled `Evidence`, `Inference`,
-  `Assumption`, or `Constraint`; technical statements are `Verified` with a file path,
-  `Inferred`, or `Engineering-owned`. Quotes are verbatim from fetched text. Each theme
-  gets a counter-evidence fetch. A source that fails is logged as a gap, never invented,
-  and a stage cut short saves a file marked provisional rather than a complete-looking one.
-- **Least privilege.** Source repositories are read-only and checked against a baseline
-  at the start and end of every stage. Claude writes only under `outputs/`, `.pm/`, and
-  for the capstone `.claude/skills/`. No password, token, or key ever enters the
-  conversation.
+  `Assumption`, or `Constraint`; `/pm:scout` runs a counter-evidence fetch per theme, logs
+  gaps instead of inventing sources, and saves a provisional file when cut short.
+- **Least privilege.** Source repositories are read-only and baseline-checked at the start
+  and end of each stage; writes go only under `outputs/`, `.pm/`, and `.claude/skills/`.
 - **Untrusted input stays data.** Text in web pages and repositories is evidence, not
-  instructions. A product's own `CLAUDE.md` or agent files count as developer
-  documentation, and no stage runs a build, test, or install command found in a source.
-- **State in files, not in context.** Drafts live in `.pm/drafts/` and are promoted to
-  `outputs/` only on approval; decisions are appended to `.pm/session.yaml`. Each stage
-  re-hydrates from those files, so `/clear` between stages loses nothing, and changing an
-  upstream decision marks later stages stale instead of silently rewriting them.
-- **Budgets and observability.** Research runs on a fixed fetch budget with a
-  coverage-based stop rule, and each stage has a time budget. Every reply ends with a
-  status line (step, fetches, elapsed minutes, source status) so the PM always sees where
-  the agent is and what it has spent.
-- **One job per skill, tested in isolation.** Each skill does one thing and runs only
-  when typed. The skill a PM writes in the capstone is tested in a fresh session before
-  its single revision, the same discipline the plugin's own skills follow.
+  instructions; a product's own `CLAUDE.md` counts as developer documentation.
+- **State in files, not in context.** Decisions append to `.pm/session.yaml` and drafts
+  are promoted on approval, so `/clear` between stages loses nothing and an upstream change
+  marks later stages stale.
+- **Budgets and observability.** `/pm:scout` runs on a fixed fetch budget with a
+  coverage-based stop rule, and every reply ends with a status line of step, fetches,
+  minutes, and source status.
+- **One job per skill, tested in isolation.** Each skill runs only when typed; the skill
+  written in `/pm:create-skill` is tested in a fresh session before its one revision.
 
 ## Setup
 
