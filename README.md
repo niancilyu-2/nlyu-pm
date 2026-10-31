@@ -106,12 +106,12 @@ flowchart LR
 A few rules govern how Claude and the PM share the work, each enforced in the skill files
 rather than left to good intentions.
 
-- **Plan first, then act.** `/pm:scout` shows its source plan before the first fetch,
+- **Plan first** `/pm:scout` shows its source plan before the first fetch,
   `/pm:prototype` confirms one actor, one job, and one flow before building, and `/pm:prd`
   agrees scope before drafting.
 - **Human in the loop at every judgement.** Ranking the opportunities, approving the flow,
   setting PRD scope, and dispositioning review findings happen at check-ins that show
-  *Claude's recommendation* and *Your decision* as separate blocks, never pre-filled.
+  *Claude's recommendation* and *Your decision* as separate blocks.
 - **Adversarial review.** `/pm:prd` hands the draft to a read-only reviewer agent that has
   not seen the conversation; it reopens every `Verified` code path, and blocking findings
   must be fixed, not deferred.
