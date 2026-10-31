@@ -71,6 +71,8 @@ flowchart LR
 - Every constraint keeps "to confirm with engineering" until an engineer signs it off.
 - Every reply ends with a status line: step, requirement and criteria counts, findings,
   minutes, source folder status.
+- The stage closes with one summary line (minutes, requirement and criteria counts,
+  findings and how many were blocking, status), repeated in the PRD's header.
 
 ## Where the details live
 

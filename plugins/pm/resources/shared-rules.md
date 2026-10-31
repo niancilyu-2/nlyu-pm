@@ -146,7 +146,7 @@ Do not silently edit later files to match.
 ## 8. Effort and time
 
 Claude cannot see a clock reliably. Use `date` to record the start time, write it into
-the stage's draft file header at once (the capstone writes it into the summary draft), and
+the stage's draft file header at once (the skill builder writes it into the summary draft), and
 mention elapsed time at each check-in. After a session resume, re-read that recorded start
 time; never start the clock again. Respect the effort budgets in each skill (for example the research
 budget in `research-guide.md`). When the PM says time is up, save a clearly labelled *provisional* result rather than pushing on.
@@ -160,7 +160,7 @@ Suggested time budget per stage:
 | Discovery (`/pm:scout`) | 60 |
 | Prototype (`/pm:prototype`) | 60 |
 | PRD (`/pm:prd`) | 45 |
-| Capstone (`/pm:create-skill`) | 30 |
+| Skill builder (`/pm:create-skill`) | 30 |
 
 ## 9. Usage line
 
@@ -173,7 +173,7 @@ separators and keep it under 100 characters. Omit any field that does not apply 
 | Discovery | `Scout · step 5/10 · fetches 6/20 · searches 0/8 · items 5 · quotes 3/8 · 14 min · sources clean` |
 | Prototype | `Prototype · step 7/11 · path html · revision 0 · 22 min · sources clean` |
 | PRD | `PRD · step 4/7 · REQ 6 · AC 9 · findings 0 · 18 min · sources clean` |
-| Capstone | `Capstone · step 5/8 · skill meeting-recap · test pending · 12 min` |
+| Skill builder | `Skill builder · step 5/8 · skill meeting-recap · test pending · 12 min` |
 
 Count fetches and searches yourself as you make them; the budget lives in
 `research-guide.md`. Elapsed minutes come from the start time you recorded with `date`.
@@ -182,6 +182,25 @@ reply shows `revision 1` in this reply). `sources clean` reflects the last
 `git status --porcelain` check; write `sources CHANGED`
 in capitals if it was not empty. During readiness, the line is
 `Setup · check 3/8 · <n> min`.
+
+**Stage summary line.** When a stage closes (its "Save and close" or "Summary and close"
+step), print one summary line after the closing lines, and write the same text into the
+`Run summary` row of the output file's header table (and, for the three product stages,
+into `stages.<stage>.summary` in `session.yaml`). It states what the run spent and what
+it produced, from the counters you already keep and the start time you recorded:
+
+| Stage | Format |
+|---|---|
+| Discovery | `Discovery complete · 58 min · fetches 17/20 · searches 3/8 · items 24 · quotes 8 · gaps 1 · approved` |
+| Prototype | `Prototype complete · 52 min · path html · walkthrough findings 4 · revisions 1 · approved` |
+| PRD | `PRD complete · 41 min · REQ 8 · AC 12 · findings 5, blocking 2, all resolved · ready-for-engineering-review` |
+| Skill builder | `Skill builder complete · 27 min · skill meeting-recap · tested once · revised once` |
+
+Write `provisional` in place of `approved` when the stage was cut short. Minutes are
+elapsed time from the recorded start, including any resume. Do not report token counts
+or cost: you cannot observe them, and an invented number breaks the evidence rule. If
+the PM asks, point them to Claude Code's `/cost` command, which reports the session
+total on API billing and says usage is included on a subscription.
 
 ## 10. Finding the case
 

@@ -248,7 +248,9 @@ yours; note the difference without arguing.
   `stage.status: not-started`.
 - Run the source check again; record `clean_at_end`.
 - Close with three lines: what Claude contributed, what the PM decided, and the
-  next command: `/clear`, then `/pm:prototype`.
+  next command: `/clear`, then `/pm:prototype`. Then the stage summary line (shared
+  rules, section 9), also written to the brief's `Run summary` row and
+  `stages.discovery.summary`.
 
 ## If things go wrong
 

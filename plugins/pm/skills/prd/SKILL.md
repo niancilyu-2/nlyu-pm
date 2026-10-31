@@ -140,7 +140,9 @@ confirms the open product questions. Record `D-###`.
   `stage.current: done`, `stage.status: approved`.
 - Source check; record `clean_at_end`.
 - Close with three lines: what Claude contributed, what the PM decided, and the
-  next step: the closing capstone `/pm:create-skill` (after `/clear`).
+  next step: the skill builder `/pm:create-skill` (after `/clear`). Then the stage
+  summary line (shared rules, section 9), also written to the PRD's `Run summary` row
+  and `stages.prd.summary`.
 
 ## If things go wrong
 

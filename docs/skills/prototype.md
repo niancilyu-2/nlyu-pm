@@ -52,6 +52,8 @@ skill stops and asks you to rerun discovery first.
 - Visual similarity is not the bar. A clear, testable flow is.
 - Every reply ends with a status line: step, build path, revision, minutes, source folder
   status.
+- The stage closes with one summary line (minutes, path, walkthrough findings,
+  revisions, status), repeated in the notes' header.
 
 ## Where the details live
 

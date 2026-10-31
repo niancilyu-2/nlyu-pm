@@ -153,7 +153,7 @@ Open a terminal in the folder you picked in step 7 (`pm-workspace`, or your repo
 | | `/clear` |
 | PRD | `/pm:prd` |
 | | `/clear` |
-| Capstone (independent, any time) | `/pm:create-skill` |
+| Skill builder (independent, any time) | `/pm:create-skill` |
 
 Every reply ends with a status line such as `Scout · step 5/10 · fetches 6/20 · 14 min`.
 

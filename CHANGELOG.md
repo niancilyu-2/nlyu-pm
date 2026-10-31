@@ -6,6 +6,14 @@ whenever a changed build is distributed, otherwise existing installs will not re
 
 ## 0.8.0 (unreleased)
 
+- `/pm:create-skill` is now called the skill builder in every doc, status line, and
+  template (it was the capstone). The informational `session.yaml` key is
+  `stages.skill_builder`.
+- Stage summary line. Every stage closes with one line of what the run spent and
+  produced (minutes from the recorded start, fetches and searches, item and quote counts,
+  gaps, findings, status), repeated in the output file's `Run summary` header row and in
+  `stages.<stage>.summary` of `session.yaml`. Token counts and cost are deliberately not
+  reported, since Claude cannot observe them; the docs point to `/cost`.
 - Repository renamed to `nlyu-pm`; install lines updated. Setup guide rewritten for
   non-technical readers: what you need, a short glossary, subscription and desktop-app
   guidance. The group-run page is removed and

@@ -64,6 +64,7 @@ stages:
     approved_at: "2026-10-01T10:15:00Z"
     selected_opportunity: OPP-002
     provisional: false           # true when saved under a time cut or with weak coverage
+    summary: "Discovery complete · 58 min · fetches 17/20 · searches 3/8 · items 24 · quotes 8 · gaps 1 · approved"
   prototype:
     status: not-started          # not-started | in-progress | awaiting-design | approved | stale
     output: outputs/02-prototype.md
@@ -72,13 +73,15 @@ stages:
     brief: .pm/design-brief.md
     revision: 0
     approved_at: null
+    summary: null                # stage summary line, written at close
   prd:
     status: not-started
     output: outputs/03-prd.md
     review: outputs/03-prd-review.md
     revision: 0
     approved_at: null
-  capstone:                      # informational only; /pm:create-skill does NOT write this file
+    summary: null                # stage summary line, written at close
+  skill_builder:                 # informational only; /pm:create-skill does NOT write this file
     note: "See outputs/04-skill-summary.md if present."
 
 stale: []                        # e.g. [prototype, prd]

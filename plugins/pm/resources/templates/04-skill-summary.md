@@ -6,6 +6,7 @@
 | Job | <one sentence> |
 | Trigger | Use when <…> |
 | Invocation | manual only (`disable-model-invocation: true`) |
+| Run summary | <stage summary line, written at close> |
 
 ## What Claude does
 - <…>
