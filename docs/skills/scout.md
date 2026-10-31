@@ -55,7 +55,8 @@ record of what Claude recommended against what you decided.
    delivery constraints, and uncertainty. No scores.
 9. **Priority check-in.** Claude introduces each opportunity as a two-sentence story, then
    recommends a Now, Next, Later order with the strongest quote under each. You choose the
-   Now item and give your reason. Your choice stands even if it differs from Claude's.
+   Now item, then pick your reasons from a short list (several allowed) or type your own.
+   Your choice stands even if it differs from Claude's.
 10. **Save.** The brief is written, the session file updated, and the next step named.
 
 ## Where the evidence comes from

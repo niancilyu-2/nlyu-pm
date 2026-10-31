@@ -95,7 +95,7 @@ Two check-ins:
 1. **Research check.** Coverage, a triangulation table, the two strongest quotes,
    contradictions, gaps. You say continue, ask for one more fetch, or narrow the framing.
 2. **Priority check.** Three opportunities in Now, Next, Later order with a quote under
-   each. You pick the Now item and give your reason.
+   each. You pick the Now item, then your reasons (several allowed, or your own words).
 
 Check: every claim is labelled Evidence, Inference, Assumption, or Constraint; every
 Evidence item has a link and dates; Claude's recommendation and your decision are separate

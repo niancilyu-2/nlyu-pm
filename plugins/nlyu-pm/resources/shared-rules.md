@@ -59,6 +59,10 @@ Start with, in this order:
 - The question tool shows at most four options plus the PM's own typed answer. Never put
   more than four candidates in one question; narrow first (BYOP or example case, easy or
   advanced), then list at most four.
+- When more than one answer can be true at once (reasons for a choice, concerns, states to
+  include), turn multi-select on and say "pick all that apply, or type your own". Record
+  every pick as labelled, plus anything typed, never a merged paraphrase. A reason is never
+  asked as a single-choice question with the real answer left to the "Other" box.
 - Never require the PM to edit code, YAML, or file paths. If something must
   change in a file, change it yourself and say what you did.
 - Write replies the way you write files: no em dashes, no arrows, no filler. Use commas,
