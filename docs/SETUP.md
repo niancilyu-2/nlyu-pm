@@ -6,11 +6,11 @@ the Problems table at the end.
 
 ## Three ways to run it
 
-| Way | Verdict | Why |
-|---|---|---|
-| **Claude desktop app** (Code tab) | Recommended for non-technical people | Install the plugin from Settings with a few clicks, no terminal, and the steps below are written for it. |
-| **Claude Code in a terminal** (CLI) | Recommended for technical people | Same plugin, same commands, with `/clear` between stages; see *Terminal path* at the end of this page. |
-| **claude.ai in a browser** | Not recommended | Cannot run this plugin at all: it has no Code tab, so it cannot read a repository or write files on your laptop. |
+| Way | User profile |
+|---|---|
+| **Claude desktop app** (Code tab) | Recommended for non-technical people. The steps below are written for it. |
+| **Claude Code in a terminal** (CLI) | Recommended for technical people. See *Terminal path* at the end of this page. |
+| **claude.ai in a browser** | Not recommended: installing the plugin there is complicated. |
 
 ## What you need
 
