@@ -10,7 +10,7 @@ whenever a changed build is distributed, otherwise existing installs will not re
   sign-in is removed: Claude never reads a key, token, or variable from the PM's machine.
   Such sources are read through a command-line tool the PM is already signed in to
   (`gh`, `glab`, or one they name) or pasted by the PM. The optional Reddit RSS read is
-  described as a plain download. A plugin icon is added at `.claude-plugin/icon.png`.
+  described as a plain download. A plugin icon (a loop arrow) is added at `.claude-plugin/icon.png`.
 
 ## 0.8.1 (2026-10-31)
 
