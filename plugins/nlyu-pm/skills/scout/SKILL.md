@@ -67,11 +67,12 @@ candidates in one question (shared rules section 3), and no table in the reply.
 
   BYOP: set `case.source: custom` and go to Step 2b. Example case: the question tool
   shows at most four options and there are five cases, so list them in plain prose as a
-  numbered list, one line each read from its `case.yaml` (`persona`, then `mandate`)
-  under `${CLAUDE_PLUGIN_ROOT}/cases/`, in this order: Immich, Plane, Home Assistant,
-  Umbraco, ERPNext. Do not write the descriptions from memory. Mark the last one
-  "(Advanced: a larger business product, two repositories, more code to read)". Ask for
-  a number or a name and wait. Then set `case.id`, `case.source: prepared`, and
+  numbered list under `${CLAUDE_PLUGIN_ROOT}/cases/`, in this order: Immich, Plane, Home
+  Assistant, Umbraco, ERPNext. Each line is the product's name and the first sentence of
+  `product_summary` from its `case.yaml`: what the product is, not who the persona is
+  (the persona and the brief come with the orientation in Step 3). Do not write the
+  descriptions from memory. Mark the last one "(Advanced: a larger business product, two
+  repositories, more code to read)". Ask for a number or a name and wait. Then set `case.id`, `case.source: prepared`, and
   `case.dir`, and go to Step 3.
 
 ### Step 2b: Build the case (BYOP)

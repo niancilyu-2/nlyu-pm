@@ -5,6 +5,11 @@ All notable changes to the `nlyu-pm` plugin are recorded here. Bump `version` in
 whenever a changed build is distributed, otherwise existing installs will not refresh.
 Update the version line in the README banner at the same time.
 
+## 0.9.2 (2026-10-31)
+
+- The example case list describes each product (first sentence of `product_summary`)
+  instead of its persona and brief; those come with the orientation once a case is chosen.
+
 ## 0.9.1 (2026-10-31)
 
 - Product question has two options, BYOP or example case; the easy and advanced split is
