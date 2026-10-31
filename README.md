@@ -20,7 +20,7 @@
 Public evidence to a chosen opportunity, a clickable prototype, and an engineering-ready
 PRD, grounded in the product's own code. No programming required.
 
-# nlyu-pm: product discovery to PRD for Claude Code
+# nlyu-pm: Rapid product discovery to PRD for Claude Code
 
 A Claude Code plugin that takes a product manager from public evidence to a selected
 opportunity, a clickable prototype, and an engineering-ready PRD, on your own project or
