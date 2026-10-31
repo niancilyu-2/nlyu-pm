@@ -96,7 +96,8 @@ Stable IDs, assigned in order and never reused within a workspace:
 ## 5. Files you may touch
 
 - Write only inside `outputs/` and `.pm/`. `/nlyu-pm:create-skill` may also write one folder
-  under `.claude/skills/`.
+  under `.claude/skills/`, and readiness may write the four short-command forwarders
+  there (`short-commands.md`) when the PM says yes.
 - Treat every source root as read-only (`sources/` in wrapper mode, the repository itself
   in in-repo mode, see `workspace.md`). Never edit, create, move, or delete a tracked file
   there. If the source check shows an unexpected change, stop, show the output, and

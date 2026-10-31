@@ -92,7 +92,9 @@ Four skills. Each runs only when you type it.
 | `/nlyu-pm:prd` | A delivery PRD grounded in the product's code, reviewed by a separate read-only agent that has not seen your conversation | `outputs/03-prd.md`, `outputs/03-prd-review.md` | [docs/skills/prd.md](docs/skills/prd.md) |
 | `/nlyu-pm:create-skill` | Turn one PM practice of your own into a small project skill, test it once in a fresh session, revise it once | `.claude/skills/<name>/SKILL.md`, `outputs/04-skill-summary.md` | [docs/skills/create-skill.md](docs/skills/create-skill.md) |
 
-Each skill opens by saying what you will practise, what Claude will do, and what you
+Plugin commands carry the plugin prefix; the readiness check offers to add the short
+forms `/scout`, `/prototype`, `/prd`, and `/create-skill` to your workspace folder. Each
+skill opens by saying what you will practise, what Claude will do, and what you
 decide, and ends every reply with a status line such as
 `Scout · step 5/10 · fetches 6/20 · 14 min`. Each stage closes with one summary line of
 what the run spent and produced, for example

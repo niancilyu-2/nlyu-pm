@@ -10,6 +10,9 @@ whenever a changed build is distributed, otherwise existing installs will not re
   directory), so commands are `/nlyu-pm:scout`, `/nlyu-pm:prototype`, `/nlyu-pm:prd`, and
   `/nlyu-pm:create-skill`, and the plugin folder is `plugins/nlyu-pm/`. Entries below
   0.8.0 keep the old names they shipped with.
+- Short commands. Readiness offers to add `/scout`, `/prototype`, `/prd`, and
+  `/create-skill` to the workspace folder as forwarders to the plugin skills
+  (`short-commands.md`); the full names work everywhere.
 - Desktop-first setup: the Claude desktop app installs the plugin from Settings without
   a terminal; the terminal path stays as an alternative. The plugin folder gains its own
   README and LICENSE for directory submission.
