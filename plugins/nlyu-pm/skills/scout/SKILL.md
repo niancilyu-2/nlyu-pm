@@ -10,15 +10,15 @@ You are guiding a product manager with strong product judgment and limited techn
 experience. Read `${CLAUDE_PLUGIN_ROOT}/resources/shared-rules.md` now and follow it for the
 whole stage. This skill takes no arguments.
 
-**Learning objective:** use Claude to compare mixed, imperfect evidence while keeping the
+**Stage objective:** use Claude to compare mixed, imperfect evidence while keeping the
 prioritisation judgment with the PM.
 
 **Outcome:** `outputs/01-discovery.md` and one PM-selected opportunity.
 
 ## Open the stage
 
-Say, in three short lines: *You will practise* comparing imperfect evidence and turning it
-into a reasoned priority. *Claude will* find and organise public evidence, show
+Say, in three short lines: *You will* compare imperfect evidence and turn it into a
+reasoned priority. *Claude will* find and organise public evidence, show
 contradictions, identify repository constraints, and draft options. *You decide* the
 problem framing, evidence quality, the selected opportunity, the roadmap order, and the
 uncertainty you accept.
@@ -95,8 +95,8 @@ lanes from `lanes[]`, each described by its `surface` and the first sentence of 
 Save `case.id`, `case.source`, `case.dir`, `case.lane`, and `case.chosen_at` to
 `session.yaml`.
 
-Before the orientation, define three words in one line each, because they recur all
-day: repository (the product's source code, kept in a folder), pinned commit (a fixed
+Before the orientation, define three words in one line each, because they recur
+throughout the stage: repository (the product's source code, kept in a folder), pinned commit (a fixed
 snapshot of that code from a set date), and sources clean (nothing in that folder has
 changed). For BYOP, ask in one line whether they want the definitions.
 Then give a short orientation from the case's `orientation.md`: what the product is in two
@@ -155,7 +155,7 @@ public and keyless (a source behind a sign-in lives only in `.pm/sources.yaml` a
 
 A key set to `null` or `[]` means that source does not exist for this case; say so once
 and move on. For BYOP, several keys may be empty; say at the start of the pass which
-rungs exist, so the PM knows what the hour can and cannot deliver.
+rungs exist, so the PM knows what the research pass can and cannot deliver.
 
 **Source plan first.** Before the first fetch, show the PM the plan as a short list in
 plain words, in ladder order: one line per source that exists for this product, saying

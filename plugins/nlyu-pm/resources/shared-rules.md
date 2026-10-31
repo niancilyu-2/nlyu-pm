@@ -33,8 +33,8 @@ Start with, in this order:
 
 1. **Stage boundary.** One sentence: "This stage replaces earlier process instructions;
    approved files and evidence from earlier stages stay valid."
-2. **What you will practise / what Claude will do / what you decide.** Three short lines,
-   taken from the skill's learning objective.
+2. **What you will do / what Claude will do / what you decide.** Three short lines,
+   taken from the skill's stage objective.
 3. **Re-hydrate.** Read `.pm/session.yaml` and the approved output files this stage depends
    on. If a dependency is missing or marked stale, say so plainly and stop with the next
    action (which earlier stage to run).
@@ -95,8 +95,8 @@ Stable IDs, assigned in order and never reused within a workspace:
 
 ## 5. Files you may touch
 
-- Write only inside `outputs/` and `.pm/`. `/nlyu-pm:create-skill` may also write one folder
-  under `.claude/skills/`.
+- Write only inside `outputs/` and `.pm/`, plus `sources/` for the repository downloads in
+  wrapper mode. `/nlyu-pm:create-skill` may also write one folder under `.claude/skills/`.
 - Treat every source root as read-only (`sources/` in wrapper mode, the repository itself
   in in-repo mode, see `workspace.md`). Never edit, create, move, or delete a tracked file
   there. If the source check shows an unexpected change, stop, show the output, and

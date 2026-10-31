@@ -4,6 +4,18 @@ All notable changes to the `nlyu-pm` plugin are recorded here. Bump `version` in
 `plugins/nlyu-pm/.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`
 whenever a changed build is distributed, otherwise existing installs will not refresh.
 
+## 0.8.1 (2026-10-31)
+
+- Docs and rules review. The README contents link to Guardrails and limits is fixed;
+  the setup guide is described as desktop-first everywhere; the hidden files Finder and
+  Explorer create no longer block an empty workspace; runtime messages say "new session"
+  instead of "open a terminal"; every "writes only" claim now names the `sources/`
+  download; per-skill docs list the same steps the status line counts; track, case, and
+  lane are defined; readiness warns about the browser tab and the `/design` question;
+  problem tables give the desktop fix first; timings include the BYOP case build.
+- Manifests: a display name, shorter descriptions, and searchable keywords for the plugin
+  directory. "Learning objective" is now "Stage objective".
+
 ## 0.8.0 (2026-10-31)
 
 - Plugin renamed from `pm` to `nlyu-pm` (the name `pm` is taken in Anthropic's plugin

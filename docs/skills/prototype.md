@@ -30,16 +30,19 @@ skill stops and asks you to rerun discovery first.
 4. **Design brief.** One page: context, the flow, the screen size, the look to follow,
    synthetic data, what is out of scope, and the file contract. Both build paths start from
    it.
-5. **Build.** If Claude Design is available, Claude gives you one instruction: run
-   `/design` with the brief, export a single HTML file to the prototype folder, then run
-   `/nlyu-pm:prototype` again. If not, Claude writes the HTML itself and opens it.
-6. **Walkthrough.** You and Claude click through the main path and both states, checking
+5. **Choose the build path.** Claude Design if readiness found it available, otherwise a
+   standalone HTML file. Both start from the brief.
+6. **Claude Design.** Claude gives you one instruction: run `/design` with the brief,
+   export a single HTML file to the prototype folder, then run `/nlyu-pm:prototype` again,
+   which resumes here.
+7. **HTML fallback.** Claude writes the HTML file itself and opens it.
+8. **Walkthrough.** You and Claude click through the main path and both states, checking
    labels, navigation, keyboard use, whether each state is clear, and contrast. This is a
    design critique, not user testing.
-7. **One revision.** Claude proposes one change tied to a discovery finding or a critique
+9. **One revision.** Claude proposes one change tied to a discovery finding or a critique
    point. You approve it or pick a different one, and it is applied.
-8. **Prototype check-in.** You approve the revised prototype and record any trade-offs.
-9. **Save.** Notes written, session updated, next step named.
+10. **Prototype check-in.** You approve the revised prototype and record any trade-offs.
+11. **Save.** Notes written, session updated, next step named.
 
 ## Rules it follows
 

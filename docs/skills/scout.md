@@ -21,12 +21,8 @@ record of what Claude recommended against what you decided.
 2. **Choose the product.** The first question is BYOP (bring your own project or repo),
    the normal path, or an example case to try the workflow on: core (Immich, Plane, Home
    Assistant, or Umbraco) or advanced (ERPNext). For a core case a second question picks
-   the product. Claude then says what a focus area is (one part of the product you
-   research for an hour and prototype as a single flow), one question picks it, and
-   research starts at once. If you started Claude inside your own
-   repository, that is BYOP and the question is skipped. Then Claude gives a short
-   orientation: what the product is, who you are designing for, and how the chosen focus
-   area works in the product today, with every product term defined.
+   the product. If you started Claude inside your own repository, that is BYOP and the
+   question is skipped.
    - *BYOP only.* Claude takes a repository URL, a folder, or a zip, then asks three
      source questions: which built-in source groups to use (a plain-words menu), anything
      extra to read, and whether any source behind a sign-in you hold should be included.
@@ -34,28 +30,33 @@ record of what Claude recommended against what you decided.
      (the user, your brief, the focus area), proposes the code entry points, derives the
      research sources from the repository's public footprint, writes the case package to
      `.pm/case/`, and shows it at a check-in. About fifteen minutes.
-3. **Get the code.** For an example case, a read-only, partial copy of the repository
+3. **Choose the focus area, then orient.** Claude says what a focus area is (one part of
+   the product you research for an hour and prototype as a single flow), one question
+   picks it, and research starts at once. Then Claude gives a short orientation: what the
+   product is, who you are designing for, and how the chosen focus area works in the
+   product today, with every product term defined.
+4. **Get the code.** For an example case, a read-only, partial copy of the repository
    at a fixed commit, tens of megabytes. For BYOP, a shallow clone of the URL
    you gave, or the repository you are already in, read in place. Claude checks that
    nothing in it changed before and after every stage; in your own repository it compares
    against the state it found, so your own uncommitted work is fine.
-4. **Research pass.** Claude works through a fixed sequence of public sources, in order,
+5. **Research pass.** Claude works through a fixed sequence of public sources, in order,
    within a budget of 20 fetches and 8 searches, and logs every item with its URL, dates,
    and the base behind any number. It collects verbatim user quotes as it goes.
-5. **Repository constraints.** Claude reads the code around the focus area and records at
+6. **Repository constraints.** Claude reads the code around the focus area and records at
    least two constraints, each citing commit, path, line range, and a quoted line, marked
    "to confirm with engineering".
-6. **Research check-in.** A short briefing: the story of how people use this part of the
+7. **Research check-in.** A short briefing: the story of how people use this part of the
    product and what goes wrong, at most three themes in plain words with who says so and
    whether it is fixed or open, the two strongest quotes, gaps, and Claude's view. You
    decide: continue, one more targeted fetch, or narrow the framing.
-7. **Three opportunities.** Each names one user and one job, cites its evidence and quotes,
+8. **Three opportunities.** Each names one user and one job, cites its evidence and quotes,
    and is compared in words across evidence strength, user impact, fit with your brief,
    delivery constraints, and uncertainty. No scores.
-8. **Priority check-in.** Claude introduces each opportunity as a two-sentence story, then
+9. **Priority check-in.** Claude introduces each opportunity as a two-sentence story, then
    recommends a Now, Next, Later order with the strongest quote under each. You choose the
    Now item and give your reason. Your choice stands even if it differs from Claude's.
-9. **Save.** The brief is written, the session file updated, and the next step named.
+10. **Save.** The brief is written, the session file updated, and the next step named.
 
 ## Where the evidence comes from
 
