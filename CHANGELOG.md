@@ -5,6 +5,14 @@ All notable changes to the `nlyu-pm` plugin are recorded here. Bump `version` in
 whenever a changed build is distributed, otherwise existing installs will not refresh.
 Update the version line in the README banner at the same time.
 
+## 0.9.1 (2026-10-31)
+
+- Product question has two options, BYOP or example case; the easy and advanced split is
+  gone. An example case is then chosen from a numbered list of the five products, each
+  described from its `case.yaml`, with ERPNext marked advanced; the PM answers with a
+  number or a name, because the question tool shows at most four options. Readiness
+  pre-selection follows the same shape. Shared rule added for lists of five or more.
+
 ## 0.9.0 (2026-10-31)
 
 - New read-only agent `nlyu-pm:discovery-reviewer`, run by `/nlyu-pm:scout` as Step 9

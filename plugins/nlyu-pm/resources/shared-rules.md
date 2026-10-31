@@ -57,8 +57,10 @@ Start with, in this order:
   for now" or "go back". Those exits are always available; the PM can say them at any
   time.
 - The question tool shows at most four options plus the PM's own typed answer. Never put
-  more than four candidates in one question; narrow first (BYOP or example case, easy or
-  advanced), then list at most four.
+  more than four candidates in one question; narrow first (BYOP or example case), then
+  list at most four. When a list is genuinely five or more and cannot be narrowed
+  without inventing a grouping (the five example cases), show it in plain prose as a
+  numbered list, one line each, and take a number or a name.
 - When more than one answer can be true at once (reasons for a choice, concerns, states to
   include), turn multi-select on and say "pick all that apply, or type your own". Record
   every pick as labelled, plus anything typed, never a merged paraphrase. A reason is never

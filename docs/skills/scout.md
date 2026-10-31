@@ -21,9 +21,9 @@ the brief against the saved fetches and the code, and how each finding was settl
    case now so the code downloads today. Ends with `Ready`, `Ready with fallback`, or `Blocked` and
    one next action. You can stop here and come back later.
 2. **Choose the product.** The first question is BYOP (bring your own project or repo),
-   the normal path, or an example case to try the workflow on: easy (Immich, Plane, Home
-   Assistant, or Umbraco) or advanced (ERPNext). For an easy case a second question picks
-   the product. If you started Claude inside your own repository, that is BYOP and the
+   the normal path, or an example case to try the workflow on. For an example case a
+   numbered list follows: Immich, Plane, Home Assistant, Umbraco, or ERPNext (advanced,
+   two repositories); you answer with a number or a name. If you started Claude inside your own repository, that is BYOP and the
    question is skipped.
    - *BYOP only.* Claude takes a repository URL, a folder, or a zip, then asks three
      source questions: which built-in source groups to use (a plain-words menu), anything
