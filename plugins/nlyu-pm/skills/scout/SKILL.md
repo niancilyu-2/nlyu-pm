@@ -231,9 +231,19 @@ trade-off between the top two. Name the lens that tipped the order. If the recom
 each slot show the strongest quote for that opportunity as a blockquote with its
 attribution line, so the PM decides against real words, not only your summary. The five-lens comparison stays in the file; in the reply,
 say only what tipped the order. Under 300 words before the blocks. Show **Claude's recommendation** and **Your decision**
-separately. Ask the PM to choose the `Now` opportunity and give their reason in
-their own words. Record `D-###`. The PM's choice wins even if it differs from
-yours; note the difference without arguing.
+separately. Then ask two questions with the question tool, one after the other:
+
+1. **Which is Now?** (header `Now`) One option per opportunity, its title as the label and
+   the one-sentence story as the description. Single choice.
+2. **Why this one?** (header `Reason`) Multi-select on, worded "pick all that apply, or
+   type your own". Exactly four options, one per lens, phrased for this product: the
+   strongest evidence, the biggest user impact, the best fit for the brief, the easiest to
+   deliver. The "Other" box is for the PM's own words, which they may add on top of their
+   picks.
+
+Record the reason as the picked labels joined with "; " plus anything typed, verbatim.
+Record `D-###`. The PM's choice wins even if it differs from yours; note the difference
+without arguing.
 
 ## Step 10: Save and close
 

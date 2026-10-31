@@ -14,7 +14,7 @@
 
 ### Chosen: OPP-### <title>
 - What it is: <two sentences: who is stuck, what happens to them today, what would change>
-- Why you chose it: "<your reason, in your words>"
+- Why you chose it: "<the reasons you picked, plus anything you typed, verbatim>"
 - What tipped the recommendation: <the lens that decided the order, one sentence; if this was not the densest opportunity, say so and why>
 - Evidence: <n signals, k source types · strongest: … · counter-evidence: … · constraints: …>
 

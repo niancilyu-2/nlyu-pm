@@ -5,6 +5,14 @@ All notable changes to the `nlyu-pm` plugin are recorded here. Bump `version` in
 whenever a changed build is distributed, otherwise existing installs will not refresh.
 Update the version line in the README banner at the same time.
 
+## 0.8.5 (2026-10-31)
+
+- Priority check-in asks two questions: which opportunity is Now (single choice), then
+  why (multi-select, one option per lens, plus the PM's own words). The reason is recorded
+  as the picked labels plus anything typed, verbatim. New shared rule: when several answers
+  can be true at once, use multi-select and say "pick all that apply"; a reason is never a
+  single-choice question with the real answer left to "Other".
+
 ## 0.8.4 (2026-10-31)
 
 - BYOP source step. "Where is the code?" offers only URL, folder, or archive, and the
