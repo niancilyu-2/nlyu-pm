@@ -2,7 +2,7 @@
 
 A case is the product package every stage reads: one `case.yaml`, one `orientation.md`,
 one `design-notes.md`, together in one folder. The five example cases live under
-`${CLAUDE_PLUGIN_ROOT}/cases/<id>/`. A BYOP case (the PM's own project or repo) is
+`<plugin-root>/cases/<id>/`. A BYOP case (the PM's own project or repo) is
 generated into `.pm/case/` by the procedure in `custom-case.md`, or placed there by hand. All three are
 read the same way; see shared rules section 10 for how a stage finds the case folder.
 

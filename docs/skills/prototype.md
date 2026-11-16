@@ -64,3 +64,8 @@ skill stops and asks you to rerun discovery first.
 `plugins/nlyu-pm/resources/design-brief.md`, the HTML contract and walkthrough checklist
 `plugins/nlyu-pm/resources/prototype-html-guide.md`, and the notes template
 `plugins/nlyu-pm/resources/templates/02-prototype.md`.
+
+## In Codex
+
+Run it as `$prototype`. Claude Design is Claude Code only, so steps 5 and 6 go straight to
+the standalone HTML file. Experimental in 0.10.0.

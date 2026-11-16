@@ -4,15 +4,18 @@ Do this once before your first run. Pick the way you will run the plugin, then f
 section's numbered steps; each has its own checklist and problems table. If you get stuck,
 note the step number and check the problems table for your section.
 
-## Three ways to run it
+## Four ways to run it
 
 | Way | User profile |
 |---|---|
 | [**Claude desktop app** (Code tab)](#claude-desktop-app-about-15-minutes) | Recommended / non-technical users. |
 | [**Claude Code in a terminal** (CLI)](#claude-code-in-a-terminal-cli-about-20-minutes) | Recommended / technical people. |
+| [**OpenAI Codex**](#openai-codex) (CLI, IDE extension, or app) | Experimental, new in 0.10.0. For people who already use Codex. |
 | **claude.ai in a browser** | Not recommended (complex install and project setup process). |
 
 ## What you need
+
+For the two Claude ways (for Codex, see [its section](#openai-codex)):
 
 - **A Mac or Windows laptop** that you can install software on. If it is a company
   laptop, you may need IT to allow the installs in your section.
@@ -300,3 +303,28 @@ Every reply ends with a status line such as `Scout · step 5/11 · fetches 6/20 
 
 
 Stage-by-stage walkthrough: [TEST-WALKTHROUGH.md](TEST-WALKTHROUGH.md).
+
+## OpenAI Codex
+
+The plugin also runs in Codex. This is experimental: it was built from Codex's plugin
+documentation and has not yet been run end to end there. You need a ChatGPT plan or API
+account that includes Codex, instead of a Claude subscription. Install Git as in the
+sections above, then:
+
+1. Install Codex and sign in, following OpenAI's instructions for the CLI, the IDE
+   extension, or the app.
+2. Add this repository as a plugin marketplace:
+
+   ```text
+   codex plugin marketplace add niancilyu-2/nlyu-pm
+   ```
+
+3. Open your workspace folder in Codex (an empty folder, or the top folder of your own
+   repository), open `/plugins`, and install **nlyu-pm**.
+4. Type `$scout`. The readiness check runs as described above, except that it skips the
+   Claude Design check; prototypes are built as a standalone HTML file.
+
+Everywhere this guide says `/nlyu-pm:scout`, `/nlyu-pm:prototype`, `/nlyu-pm:prd`, or
+`/nlyu-pm:create-skill`, type `$scout`, `$prototype`, `$prd`, or `$create-skill`. Where it
+says `/clear`, use `/new`. Codex asks before a command reaches the network; research
+needs it, so approve it for the session when asked.

@@ -150,3 +150,11 @@ secret, and marks every item from it `Evidence (PM-held access)` in the brief. C
 `plugins/nlyu-pm/resources/readiness.md`, the BYOP case builder in
 `plugins/nlyu-pm/resources/custom-case.md` with its contract in `case-schema.md`, and the
 brief's template in `plugins/nlyu-pm/resources/templates/01-discovery.md`.
+
+## In Codex
+
+Run it as `$scout`. Readiness skips the Claude Design check. The evidence reviewer runs as
+a fresh subagent given `agents/discovery-reviewer.md` as its instructions; Codex cannot
+restrict its tools the way Claude Code does, so the skill checks before and after that it
+changed no file and reports it if it did. Research fetches may need you to approve
+network access. For usage, type `/status` instead of `/cost`. Experimental in 0.10.0.

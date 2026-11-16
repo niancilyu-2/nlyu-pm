@@ -289,7 +289,7 @@ it permits it; not sure, I will paste instead; no, leave it out. Only "yes" prod
 `access: pm-held` entry; "not sure" becomes a `paste` source; "no" leaves it out. Record
 the answer under `notes` in `session.yaml`.
 
-One route, run with the Bash tool because the fetch tool cannot sign in (Claude Code asks
+One route, run with the shell (the Bash tool in Claude Code) because the fetch tool cannot sign in (Claude Code asks
 permission once for the command; say so):
 
 - **A command-line tool the PM is already signed in to.** `auth: cli:gh` runs

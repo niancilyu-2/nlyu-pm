@@ -1,0 +1,49 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "nlyu-pm",
+  "version": "0.10.0",
+  "description": "Product discovery to PRD for product managers: research public evidence on your own repository or an example open-source product, choose an opportunity, build a clickable prototype, with independent read-only reviews of both the evidence and the PRD.",
+  "author": {
+    "name": "niancilyu-2",
+    "url": "https://github.com/niancilyu-2"
+  },
+  "homepage": "https://github.com/niancilyu-2/nlyu-pm",
+  "repository": "https://github.com/niancilyu-2/nlyu-pm",
+  "license": "MIT",
+  "keywords": [
+    "product-management",
+    "product-manager",
+    "product-discovery",
+    "prd",
+    "requirements",
+    "user-research",
+    "competitive-analysis",
+    "prototype",
+    "claude-code",
+    "codex"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Product Discovery to PRD",
+        "shortDescription": "Public evidence to a reviewed PRD, for product managers",
+        "longDescription": "Product discovery to PRD for product managers: research public evidence on your own repository or an example open-source product, choose an opportunity, build a clickable prototype, with independent read-only reviews of both the evidence and the PRD.",
+        "developerName": "niancilyu-2",
+        "category": "Productivity",
+        "capabilities": [
+          "Read",
+          "Write"
+        ],
+        "websiteURL": "https://github.com/niancilyu-2/nlyu-pm",
+        "defaultPrompt": [
+          "$scout",
+          "$prototype",
+          "$prd",
+          "$create-skill"
+        ],
+        "composerIcon": "./.claude-plugin/icon.png",
+        "logo": "./.claude-plugin/icon.png"
+      }
+    }
+  }
+}

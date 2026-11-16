@@ -48,3 +48,10 @@ what stays with you, the test and its result, the revision, and reuse instructio
 
 `plugins/nlyu-pm/skills/create-skill/SKILL.md` is the skill and
 `plugins/nlyu-pm/resources/project-skill-template.md` the template and self-check.
+
+## In Codex
+
+Run it as `$create-skill`. The skill is written to `.agents/skills/<name>/SKILL.md` and run
+as `$<name>`. A second small file, `agents/openai.yaml`, keeps it manual; delete it later
+to let Codex choose the skill itself. There is no plugin validator in Codex, so the
+self-check list is the check. Experimental in 0.10.0.

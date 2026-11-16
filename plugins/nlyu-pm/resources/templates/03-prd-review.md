@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Reviewed | outputs/03-prd.md rev <n> |
-| Reviewer | nlyu-pm:prd-reviewer (read-only) |
+| Reviewer | nlyu-pm:prd-reviewer (read-only) <on Codex add: · fresh subagent · write check clean / CHANGED> |
 | Reviewed at | <time> |
 | Result | <n> blocking · <n> major · <n> minor |
 

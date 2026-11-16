@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Reviewed | .pm/drafts/01-discovery.md, before the priority check-in |
-| Reviewer | nlyu-pm:discovery-reviewer (read-only) |
+| Reviewer | nlyu-pm:discovery-reviewer (read-only) <on Codex add: · fresh subagent · write check clean / CHANGED> |
 | Reviewed at | <time> |
 | Result | <n> blocking · <n> major · <n> minor · quotes <k>/<n> verified · floor <met / not met> |
 
