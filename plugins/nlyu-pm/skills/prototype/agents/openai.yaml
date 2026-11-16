@@ -1,0 +1,7 @@
+# Codex metadata. Claude Code ignores this file and reads SKILL.md frontmatter instead.
+interface:
+  display_name: "Prototype"
+  short_description: "Turn the chosen opportunity into one clickable flow"
+
+policy:
+  allow_implicit_invocation: false   # same effect as disable-model-invocation: true

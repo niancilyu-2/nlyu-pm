@@ -1,9 +1,27 @@
 # Changelog
 
 All notable changes to the `nlyu-pm` plugin are recorded here. Bump `version` in
-`plugins/nlyu-pm/.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`
-whenever a changed build is distributed, otherwise existing installs will not refresh.
+`plugins/nlyu-pm/.claude-plugin/plugin.json`, `plugins/nlyu-pm/plugin.json`, and
+`.claude-plugin/marketplace.json` whenever a changed build is distributed, otherwise existing installs will not refresh.
 Update the version line in the README banner at the same time.
+
+## 0.10.0 (2026-11-16)
+
+- Experimental: runs in OpenAI Codex as well as Claude Code. Built from Codex's plugin
+  documentation and not yet run end to end there. Added a Codex manifest
+  (`plugins/nlyu-pm/plugin.json`), a Codex marketplace (`.agents/plugins/marketplace.json`),
+  and `agents/openai.yaml` in each skill so the stages stay manual there.
+- Skills and resources say `<plugin-root>` instead of `${CLAUDE_PLUGIN_ROOT}`; each skill
+  explains how to resolve it on either host. Session files written by earlier versions
+  still work.
+- New shared rules section 11 maps every Claude Code term (command names, the question
+  tool, `.claude/skills/`, `CLAUDE.md`, Claude Design, `/clear`, `/cost`) to its Codex
+  equivalent.
+- The two reviewers run as a fresh subagent on hosts without named plugin agents, with
+  the agent file passed as instructions and a write check before and after. Claude Code
+  behaviour is unchanged.
+- `/nlyu-pm:create-skill` writes to `.agents/skills/` in Codex and adds the policy file
+  that keeps the new skill manual.
 
 ## 0.9.3 (2026-11-13)
 

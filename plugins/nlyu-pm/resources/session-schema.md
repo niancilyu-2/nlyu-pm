@@ -23,14 +23,14 @@ readiness:
   feeds: [fetch, search]         # which of the two worked
   reddit_rss: false              # opt-in; true only if the PM asked for Reddit RSS
   browser_test: confirmed        # confirmed | unconfirmed
-  design: unknown                # available | unavailable | unknown  (PM typed /design)
+  design: unknown                # available | unavailable | unknown  (PM typed /design; always unavailable in Codex)
   stopped_after_setup: true      # PM chose to stop after readiness
   notes: []
 
 case:
   id: immich                     # null until chosen; a slug for a BYOP case
   source: prepared               # prepared | custom | provided   (shared rules section 10)
-  dir: "${CLAUDE_PLUGIN_ROOT}/cases/immich"   # or .pm/case
+  dir: "<plugin-root>/cases/immich"   # literal text, resolved on read (shared rules section 10); or .pm/case
   origin: null                   # BYOP only: the URL or local path the PM gave
   lane: backup-status-confidence # null until chosen
   chosen_at: "2026-10-01T09:20:00Z"

@@ -7,8 +7,15 @@ disable-model-invocation: true
 # /nlyu-pm:scout (Discovery)
 
 You are guiding a product manager with strong product judgment and limited technical
-experience. Read `${CLAUDE_PLUGIN_ROOT}/resources/shared-rules.md` now and follow it for the
+experience. Read `<plugin-root>/resources/shared-rules.md` now and follow it for the
 whole stage. This skill takes no arguments.
+
+**Plugin root.** `<plugin-root>` in this skill and in every file it reads means the
+plugin's top folder, the one that holds `resources/`, `cases/`, and `agents/`. It is two
+folders above the folder this `SKILL.md` is in. Claude Code fills in the path here:
+`${CLAUDE_PLUGIN_ROOT}`. If that shows a real path, use it; if it still shows a dollar
+sign and braces (Codex and other hosts), work the path out from this file's location.
+Resolve it once to an absolute path and use that wherever `<plugin-root>` appears.
 
 **Stage objective:** use Claude to compare mixed, imperfect evidence while keeping the
 prioritisation judgment with the PM.
@@ -32,8 +39,8 @@ check n/8` form) (`Scout · step n/11 · fetches · searches · items · quotes 
 Read `.pm/session.yaml` if it exists.
 
 - If it does not exist, or `readiness.status` is `not-run` or `blocked`: run the full
-  procedure in `${CLAUDE_PLUGIN_ROOT}/resources/readiness.md`, using
-  `${CLAUDE_PLUGIN_ROOT}/resources/workspace.md` for folder and clone steps. At the end
+  procedure in `<plugin-root>/resources/readiness.md`, using
+  `<plugin-root>/resources/workspace.md` for folder and clone steps. At the end
   ask whether to stop after setup or continue. If they stop, save and end here.
 - Otherwise print `Readiness: <status> on <date>` and continue.
 
@@ -67,7 +74,7 @@ candidates in one question (shared rules section 3), and no table in the reply.
 
   BYOP: set `case.source: custom` and go to Step 2b. Example case: the question tool
   shows at most four options and there are five cases, so list them in plain prose as a
-  numbered list under `${CLAUDE_PLUGIN_ROOT}/cases/`, in this order: Immich, Plane, Home
+  numbered list under `<plugin-root>/cases/`, in this order: Immich, Plane, Home
   Assistant, Umbraco, ERPNext. Each line is the product's name and the first sentence of
   `product_summary` from its `case.yaml`: what the product is, not who the persona is
   (the persona and the brief come with the orientation in Step 3). Do not write the
@@ -77,7 +84,7 @@ candidates in one question (shared rules section 3), and no table in the reply.
 
 ### Step 2b: Build the case (BYOP)
 
-Follow `${CLAUDE_PLUGIN_ROOT}/resources/custom-case.md` from Step A to Step J. It gets the
+Follow `<plugin-root>/resources/custom-case.md` from Step A to Step J. It gets the
 code (clone by URL, or read in place), asks which research sources to use (the built-in
 groups, anything extra, anything behind a sign-in the PM holds) and writes
 `.pm/sources.yaml`, reads the repository, asks the PM for the user, the brief, and the
@@ -139,7 +146,7 @@ Set `stage.current: discovery`, `stage.status: in-progress`,
 
 ## Step 5: Public research pass (the source ladder)
 
-Follow `${CLAUDE_PLUGIN_ROOT}/resources/research-guide.md` exactly. Record the start time.
+Follow `<plugin-root>/resources/research-guide.md` exactly. Record the start time.
 Tell the PM once what a rung is: one kind of public source, and the ladder is
 the order you read them in. Read the `feeds:` block of the case's `case.yaml` (from
 `case.dir`), and `.pm/sources.yaml` if it exists. The sources `feeds:` can hold, all
@@ -199,7 +206,7 @@ line to `.pm/fetches/index.md`. As you read, fill the quote bank (research guide
 bank"): copied from the saved file, verbatim, role not handle, linked to a signal and to
 the file it came from (`from F-###`). Log every item with an ID, label, rung, URL, dates,
 weight (likes, upvotes, reactions, rating, pull count), and the saved file. Keep a running draft in
-`.pm/drafts/01-discovery.md` from `${CLAUDE_PLUGIN_ROOT}/resources/templates/01-discovery.md`
+`.pm/drafts/01-discovery.md` from `<plugin-root>/resources/templates/01-discovery.md`
 so nothing is lost if the session is interrupted. Tell the PM which rung you are
 on as you go, and show one striking number or quote per rung so they can see the breadth.
 
@@ -246,8 +253,19 @@ allowed.
 
 ## Step 9: Evidence review (read-only reviewer)
 
-Use the Agent tool with `subagent_type: nlyu-pm:discovery-reviewer`. The reviewer does not
-see this conversation, so the prompt must contain:
+Run the review in a subagent that starts with a fresh context, never in this
+conversation. How to start it depends on the host (shared rules section 11):
+
+- **Claude Code:** use the Agent tool with `subagent_type: nlyu-pm:discovery-reviewer`.
+- **Codex or any other host:** start one new subagent that does not inherit this
+  conversation. Open its prompt with the full text of `<plugin-root>/agents/discovery-reviewer.md`
+  below the frontmatter, as its instructions, and add one line: "Read, Grep, and Glob in
+  these instructions mean whatever read-only file tools you have. If reading and
+  searching files needs shell commands here, those are the one exception to 'never run
+  commands'; run nothing that writes, installs, or reaches the network." Then apply the
+  write check below.
+
+The reviewer does not see this conversation, so on every host the prompt must contain:
 
 - Absolute paths of `.pm/drafts/01-discovery.md`, the folder `.pm/fetches/` and its
   `index.md`, and the case file (`<case.dir>/case.yaml`) for its `exclusions`.
@@ -255,16 +273,27 @@ see this conversation, so the prompt must contain:
   tree has uncommitted changes. In in-repo mode tell the reviewer it must not read
   `outputs/` or `.pm/` as product code and must not open anything outside the given paths.
 - Case id, lane id, and whether the case is an example case or BYOP.
-- The full text of `${CLAUDE_PLUGIN_ROOT}/resources/discovery-review-checklist.md`.
+- The full text of `<plugin-root>/resources/discovery-review-checklist.md`.
 - The instruction to return findings in the checklist's output format and to write no
   files.
+
+**Write check (Codex and other hosts only).** Claude Code gives the reviewer read-only
+tools, so nothing more is needed there. Elsewhere the reviewer is only told not to write,
+so check that it did not. Just before starting it, run `touch .pm/.review-stamp` and the
+source-protection check from `workspace.md` on each source root. When it returns, run the
+source check again and `find outputs .pm -type f -newer .pm/.review-stamp`. Both must
+show no change. If anything changed, tell the PM which files, record it in the review
+file as a blocking finding against the review itself, and do not reset, delete, or
+overwrite anything to hide it. If the host cannot start a subagent at all, say so in one
+line, run the checklist yourself from the files only, and write
+`same session (not independent)` in the review file's `Reviewer` row.
 
 Tell the PM the review is running and what it checks, in one sentence each: every quote
 against the text saved when it was fetched, every evidence label against what was
 actually fetched, every constraint against the code, and a fixed coverage floor.
 
 Write the reviewer's output into `outputs/01-discovery-review.md` using
-`${CLAUDE_PLUGIN_ROOT}/resources/templates/01-discovery-review.md`. Then disposition
+`<plugin-root>/resources/templates/01-discovery-review.md`. Then disposition
 every finding, blocking ones first, and record each disposition in that file:
 
 - **Fix in brief.** Apply it yourself and say what changed: a quote `not found` is
@@ -322,7 +351,7 @@ without arguing.
   `stage.status: not-started`.
 - Run the source check again; record `clean_at_end`.
 - Close with three lines: what Claude contributed, what the PM decided, and the
-  next command: a new session in the same folder (`/clear` in a terminal), then
+  next command: a new session in the same folder (`/clear` in a Claude Code terminal, `/new` in Codex), then
   `/nlyu-pm:prototype`. Then the stage summary line (shared
   rules, section 9), also written to the brief's `Run summary` row and
   `stages.discovery.summary`.

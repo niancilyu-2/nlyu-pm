@@ -1,6 +1,7 @@
 # nlyu-pm
 
-A Claude Code plugin for product managers. It takes a product from public evidence to a
+A plugin for product managers, for Claude Code and OpenAI Codex (where the commands are
+`$scout`, `$prototype`, `$prd`, `$create-skill` and "Claude" below means Codex). It takes a product from public evidence to a
 selected opportunity, a clickable prototype, and an engineering-ready PRD, on the PM's
 own repository or on one of five prepared open-source example cases. Claude finds, drafts,
 and challenges; the PM makes every accountable decision at explicit check-ins. No
@@ -28,7 +29,7 @@ programming is required.
   runs only if you opt in when asked.
 - **Writes** only under `outputs/`, `.pm/` (including the text of each public fetch,
   saved under `.pm/fetches/` so quotes can be checked), the `sources/` download for
-  example cases, and, for `/nlyu-pm:create-skill`, one folder under `.claude/skills/`.
+  example cases, and, for `/nlyu-pm:create-skill`, one folder under `.claude/skills/` (`.agents/skills/` in Codex).
 - **Sources behind a sign-in you hold** (your own private issue tracker, a paid report, a
   members-only forum) are optional and off by default. If you opt in and confirm your
   account permits it, Claude reads them through a command-line tool you are already

@@ -8,18 +8,20 @@ Report only one of three words, then the next action:
 
 | Result | Meaning |
 |---|---|
-| `Ready` | Everything works, including web search and Claude Design. |
-| `Ready with fallback` | Fetch works but web search or Claude Design does not; the source ladder and the HTML path cover both. |
+| `Ready` | Everything works, including web search and, in Claude Code, Claude Design. |
+| `Ready with fallback` | Fetch works but web search or Claude Design does not (Claude Design never does in Codex); the source ladder and the HTML path cover both. |
 | `Blocked` | Something required is missing. State the single next action. |
 
 ## Checks, in order
 
-1. **Plugin version.** Read `${CLAUDE_PLUGIN_ROOT}/.claude-plugin/plugin.json` and say
+1. **Plugin version.** Read `<plugin-root>/.claude-plugin/plugin.json` (the file is
+   there on every host) and say
    "You are running the nlyu-pm plugin version X." (This is how a stale install is spotted.)
 2. **Workspace folder and mode.** Apply the folder checks in `workspace.md` to decide
    between wrapper mode (an empty folder; an example case, or BYOP by URL, path, or zip)
    and in-repo mode (the PM started inside their own repository, which is BYOP). In in-repo mode confirm
-   with the PM that this repository is the product. Create `.claude/skills/`,
+   with the PM that this repository is the product. Create `<skills-dir>`
+   (shared rules section 11),
    `outputs/prototype/`, `.pm/`, and in wrapper mode `sources/`. Write `.pm/session.yaml`
    with `readiness.status: not-run`, `workspace_mode`, and `outputs_dir` if it does not
    exist.
@@ -43,10 +45,12 @@ Report only one of three words, then the next action:
    not a block, because the source ladder works on fetch alone. Ask the PM to
    forward the note to their administrator afterwards.
    Record which of the two worked under `readiness.feeds`.
-   While doing this, tell the PM: "Claude Code will ask permission the first time
+   While doing this, tell the PM (say Codex instead when that is the host): "Claude Code will ask permission the first time
    it fetches a new website or runs a git command. Choosing the option that stops asking
    for this session will save you many clicks later."
-6. **Claude Design.** Explain in one sentence: Claude Design is an optional way to generate
+6. **Claude Design.** Claude Code only. In Codex, record `design: unavailable`, say in
+   one line that prototypes will be built as a standalone HTML file, and go to step 7.
+   In Claude Code, explain in one sentence: Claude Design is an optional way to generate
    the prototype visually; it needs a Pro, Max, Team, or Enterprise plan, and on Enterprise
    an administrator must switch it on. Ask the PM to type `/design` on its own
    line and tell you what happened: a design tool started (`available`), an "unknown
@@ -76,7 +80,8 @@ Report only one of three words, then the next action:
 Ask: "Stop here and continue later, or go straight into Discovery now?"
 
 - **Stop:** set `readiness.stopped_after_setup: true`. Tell them: next time, open this
-  same folder in a new session (the Code tab, or a terminal running `claude`) and run
+  same folder in a new session (the Code tab, or a terminal running `claude`; in Codex,
+  the Codex app or a terminal running `codex`) and run
   `/nlyu-pm:scout`. It will resume at case selection.
 - **Continue:** proceed to case selection in `/nlyu-pm:scout`.
 

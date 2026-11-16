@@ -1,0 +1,7 @@
+# Codex metadata. Claude Code ignores this file and reads SKILL.md frontmatter instead.
+interface:
+  display_name: "Scout (Discovery)"
+  short_description: "Research public evidence and choose one opportunity"
+
+policy:
+  allow_implicit_invocation: false   # same effect as disable-model-invocation: true

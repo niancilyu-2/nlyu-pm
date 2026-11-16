@@ -7,8 +7,15 @@ disable-model-invocation: true
 # /nlyu-pm:prototype (Rapid prototyping)
 
 You are guiding a product manager with limited technical experience. Read
-`${CLAUDE_PLUGIN_ROOT}/resources/shared-rules.md` now and follow it for the whole stage.
+`<plugin-root>/resources/shared-rules.md` now and follow it for the whole stage.
 This skill takes no arguments.
+
+**Plugin root.** `<plugin-root>` in this skill and in every file it reads means the
+plugin's top folder, the one that holds `resources/`, `cases/`, and `agents/`. It is two
+folders above the folder this `SKILL.md` is in. Claude Code fills in the path here:
+`${CLAUDE_PLUGIN_ROOT}`. If that shows a real path, use it; if it still shows a dollar
+sign and braces (Codex and other hosts), work the path out from this file's location.
+Resolve it once to an absolute path and use that wherever `<plugin-root>` appears.
 
 **Stage objective:** turn a selected opportunity into a focused flow and improve it
 through conversational critique.
@@ -72,15 +79,16 @@ inferring. Do not copy source files into `outputs/`. Run nothing.
 
 ## Step 4: Write the design brief
 
-Fill `${CLAUDE_PLUGIN_ROOT}/resources/design-brief.md` and save it as
+Fill `<plugin-root>/resources/design-brief.md` and save it as
 `.pm/design-brief.md`. Show it briefly and ask for a one-word go-ahead. Start the draft
-`.pm/drafts/02-prototype.md` from `${CLAUDE_PLUGIN_ROOT}/resources/templates/02-prototype.md`
+`.pm/drafts/02-prototype.md` from `<plugin-root>/resources/templates/02-prototype.md`
 with sections 1–6 filled. Apply the case's `exclusions` and `synthetic_data_rules` from
 `case.yaml` to everything in the brief.
 
 ## Step 5: Choose the generation path
 
-Read `readiness.design` from `session.yaml`.
+Read `readiness.design` from `session.yaml`. In Codex it is always `unavailable`
+(shared rules section 11); go to Step 7 without asking.
 
 - `available`: go to **Step 6a (Claude Design)**. Mention that the HTML path is available if
   Design gives trouble.
@@ -88,7 +96,7 @@ Read `readiness.design` from `session.yaml`.
 - `unknown`: ask the PM to type `/design` once and report; record the answer in
   `readiness.design`, then route as above.
 
-## Step 6a: Claude Design
+## Step 6a: Claude Design (Claude Code only)
 
 Claude Design runs inside Claude Code as `/design`, but this skill cannot start it for you.
 Give the PM **one** instruction, exactly:
@@ -117,7 +125,7 @@ Check for `outputs/prototype/index.html`.
 ## Step 7: HTML fallback
 
 Build `outputs/prototype/index.html` yourself following
-`${CLAUDE_PLUGIN_ROOT}/resources/prototype-html-guide.md`: one file, no network, no
+`<plugin-root>/resources/prototype-html-guide.md`: one file, no network, no
 build step, lane viewport, main path clickable end to end, both states reachable,
 keyboard-usable, synthetic data, "Prototype · synthetic data" badge. For a `terminal` or
 `api or library` surface follow the guide's non-graphical section: the same main path and
@@ -159,7 +167,7 @@ Record `D-###`.
   `approved_at`, `path`), `stage.current: prd`, `stage.status: not-started`.
 - Source check; record `clean_at_end`.
 - Close with three lines: what Claude contributed, what the PM decided, next
-  command: a new session in the same folder (`/clear` in a terminal), then
+  command: a new session in the same folder (`/clear` in a Claude Code terminal, `/new` in Codex), then
   `/nlyu-pm:prd`. Then the stage summary line (shared rules,
   section 9), also written to the notes' `Run summary` row and
   `stages.prototype.summary`.

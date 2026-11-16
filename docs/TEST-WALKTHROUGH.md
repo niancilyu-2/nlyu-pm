@@ -7,6 +7,12 @@ exercise. Everything Claude produces lands in files you can open in any text edi
 
 Not installed yet? Do [SETUP.md](SETUP.md) first.
 
+Using OpenAI Codex (experimental)? The flow is the same with four differences: type
+`$scout`, `$prototype`, `$prd`, and `$create-skill` instead of the `/nlyu-pm:` commands;
+use `/new` where this says `/clear`; readiness skips the Claude Design check and the
+prototype is always a standalone HTML file; and your own skill lands in
+`.agents/skills/` instead of `.claude/skills/`. Where this says Claude, read Codex.
+
 ## 1. Start
 
 Open your `pm-workspace` folder (or, for BYOP, the top folder of your repository) in the

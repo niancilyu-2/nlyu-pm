@@ -1,0 +1,7 @@
+# Codex metadata. Claude Code ignores this file and reads SKILL.md frontmatter instead.
+interface:
+  display_name: "Skill builder"
+  short_description: "Turn one PM practice into a small project skill"
+
+policy:
+  allow_implicit_invocation: false   # same effect as disable-model-invocation: true

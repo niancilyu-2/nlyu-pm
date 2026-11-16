@@ -7,8 +7,15 @@ disable-model-invocation: true
 # /nlyu-pm:prd (PRD and engineering handoff)
 
 You are guiding a product manager with limited technical experience. Read
-`${CLAUDE_PLUGIN_ROOT}/resources/shared-rules.md` now and follow it for the whole stage.
+`<plugin-root>/resources/shared-rules.md` now and follow it for the whole stage.
 This skill takes no arguments.
+
+**Plugin root.** `<plugin-root>` in this skill and in every file it reads means the
+plugin's top folder, the one that holds `resources/`, `cases/`, and `agents/`. It is two
+folders above the folder this `SKILL.md` is in. Claude Code fills in the path here:
+`${CLAUDE_PLUGIN_ROOT}`. If that shows a real path, use it; if it still shows a dollar
+sign and braces (Codex and other hosts), work the path out from this file's location.
+Resolve it once to an absolute path and use that wherever `<plugin-root>` appears.
 
 **Stage objective:** turn product and prototype decisions into a technical handoff
 without pretending to make engineering decisions.
@@ -55,7 +62,7 @@ framework behaviour (forms, workflow, permissions) but do not propose changes to
 
 ## Step 2: Draft the PRD
 
-Start from `${CLAUDE_PLUGIN_ROOT}/resources/templates/03-prd.md` as `.pm/drafts/03-prd.md`.
+Start from `<plugin-root>/resources/templates/03-prd.md` as `.pm/drafts/03-prd.md`.
 Fill every section. Apply the case's `exclusions` from `case.yaml`. Rules:
 
 - Every `REQ-###` traces to the selected `OPP-###` and to a `SIG-###`, `CON-###`, or an
@@ -91,8 +98,19 @@ Apply edits, then record `D-###`.
 
 ## Step 4: Independent review
 
-Use the Agent tool with `subagent_type: nlyu-pm:prd-reviewer`. The reviewer does not see this
-conversation, so the prompt must contain:
+Run the review in a subagent that starts with a fresh context, never in this
+conversation. How to start it depends on the host (shared rules section 11):
+
+- **Claude Code:** use the Agent tool with `subagent_type: nlyu-pm:prd-reviewer`.
+- **Codex or any other host:** start one new subagent that does not inherit this
+  conversation. Open its prompt with the full text of `<plugin-root>/agents/prd-reviewer.md`
+  below the frontmatter, as its instructions, and add one line: "Read, Grep, and Glob in
+  these instructions mean whatever read-only file tools you have. If reading and
+  searching files needs shell commands here, those are the one exception to 'never run
+  commands'; run nothing that writes, installs, or reaches the network." Then apply the
+  write check below.
+
+The reviewer does not see this conversation, so on every host the prompt must contain:
 
 - Absolute paths of `outputs/01-discovery.md`, `outputs/02-prototype.md`,
   `outputs/03-prd.md`, `outputs/prototype/index.html`.
@@ -102,15 +120,26 @@ conversation, so the prompt must contain:
   product code and must not open anything outside the given paths.
 - Case id, lane id, selected `OPP-###`, and whether the case is an example case or BYOP
   (the PM's own repository).
-- The full text of `${CLAUDE_PLUGIN_ROOT}/resources/prd-review-checklist.md`.
+- The full text of `<plugin-root>/resources/prd-review-checklist.md`.
 - The instruction to return findings in the checklist's output format and to write no files.
+
+**Write check (Codex and other hosts only).** Claude Code gives the reviewer read-only
+tools, so nothing more is needed there. Elsewhere the reviewer is only told not to write,
+so check that it did not. Just before starting it, run `touch .pm/.review-stamp` and the
+source-protection check from `workspace.md` on each source root. When it returns, run the
+source check again and `find outputs .pm -type f -newer .pm/.review-stamp`. Both must
+show no change. If anything changed, tell the PM which files, record it in the review
+file as a blocking finding against the review itself, and do not reset, delete, or
+overwrite anything to hide it. If the host cannot start a subagent at all, say so in one
+line, run the checklist yourself from the files only, and write
+`same session (not independent)` in the review file's `Reviewer` row.
 
 Tell the PM the review is running and what it checks (one sentence each).
 
 ## Step 5: Write the review file and disposition each finding
 
 Write the reviewer's output into `outputs/03-prd-review.md` using
-`${CLAUDE_PLUGIN_ROOT}/resources/templates/03-prd-review.md`. Where the reviewer makes a
+`<plugin-root>/resources/templates/03-prd-review.md`. Where the reviewer makes a
 new claim about the code, open the cited file and confirm it before proposing a
 disposition; record the re-check in the review file. Then go through the findings with
 the PM, blocking ones first. For each, propose one disposition:

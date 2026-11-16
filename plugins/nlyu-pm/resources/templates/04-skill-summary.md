@@ -2,10 +2,10 @@
 
 | Field | Value |
 |---|---|
-| Location | .claude/skills/<slug>/SKILL.md |
+| Location | <skills-dir>/<slug>/SKILL.md |
 | Job | <one sentence> |
 | Trigger | Use when <…> |
-| Invocation | manual only (`disable-model-invocation: true`) |
+| Invocation | manual only (`disable-model-invocation: true`; in Codex, `agents/openai.yaml`) |
 | Run summary | <stage summary line, written at close> |
 
 ## What Claude does
@@ -23,8 +23,8 @@
 - <one revision made, or "none needed because …">
 
 ## Reuse
-Copy the folder `.claude/skills/<slug>/` into another project's `.claude/skills/` folder.
-Remove the `disable-model-invocation` line later if you want Claude to choose it automatically.
+Copy the folder `<skills-dir>/<slug>/` into another project's skills folder (`.claude/skills/` for Claude Code, `.agents/skills/` for Codex).
+Remove the `disable-model-invocation` line (in Codex, delete `agents/openai.yaml`) later if you want it chosen automatically.
 
 ## Decision record
 | Check-in | Recommendation | Your decision | Reason |

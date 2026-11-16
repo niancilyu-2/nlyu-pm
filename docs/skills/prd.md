@@ -79,3 +79,10 @@ flowchart LR
 `plugins/nlyu-pm/skills/prd/SKILL.md` is the skill, `plugins/nlyu-pm/agents/prd-reviewer.md` the
 reviewer, `plugins/nlyu-pm/resources/prd-review-checklist.md` what it checks, and
 `plugins/nlyu-pm/resources/templates/03-prd.md` the PRD template.
+
+## In Codex
+
+Run it as `$prd`. The PRD reviewer runs as a fresh subagent given
+`agents/prd-reviewer.md` as its instructions; Codex cannot restrict its tools the way
+Claude Code does, so the skill checks before and after that it changed no file and
+reports it if it did. Experimental in 0.10.0.

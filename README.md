@@ -10,9 +10,9 @@
 ║                                                                                   ║
 ║   Product discovery to PRD rapid cycle                                            ║
 ║   4 skills · 2 adversarial reviewer agents · 5 example cases or BYOR              ║
-║   Claude desktop app (Code tab) · Claude Code CLI                                 ║
+║   Claude desktop app (Code tab) · Claude Code CLI · OpenAI Codex (experimental)   ║
 ║                                                                                   ║
-║   v0.9.3 · November 13, 2026 · MIT · Claude plugin directory: pending              ║
+║   v0.10.0 · November 16, 2026 · MIT · Claude plugin directory: pending             ║
 ║                                                                                   ║
 ╚═══════════════════════════════════════════════════════════════════════════════════╝
 ```
@@ -20,9 +20,9 @@
 Public evidence to a chosen opportunity, a clickable prototype, and an engineering-ready
 PRD, grounded in the product's own code. No programming required.
 
-# nlyu-pm: Rapid product discovery to PRD for Claude Code
+# nlyu-pm: Rapid product discovery to PRD for Claude Code and Codex
 
-A Claude Code plugin that takes a product manager from public evidence to a selected
+A plugin for Claude Code and OpenAI Codex that takes a product manager from public evidence to a selected
 opportunity, a clickable prototype, and an engineering-ready PRD, on your own project or
 repository. Five open-source example cases are included to try it on first. 
 
@@ -38,6 +38,23 @@ In a terminal:
 /plugin marketplace add niancilyu-2/nlyu-pm
 /plugin install nlyu-pm@nlyu-pm
 ```
+
+In Codex (CLI, IDE extension, or app). Codex support is new in 0.10.0 and experimental:
+it was built from Codex's plugin documentation and has not yet been run end to end
+there, so please report what breaks.
+
+```text
+codex plugin marketplace add niancilyu-2/nlyu-pm
+```
+
+then open `/plugins` in Codex and install **nlyu-pm**. The same four skills run there
+under Codex's names: `$scout`, `$prototype`, `$prd`, `$create-skill`. This README and the
+docs use the Claude Code names (`/nlyu-pm:scout` and so on) and say "Claude" for the
+assistant; in Codex read them as the `$` names and "Codex". Three things differ in
+Codex: prototypes are always a standalone HTML file (Claude Design is Claude Code only),
+your own skills are written to `.agents/skills/` instead of `.claude/skills/`, and the
+two independent reviewers run as fresh subagents that are instructed, and then checked,
+not to write, where Claude Code restricts their tools outright.
 
 ## Contents
 
@@ -171,7 +188,8 @@ rather than left to good intentions.
 
 - The Claude desktop app's Code tab, or Claude Code in a terminal, on Windows or macOS,
   with a Claude Pro, Max, Team, or Enterprise account (the free plan does not include
-  Claude Code).
+  Claude Code). Or OpenAI Codex (CLI, IDE extension, or app) with an account that includes
+  it, and network access allowed for research fetches.
 - Git.
 - Web fetch enabled. Web search and Claude Design are optional; both have fallbacks.
 
@@ -183,14 +201,14 @@ one section for the desktop app (about 15 minutes, no terminal) and one for the 
 
 1. Open the top folder of a local copy of your repository, or a new empty folder if you
    will give a URL or a zip instead (or want to try an example case), in the desktop
-   app's Code tab or in a terminal running `claude`.
-2. Install the plugin as above and run `/nlyu-pm:scout`.
+   app's Code tab or in a terminal running `claude` (or in Codex).
+2. Install the plugin as above and run `/nlyu-pm:scout` (`$scout` in Codex).
 3. The readiness check ends with `Ready`, `Ready with fallback`, or `Blocked` with one
    next action. `/nlyu-pm:scout` then asks which product: your own (BYOP, bring your own
    project or repo) or one of the example cases. You can also decide later; either way,
    `/nlyu-pm:scout` resumes.
 4. Run the stages in order, one session each: start a new session in the same folder
-   between them (`/clear` in a terminal); each resumes from the files you approved.
+   between them (`/clear` in a terminal, `/new` in Codex); each resumes from the files you approved.
 
 [docs/TEST-WALKTHROUGH.md](docs/TEST-WALKTHROUGH.md) shows every stage step by step with
 what to expect at each check-in.
@@ -297,7 +315,7 @@ boundaries and starting points only, never conclusions, so the research is yours
 | Doc | For |
 |---|---|
 | [docs/skills/](docs/skills/) | One page per skill: what it produces, how a run goes, the rules it follows |
-| [docs/SETUP.md](docs/SETUP.md) | Setup, with a section for the Claude desktop app (no terminal) and one for Claude Code in a terminal |
+| [docs/SETUP.md](docs/SETUP.md) | Setup, with a section for the Claude desktop app (no terminal), one for Claude Code in a terminal, and one for OpenAI Codex |
 | [docs/TEST-WALKTHROUGH.md](docs/TEST-WALKTHROUGH.md) | Every stage and every product, step by step |
 
 ### Repository layout
@@ -305,10 +323,13 @@ boundaries and starting points only, never conclusions, so the research is yours
 
 ```text
 nlyu-pm/
-├── .claude-plugin/marketplace.json
+├── .claude-plugin/marketplace.json      Claude Code marketplace
+├── .agents/plugins/marketplace.json     Codex marketplace
 ├── plugins/nlyu-pm/
-│   ├── .claude-plugin/plugin.json
+│   ├── .claude-plugin/plugin.json       Claude Code manifest
+│   ├── plugin.json                      Codex manifest
 │   ├── skills/{scout,prototype,prd,create-skill}/SKILL.md
+│   ├── skills/*/agents/openai.yaml      Codex: manual invocation only
 │   ├── agents/{discovery-reviewer,prd-reviewer}.md
 │   ├── README.md                what the plugin runs, reads, fetches, and writes
 │   ├── LICENSE
@@ -325,8 +346,8 @@ nlyu-pm/
 ```
 
 Everything a skill needs at runtime lives under `plugins/nlyu-pm`. When you publish a changed
-build, bump `version` in both `plugins/nlyu-pm/.claude-plugin/plugin.json` and
-`.claude-plugin/marketplace.json`, otherwise existing installs will not refresh, and
+build, bump `version` in `plugins/nlyu-pm/.claude-plugin/plugin.json`,
+`plugins/nlyu-pm/plugin.json`, and `.claude-plugin/marketplace.json`, otherwise existing installs will not refresh, and
 update the version line in the banner at the top of this README. To
 develop locally:
 
