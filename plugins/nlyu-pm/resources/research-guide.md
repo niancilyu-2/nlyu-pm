@@ -415,7 +415,7 @@ it and agree or disagree in a minute:
 CON-001 · Constraint · repository · Status: to confirm with engineering
   Claim: Backup status is computed on the device; the server only stores asset records.
   Where: sources/primary/mobile/lib/services/backup.service.dart, lines 161 to 168, commit 9994eb3b
-  (in-repo mode the path starts at the repository root, for example mobile/lib/services/backup.service.dart,
+  (in-repo mode the path starts at the source root, which is the repository root or the one folder the PM chose, for example mobile/lib/services/backup.service.dart,
   and the commit line adds "working tree has uncommitted changes" when that is true)
   Quote: `const batchSize = 100;`
   Implication: a "server-side" status view would need new server work.

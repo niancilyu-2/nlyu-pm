@@ -5,6 +5,15 @@ All notable changes to the `nlyu-pm` plugin are recorded here. Bump `version` in
 `.claude-plugin/marketplace.json` whenever a changed build is distributed, otherwise existing installs will not refresh.
 Update the version line in the README banner at the same time.
 
+## 0.11.3 (2026-11-17)
+
+- One folder of a larger repository can be the product. After the workspace check the PM
+  chooses between that folder, the whole repository, or a new empty folder. With the
+  folder chosen, the tour, entry points, and constraints come from it; shared code
+  outside it is read only where the folder's own code leads and is cited with a leading
+  `../`; public feeds are narrowed to the product where they can be, and the brief says
+  they are shared. The source record gains `repo_top` and `repo_prefix`.
+
 ## 0.11.2 (2026-11-17)
 
 - An unusual workspace folder is no longer refused. Readiness runs a workspace check

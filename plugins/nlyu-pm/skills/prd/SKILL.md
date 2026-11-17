@@ -128,7 +128,9 @@ The reviewer does not see this conversation, so on every host the prompt must co
 - Absolute path of each source root (a clone under `sources/`, or the repository itself
   in in-repo mode) and its pinned SHA, with a note when the working tree has uncommitted
   changes. In in-repo mode tell the reviewer it must not read `outputs/` or `.pm/` as
-  product code and must not open anything outside the given paths.
+  product code and must not open anything outside the given paths. When the product is one folder of a
+  larger repository, also give `repo_top` and the rule from `workspace.md`: outside the
+  folder only where a file inside it leads.
 - Case id, lane id, selected `OPP-###`, and whether the case is an example case or BYOP
   (the PM's own repository).
 - The full text of `<plugin-root>/resources/prd-review-checklist.md`.

@@ -10,7 +10,7 @@ started.
 | Mode | How the PM started | Source root | Set up by |
 |---|---|---|---|
 | **wrapper** | `claude` or `codex` in an empty folder | `sources/primary` (cloned or unpacked), or an absolute path the PM named | example case, or BYOP by URL, local folder, or archive |
-| **in-repo** | `claude` or `codex` at the top folder of a local copy of their own repository | `.` (the repository itself) | BYOP only |
+| **in-repo** | `claude` or `codex` at the top folder of a local copy of their own repository, or, after the workspace check, in one folder of it or in an unpacked copy without Git | `.` (the repository, or that folder) | BYOP only |
 
 Read access is the only access any mode needs. No mode writes into the repository or
 pushes anything, so a PM with read-only rights to a production repository can use all of
@@ -121,12 +121,52 @@ that was once turned into a Git repository makes every folder under it, includin
   folder (`sources/primary`, or a path the PM named), never in the workspace folder
   itself: there it would report on the parent repository.
 - **The folder holds files the parent repository tracks** (the command prints a path):
-  the PM has opened one folder of a larger repository. Working from part of a repository
-  is not supported yet. Say so after the workspace check, and give both ways out as the
-  next action, with the status `Blocked`: "if that repository is your product, open its
-  top folder `<parent repository path>` and run `/nlyu-pm:scout` again; if you wanted an
-  example case or a different product, use a new empty folder" (offer to create one, as
-  above).
+  the PM has opened one folder of a larger repository, often one product in a repository
+  that holds several. After the workspace check, ask (header `Folder`, "Is this folder
+  your product?") with three options:
+  - **This folder is my product.** **In-repo** mode, limited to this folder; see "One
+    folder of a larger repository" below.
+  - **The whole repository is my product.** A session cannot move itself, so stop with
+    the status `Blocked` and the next action: "open the top folder `<parent repository
+    path>` and run `/nlyu-pm:scout` again".
+  - **Use a new empty folder.** As above, for an example case or a different product.
+
+### One folder of a larger repository
+
+In-repo mode with the product being the current folder, not the whole repository. Say it
+plainly before going on: "I will treat `<folder name>` as your product. It is part of
+the repository at `<parent repository path>`. I will read the rest of that repository
+only where this folder's code depends on it, and I will change none of it."
+
+- **Source record.** `method: in-place`, `root: "."`, `pinned_sha` from
+  `git rev-parse HEAD` (the commit of the whole repository), and `repo_top` and
+  `repo_prefix` from `git rev-parse --show-toplevel` and `git rev-parse --show-prefix`.
+  Record `parent_repo` and `workspace_check: repo-subfolder` in `session.yaml`.
+- **Paths.** Everything is written relative to the source root, which is this folder, as
+  in any in-repo run. A file outside the folder is cited with a leading `../` (for
+  example `../../libs/ui/Button.tsx`), so a reader can see at once that it is shared
+  code and not the product's own.
+- **What counts as the product.** Entry points, constraints, design notes, and the
+  repository tour come from this folder. Open a file outside it only when a file inside
+  it imports, includes, or configures it, and say which file led there. Never tour the
+  rest of the repository.
+- **Public sources.** Issues, discussions, and releases belong to the whole repository.
+  When the case is built (`custom-case.md`), record the label, path, or product name
+  that narrows them to this folder, and use it in every feed that supports a filter. An
+  item about another part of the repository is not evidence for this product; log it
+  only if it names this product, and say in the brief that the feeds are shared.
+- **Source protection.** The in-place check is unchanged: its `.` covers this folder
+  only. The rest of the repository is outside the check because the plugin never writes
+  there; if the PM asks for proof, run `git status --porcelain -- ':/'` once at the
+  start and end of the stage and compare.
+- **Git history.** `git log -- <paths>` run from this folder already limits itself to
+  the paths given.
+- **Hiding the plugin's folders.** The offer to use `.git/info/exclude` stands, with two
+  differences: the file is the one `git rev-parse --git-path info/exclude` prints, and
+  each entry starts with `repo_prefix` (for example `apps/web/outputs/`).
+- **The reviewers.** Give the reviewer this folder as the source root and `repo_top` as
+  a second path it may read, with the rule above: outside the folder only where a file
+  inside it leads.
 
 Record `workspace_mode` and `outputs_dir` in `session.yaml`. `outputs_dir` is `outputs`
 unless a folder called `outputs/` already exists and holds files the
