@@ -68,4 +68,4 @@ skill stops and asks you to rerun discovery first.
 ## In Codex
 
 Run it as `$prototype`. Claude Design is Claude Code only, so steps 5 and 6 go straight to
-the standalone HTML file. Experimental in 0.10.0.
+the standalone HTML file.

@@ -7,7 +7,7 @@ exercise. Everything Claude produces lands in files you can open in any text edi
 
 Not installed yet? Do [SETUP.md](SETUP.md) first.
 
-Using OpenAI Codex (experimental)? The flow is the same with four differences: type
+Using OpenAI Codex? The flow is the same with four differences: type
 `$scout`, `$prototype`, `$prd`, and `$create-skill` instead of the `/nlyu-pm:` commands;
 use `/new` where this says `/clear`; readiness skips the Claude Design check and the
 prototype is always a standalone HTML file; and your own skill lands in

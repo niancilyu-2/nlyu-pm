@@ -23,7 +23,9 @@ correct outcome.
 
 Every fetch is saved before anything is logged from it, so that quotes and labels can be
 checked later against what was actually read, not against memory. Ask the fetch tool for
-the page's text as written, not a summary; save exactly what it returns.
+the page's text as written, not a summary; save exactly what it returns. When the fetch
+is a `curl` through the shell (Codex, shared rules section 11), write its output straight
+to the file, one request per address.
 
 - Page or feed text goes to `.pm/fetches/F-###.txt` (JSON feeds as returned), numbered in
   fetch order, under a four-line header: `url:`, `rung:`, `accessed:`, and `truncated:
@@ -152,7 +154,7 @@ the coverage table:
   `Inference (unverified snippet)` with its URL, never `Evidence`.
 
 **Optional, opt-in only: Reddit RSS.** Claude Code's fetch tool refuses
-reddit.com. If the PM has explicitly asked for it (`readiness.reddit_rss: true`), read the
+reddit.com; in Codex the same opt-in rule applies even though `curl` could read it. If the PM has explicitly asked for it (`readiness.reddit_rss: true`), read the
 `reddit_rss_optional` address once with the Bash tool's `curl`, as a plain download of the
 subreddit's newest posts as an RSS feed. No search, no login, one call, nothing executed. Otherwise skip Reddit entirely and say so in the gaps.
 

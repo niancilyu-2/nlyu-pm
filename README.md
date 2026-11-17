@@ -12,7 +12,7 @@
 ║   4 skills · 2 adversarial reviewer agents · 5 example cases or BYOR              ║
 ║   Claude desktop app (Code tab) · Claude Code CLI · OpenAI Codex                  ║
 ║                                                                                   ║
-║   v0.10.0 · November 16, 2026 · MIT · Claude plugin directory: pending            ║
+║   v0.10.1 · November 16, 2026 · MIT · Claude plugin directory: pending            ║
 ║                                                                                   ║
 ╚═══════════════════════════════════════════════════════════════════════════════════╝
 ```
@@ -39,9 +39,7 @@ In a terminal:
 /plugin install nlyu-pm@nlyu-pm
 ```
 
-In Codex (CLI, IDE extension, or app). Codex support is new in 0.10.0 and experimental:
-it was built from Codex's plugin documentation and has not yet been run end to end
-there, so please report what breaks.
+In Codex (CLI, IDE extension, or app):
 
 ```text
 codex plugin marketplace add niancilyu-2/nlyu-pm

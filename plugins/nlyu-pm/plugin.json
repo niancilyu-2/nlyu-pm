@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "nlyu-pm",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "description": "Product discovery to PRD for product managers: research public evidence on your own repository or an example open-source product, choose an opportunity, build a clickable prototype, with independent read-only reviews of both the evidence and the PRD.",
   "author": {
     "name": "niancilyu-2",
@@ -38,8 +38,7 @@
         "defaultPrompt": [
           "$scout",
           "$prototype",
-          "$prd",
-          "$create-skill"
+          "$prd"
         ],
         "composerIcon": "./.claude-plugin/icon.png",
         "logo": "./.claude-plugin/icon.png"

@@ -157,4 +157,4 @@ Run it as `$scout`. Readiness skips the Claude Design check. The evidence review
 a fresh subagent given `agents/discovery-reviewer.md` as its instructions; Codex cannot
 restrict its tools the way Claude Code does, so the skill checks before and after that it
 changed no file and reports it if it did. Research fetches may need you to approve
-network access. For usage, type `/status` instead of `/cost`. Experimental in 0.10.0.
+network access. For usage, type `/status` instead of `/cost`.

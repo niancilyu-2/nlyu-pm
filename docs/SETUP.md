@@ -10,12 +10,12 @@ note the step number and check the problems table for your section.
 |---|---|
 | [**Claude desktop app** (Code tab)](#claude-desktop-app-about-15-minutes) | Recommended / non-technical users. |
 | [**Claude Code in a terminal** (CLI)](#claude-code-in-a-terminal-cli-about-20-minutes) | Recommended / technical people. |
-| [**OpenAI Codex**](#openai-codex) (CLI, IDE extension, or app) | Experimental, new in 0.10.0. For people who already use Codex. |
+| [**OpenAI Codex** (CLI, IDE extension, or app)](#openai-codex-about-15-minutes) | For people who already use Codex. |
 | **claude.ai in a browser** | Not recommended (complex install and project setup process). |
 
 ## What you need
 
-For the two Claude ways (for Codex, see [its section](#openai-codex)):
+For the two Claude ways (for Codex, see [its section](#openai-codex-about-15-minutes)):
 
 - **A Mac or Windows laptop** that you can install software on. If it is a company
   laptop, you may need IT to allow the installs in your section.
@@ -304,27 +304,80 @@ Every reply ends with a status line such as `Scout · step 5/11 · fetches 6/20 
 
 Stage-by-stage walkthrough: [TEST-WALKTHROUGH.md](TEST-WALKTHROUGH.md).
 
-## OpenAI Codex
+---
 
-The plugin also runs in Codex. This is experimental: it was built from Codex's plugin
-documentation and has not yet been run end to end there. You need a ChatGPT plan or API
-account that includes Codex, instead of a Claude subscription. Install Git as in the
-sections above, then:
+## OpenAI Codex (about 15 minutes)
 
-1. Install Codex and sign in, following OpenAI's instructions for the CLI, the IDE
-   extension, or the app.
-2. Add this repository as a plugin marketplace:
+The plugin also runs in Codex: the CLI, the IDE extension, or the app. You need a ChatGPT
+plan or API account that includes Codex, instead of a Claude subscription.
 
-   ```text
-   codex plugin marketplace add niancilyu-2/nlyu-pm
-   ```
+### 1. Install Codex and Git
 
-3. Open your workspace folder in Codex (an empty folder, or the top folder of your own
-   repository), open `/plugins`, and install **nlyu-pm**.
-4. Type `$scout`. The readiness check runs as described above, except that it skips the
-   Claude Design check; prototypes are built as a standalone HTML file.
+Install Codex and sign in, following OpenAI's instructions for the CLI, the IDE
+extension, or the app. Install Git as in [step 2 of the desktop app section](#2-install-git).
+
+### 2. Add the plugin
+
+In a terminal, add this repository as a plugin marketplace:
+
+```text
+codex plugin marketplace add niancilyu-2/nlyu-pm
+```
+
+### 3. Open your workspace folder and install
+
+Open your workspace folder in Codex (an empty folder, or the top folder of your own
+repository), open `/plugins`, and install **nlyu-pm**.
+
+### 4. Run the readiness check
+
+Type `$scout` and press Enter. The readiness check runs as described in step 6 of the
+desktop app section, except that it skips the Claude Design question; prototypes are
+built as a standalone HTML file. When asked, choose *stop after setup*.
+
+Codex asks before a command reaches the network. Research needs it, so approve it for
+the session when asked.
+
+### Keys and commands
 
 Everywhere this guide says `/nlyu-pm:scout`, `/nlyu-pm:prototype`, `/nlyu-pm:prd`, or
-`/nlyu-pm:create-skill`, type `$scout`, `$prototype`, `$prd`, or `$create-skill`. Where it
-says `/clear`, use `/new`. Codex asks before a command reaches the network; research
-needs it, so approve it for the session when asked.
+`/nlyu-pm:create-skill`, type the `$` name instead.
+
+| To | Do |
+|---|---|
+| Start a stage | `$scout`, `$prototype`, `$prd`, or `$create-skill` |
+| See the installed skills | `/skills`, or type `$` |
+| Answer a multiple-choice question | pick an option if Codex shows buttons, otherwise type its number or your own answer |
+| Move to the next stage | `/new`, or a new thread in the app, in the same folder |
+| See usage | `/status` |
+
+### Checklist
+
+- [ ] Codex is installed and signed in
+- [ ] `$scout` appears when you type `$`
+- [ ] `$scout` reported `Ready` or `Ready with fallback`
+
+### Running the stages
+
+| Stage | Type |
+|---|---|
+| Discovery | `$scout` |
+| | `/new` |
+| Prototype | `$prototype` |
+| | `/new` |
+| PRD | `$prd` |
+| | `/new` |
+| Skill builder (independent, any time) | `$create-skill` |
+
+Every reply ends with a status line such as `Scout · step 5/11 · fetches 6/20 · 14 min`.
+
+### Problems
+
+| You see | Do |
+|---|---|
+| `$scout` is not listed | In a terminal, `codex plugin marketplace list` should show nlyu-pm. If it does, open `/plugins`, install **nlyu-pm**, and start a new thread |
+| `codex plugin` is not a command | Update Codex to the current version, then repeat step 2 |
+| Codex keeps asking before each download | Approve network access for the session when it asks |
+| The review step says "same session (not independent)" | Codex could not start a separate reviewer, so the check ran in the same session. The review file says so; the findings still apply |
+| Asked to type `/design` | Not available in Codex. Say so, and the prototype is built as an HTML file |
+| Something behaves differently from this guide | Open an issue at https://github.com/niancilyu-2/nlyu-pm/issues with the step number |
