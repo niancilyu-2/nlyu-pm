@@ -30,6 +30,8 @@ Update the version line in the README banner at the same time.
   notes use the `N-###` prefix, and the discovery reviewer verifies quotes against them.
 - `session.yaml` gains `weekly`, `evidence`, and `stages.<stage>.inputs`; `intake` and
   `weekly-check` join the check-in kinds. Banner and docs count six skills.
+- README, walkthrough, and skill pages rewritten shorter and plainer: about a quarter
+  less text, the same headings and links.
 
 ## 0.10.1 (2026-11-16)
 

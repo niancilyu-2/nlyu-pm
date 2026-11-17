@@ -1,22 +1,23 @@
 # nlyu-pm
 
-A plugin for product managers, for Claude Code and OpenAI Codex (where the commands are
-`$scout`, `$prototype`, `$prd`, `$log`, `$weekly`, `$create-skill` and "Claude" below means Codex). It takes a product from public evidence to a
-selected opportunity, a clickable prototype, and an engineering-ready PRD, on the PM's
-own repository or on one of five prepared open-source example cases. Claude finds, drafts,
-and challenges; the PM makes every accountable decision at explicit check-ins. No
-programming is required.
+A plugin for product managers, for Claude Code and OpenAI Codex. It takes a product from
+public evidence to a chosen opportunity, a clickable prototype, and a PRD engineers can
+review, on your own repository or on one of five open-source example cases. Claude
+researches, drafts, and challenges. You make every decision. No programming is required.
 
 ## Commands
 
+In Codex the same commands are `$scout`, `$prototype`, `$prd`, `$log`, `$weekly`, and
+`$create-skill`.
+
 | Command | What it does |
 |---|---|
-| `/nlyu-pm:scout` | Readiness check, case setup, public-source research, repository constraints, three opportunities checked by a separate read-only agent, your choice of one |
-| `/nlyu-pm:prototype` | One actor, one job, one flow: a clickable prototype in Claude Design or as a standalone HTML file, a design critique, one revision |
-| `/nlyu-pm:prd` | A delivery PRD grounded in the product's code, reviewed by a separate read-only agent |
-| `/nlyu-pm:log` | File a call note, a support thread, a review, or a link as evidence in about two minutes |
-| `/nlyu-pm:weekly` | A weekly refresh: what was captured, what moved in the public sources, how the backlog's evidence changed, and a stakeholder update |
-| `/nlyu-pm:create-skill` | Turn one of your own PM practices into a small project skill, test it once, revise it once |
+| `/nlyu-pm:scout` | Researches public sources and the code, drafts three opportunities, has an independent reviewer check the evidence, and you choose one |
+| `/nlyu-pm:prototype` | Builds one clickable flow, critiques it with you, and revises it once |
+| `/nlyu-pm:prd` | Writes a PRD grounded in the code, checked by an independent reviewer |
+| `/nlyu-pm:log` | Files a call note, support thread, review, or link as evidence in about two minutes |
+| `/nlyu-pm:weekly` | Shows what changed this week and drafts a stakeholder update |
+| `/nlyu-pm:create-skill` | Turns one of your own PM practices into a reusable skill |
 
 ## What the plugin runs, reads, and fetches
 

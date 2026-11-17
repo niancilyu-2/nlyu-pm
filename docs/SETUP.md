@@ -1,8 +1,7 @@
 # Setup
 
-Do this once before your first run. Pick the way you will run the plugin, then follow that
-section's numbered steps; each has its own checklist and problems table. If you get stuck,
-note the step number and check the problems table for your section.
+Do this once. Pick how you will run the plugin and follow that section. Each has a
+checklist and a problems table.
 
 ## Four ways to run it
 
@@ -37,7 +36,7 @@ For the two Claude ways (for Codex, see [its section](#openai-codex-about-15-min
 | Folder | A folder on your laptop. Everything Claude writes lands in the workspace folder you pick. |
 | Git | A free tool that downloads a product's code. Claude uses it for you; you never type Git commands. |
 | Repository | A product's source code, stored on a site like GitHub. Claude reads it; it never changes it. |
-| Case and lane | A case is one prepared example product. A lane is one focus area inside it: a part of the product you research for an hour and prototype as a single flow. Your own product (BYOP) is the other choice. |
+| Case and lane | A case is a prepared example product. A lane is one focus area inside it. Your own product (BYOP) is the other choice. |
 
 ---
 
@@ -93,10 +92,9 @@ asks which folder to work in. If it asks whether you trust the folder, say yes.
 
 ### 6. Run the readiness check
 
-1. Type `/nlyu-pm:scout` and press Enter. It checks the folder and Git, opens a test page
-   in your browser and asks whether it appeared, tests web access, and asks you to type
-   `/design` and say what happened (all of this is normal). It ends with `Ready`, `Ready
-   with fallback`, or `Blocked`. For `Blocked`, do the action it prints and run
+1. Type `/nlyu-pm:scout` and press Enter. It checks the folder, Git, your browser, and web
+   access, and asks you to type `/design` and say what happened. It ends with `Ready`,
+   `Ready with fallback`, or `Blocked`. For `Blocked`, do what it says and run
    `/nlyu-pm:scout` again.
 2. In an empty folder it then asks whether you want BYOP or an example case. Answer now so
    the code downloads today, or choose *decide later*. If you opened your own repository,
@@ -136,11 +134,10 @@ Open your workspace folder in the Code tab (step 4), then run one stage per sess
 | PRD | `/nlyu-pm:prd` |
 | | new session |
 | Skill builder (independent, any time) | `/nlyu-pm:create-skill` |
-| File a note, quote, or link (any time, two minutes) | `/nlyu-pm:log` |
-| Weekly refresh (about once a week) | `/nlyu-pm:weekly` |
+| Capture a note or link (any time) | `/nlyu-pm:log` |
+| Weekly refresh | `/nlyu-pm:weekly` |
 
-Every reply ends with a status line such as `Scout · step 5/11 · fetches 6/20 · 14 min`,
-and every stage closes with a one-line summary of what it spent and produced.
+Every reply ends with a status line such as `Scout · step 5/11 · fetches 6/20 · 14 min`.
 
 ### Problems
 
@@ -285,8 +282,8 @@ Open a terminal in the folder you picked in step 7 (`pm-workspace`, or your repo
 | PRD | `/nlyu-pm:prd` |
 | | `/clear` |
 | Skill builder (independent, any time) | `/nlyu-pm:create-skill` |
-| File a note, quote, or link (any time, two minutes) | `/nlyu-pm:log` |
-| Weekly refresh (about once a week) | `/nlyu-pm:weekly` |
+| Capture a note or link (any time) | `/nlyu-pm:log` |
+| Weekly refresh | `/nlyu-pm:weekly` |
 
 Every reply ends with a status line such as `Scout · step 5/11 · fetches 6/20 · 14 min`.
 
@@ -372,8 +369,8 @@ Everywhere this guide says `/nlyu-pm:scout`, `/nlyu-pm:prototype`, `/nlyu-pm:prd
 | PRD | `$prd` |
 | | `/new` |
 | Skill builder (independent, any time) | `$create-skill` |
-| File a note, quote, or link (any time, two minutes) | `$log` |
-| Weekly refresh (about once a week) | `$weekly` |
+| Capture a note or link (any time) | `$log` |
+| Weekly refresh | `$weekly` |
 
 Every reply ends with a status line such as `Scout · step 5/11 · fetches 6/20 · 14 min`.
 
