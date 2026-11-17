@@ -5,6 +5,17 @@ All notable changes to the `nlyu-pm` plugin are recorded here. Bump `version` in
 `.claude-plugin/marketplace.json` whenever a changed build is distributed, otherwise existing installs will not refresh.
 Update the version line in the README banner at the same time.
 
+## 0.11.2 (2026-11-17)
+
+- An empty folder that sits inside another Git repository (most often a home folder that
+  was made into a repository by accident) is no longer blocked. Readiness says where the
+  other repository is and what that means, and asks before going on; the answer is
+  recorded, with `parent_repo` in `session.yaml`, and it offers to hide the workspace
+  from that repository. Declining gives a next action that works: a new folder outside
+  that repository. A folder holding files the other repository tracks is still blocked,
+  now with both ways out named.
+- Setup guide problems tables cover this case.
+
 ## 0.11.1 (2026-11-17)
 
 - Plugin descriptions in all three manifests mention capturing evidence and the weekly

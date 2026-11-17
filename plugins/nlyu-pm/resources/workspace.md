@@ -30,12 +30,58 @@ in the current folder:
   started inside the repository `<folder name>`. I will treat it as your product, read it
   without changing any tracked file, and write my files to `outputs/` and `.pm/`." Ask
   them to confirm, or to create an empty folder instead if they wanted an example case.
-- It succeeds but points to a parent folder: `Blocked`. Next action: open that top folder
-  (print the path) in the Code tab or in a terminal, or create an empty folder elsewhere.
+- It succeeds but points to a parent folder: the current folder sits inside a larger
+  repository. What happens depends on what is in the current folder; see "A folder inside
+  another repository" below. Never go ahead without telling the PM first.
 - It succeeds but there are no tracked files (an empty folder that was `git init`ed):
   treat as wrapper mode.
 
 In both modes Claude must be able to create a file (write and delete `.pm/.write-test`).
+
+### A folder inside another repository
+
+This happens most often by accident: a home folder (`C:\Users\<name>`, `/Users/<name>`)
+that was once turned into a Git repository makes every folder under it, including a new
+`pm-workspace` on the Desktop, count as "inside a repository". It also happens on
+purpose, when the PM opens one folder of a larger repository. Call the path that
+`git rev-parse --show-toplevel` printed the *parent repository*.
+
+Run `git ls-files . | head -1` in the current folder and look at what the folder holds:
+
+- **Empty, and nothing in it is tracked** (the command prints nothing, and the folder
+  holds only what an empty wrapper folder may hold, listed above): it can be used as a
+  wrapper workspace, but only after the PM has seen the flag and said yes. Say, before
+  doing anything else:
+
+  > This folder is empty, but it sits inside another Git repository at `<parent
+  > repository path>`. That is usually a home folder that was made into a repository at
+  > some point. I can still work here. I will not read or change that repository. The
+  > files I create will show up in it as new, untracked files unless I hide them.
+
+  Then ask one question (header `Folder`, "Use this folder as your workspace?") with two
+  options: **Use this folder** and **Use a different folder**. Wait for the answer.
+  - *Use this folder:* wrapper mode. Record `parent_repo: <path>` in `session.yaml` and a
+    `D-###` with `checkin: workspace`, in the PM's words. Offer once to hide the workspace
+    from the parent repository by adding this folder's path, relative to the parent
+    repository's top folder, to `<parent repository>/.git/info/exclude` (local to this
+    computer, not a tracked file; never edit a `.gitignore`). From then on, run a git
+    command only inside a source folder (`sources/primary`, or a path the PM named),
+    never in the workspace folder itself: there it would report on the parent repository.
+  - *Use a different folder:* `Blocked`. Next action: "create a new empty folder outside
+    `<parent repository path>` (for example `C:\pm-workspace`, or a folder on another
+    drive), open it, then run `/nlyu-pm:scout` again".
+- **It holds files the parent repository tracks** (the command prints a path): the PM has
+  opened part of a repository. `Blocked`, with a next action that names both ways out:
+  "if that repository is your product, open its top folder `<parent repository path>`
+  and run `/nlyu-pm:scout` again; if you wanted an example case or a different product,
+  create a new empty folder and open that instead". Working from one folder of a larger
+  repository is not supported.
+- **It holds other files, none of them tracked:** `Blocked`, with the same next action as
+  a non-empty folder in wrapper mode.
+
+When `session.yaml` already records `parent_repo`, the PM has agreed; do not ask again.
+Say it once per stage in the opening lines: "Workspace inside the repository at
+`<path>`, as agreed."
 
 Record `workspace_mode` and `outputs_dir` in `session.yaml`. `outputs_dir` is `outputs`
 unless, in in-repo mode, a folder called `outputs/` already exists and holds files the
