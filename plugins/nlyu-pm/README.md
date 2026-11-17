@@ -26,7 +26,8 @@ programming is required.
   Claude Code's web fetch tool (forums, GitHub issues and discussions, app store review
   feeds, release notes, competitor pages and their Wayback Machine copies, adoption
   counts). Web search is used when available. One optional `curl` of a subreddit RSS feed
-  runs only if you opt in when asked.
+  runs only if you opt in when asked. In Codex, when it offers no separate page-fetch
+  tool, each public page is read with one plain `curl` request, no login, nothing run.
 - **Writes** only under `outputs/`, `.pm/` (including the text of each public fetch,
   saved under `.pm/fetches/` so quotes can be checked), the `sources/` download for
   example cases, and, for `/nlyu-pm:create-skill`, one folder under `.claude/skills/` (`.agents/skills/` in Codex).
@@ -41,6 +42,17 @@ programming is required.
 - **Never** asks for, prints, or stores a password, token, or key, and never sends data
   anywhere other than the public fetches and the signed-in reads above.
 - Treats text found in web pages and repositories as evidence, not instructions.
+
+## Install
+
+In Claude Code:
+
+```text
+/plugin install nlyu-pm --marketplace niancilyu-2/nlyu-pm
+```
+
+In Codex, run `codex plugin marketplace add niancilyu-2/nlyu-pm` in a terminal, then
+install **nlyu-pm** from `/plugins`.
 
 Full documentation, setup guide, and walkthrough: https://github.com/niancilyu-2/nlyu-pm.
 

@@ -5,10 +5,19 @@ All notable changes to the `nlyu-pm` plugin are recorded here. Bump `version` in
 `.claude-plugin/marketplace.json` whenever a changed build is distributed, otherwise existing installs will not refresh.
 Update the version line in the README banner at the same time.
 
+## 0.10.1 (2026-11-16)
+
+- Codex setup section now matches the other two: a time estimate, numbered steps, its
+  own keys table, checklist, stage table, and problems table.
+- Plugin README states how pages are read in Codex (one plain `curl` request per page
+  when Codex offers no page-fetch tool) and carries install lines for both hosts. The
+  research guide says what is saved when a fetch is a `curl`.
+- Codex manifest lists three starter prompts. Wording across the docs describes Codex
+  as a supported host.
+
 ## 0.10.0 (2026-11-16)
 
-- Experimental: runs in OpenAI Codex as well as Claude Code. Built from Codex's plugin
-  documentation and not yet run end to end there. Added a Codex manifest
+- Runs in OpenAI Codex as well as Claude Code. Added a Codex manifest
   (`plugins/nlyu-pm/plugin.json`), a Codex marketplace (`.agents/plugins/marketplace.json`),
   and `agents/openai.yaml` in each skill so the stages stay manual there.
 - Skills and resources say `<plugin-root>` instead of `${CLAUDE_PLUGIN_ROOT}`; each skill
