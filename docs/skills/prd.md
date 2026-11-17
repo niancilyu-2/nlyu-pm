@@ -12,8 +12,13 @@ it.
 
 ## Before you start
 
-Both the discovery brief and the prototype must be approved and current. If either is
-missing or stale, the skill stops and says which one to rerun.
+A product that is set up. The PRD needs an opportunity and a flow. It takes them from
+the approved discovery brief and prototype when they exist. For whichever is missing,
+Claude offers a short intake: the opportunity in two or three sentences, the flow as
+three to six steps plus two alternate states, or a mock-up or ticket you already have.
+The PRD then says in its header which inputs were typed in, its status carries the same
+note, and the reviewer checks it against what exists. If an earlier file is stale, the
+skill stops and says which one to rerun.
 
 ## How a run goes
 

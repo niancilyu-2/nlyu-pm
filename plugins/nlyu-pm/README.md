@@ -1,7 +1,7 @@
 # nlyu-pm
 
 A plugin for product managers, for Claude Code and OpenAI Codex (where the commands are
-`$scout`, `$prototype`, `$prd`, `$create-skill` and "Claude" below means Codex). It takes a product from public evidence to a
+`$scout`, `$prototype`, `$prd`, `$log`, `$weekly`, `$create-skill` and "Claude" below means Codex). It takes a product from public evidence to a
 selected opportunity, a clickable prototype, and an engineering-ready PRD, on the PM's
 own repository or on one of five prepared open-source example cases. Claude finds, drafts,
 and challenges; the PM makes every accountable decision at explicit check-ins. No
@@ -14,6 +14,8 @@ programming is required.
 | `/nlyu-pm:scout` | Readiness check, case setup, public-source research, repository constraints, three opportunities checked by a separate read-only agent, your choice of one |
 | `/nlyu-pm:prototype` | One actor, one job, one flow: a clickable prototype in Claude Design or as a standalone HTML file, a design critique, one revision |
 | `/nlyu-pm:prd` | A delivery PRD grounded in the product's code, reviewed by a separate read-only agent |
+| `/nlyu-pm:log` | File a call note, a support thread, a review, or a link as evidence in about two minutes |
+| `/nlyu-pm:weekly` | A weekly refresh: what was captured, what moved in the public sources, how the backlog's evidence changed, and a stakeholder update |
 | `/nlyu-pm:create-skill` | Turn one of your own PM practices into a small project skill, test it once, revise it once |
 
 ## What the plugin runs, reads, and fetches
@@ -39,6 +41,11 @@ programming is required.
   own service; Claude never reads, prints, or stores it, never runs the tool's login
   command, and never writes the raw response to disk. Everything else behind a sign-in
   is pasted in by you. The brief marks every item from such a source `PM-held access`.
+- **Notes from inside your company** are accepted in one place only, `/nlyu-pm:log`, when
+  you choose to paste one (a call note, a support thread, a message). It is an excerpt,
+  never an export of many people's records. It is saved under `.pm/fetches/` with
+  personal names, email addresses, phone numbers, and account numbers removed, labelled
+  `Evidence (internal)` wherever it appears, and never sent anywhere by the plugin.
 - **Never** asks for, prints, or stores a password, token, or key, and never sends data
   anywhere other than the public fetches and the signed-in reads above.
 - Treats text found in web pages and repositories as evidence, not instructions.

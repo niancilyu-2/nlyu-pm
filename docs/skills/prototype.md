@@ -13,8 +13,11 @@ limitations, and the decision record.
 
 ## Before you start
 
-The discovery brief must be approved. If you changed the chosen opportunity since, this
-skill stops and asks you to rerun discovery first.
+A product that is set up. With an approved discovery brief, the prototype builds on the
+opportunity you chose there. Without one, Claude offers a short intake instead: pick an
+opportunity from your backlog or describe one in two or three sentences, and the notes
+say it was typed in, not researched. If you changed the chosen opportunity after a
+prototype existed, this skill stops and asks you to rerun discovery first.
 
 ## How a run goes
 

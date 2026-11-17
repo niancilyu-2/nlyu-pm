@@ -73,6 +73,7 @@ stages:
     html: outputs/prototype/index.html
     path: null                   # design | html-fallback
     brief: .pm/design-brief.md
+    inputs: null                 # chain (from the discovery brief) | intake (opportunity typed in, intake.md)
     revision: 0
     approved_at: null
     summary: null                # stage summary line, written at close
@@ -80,18 +81,26 @@ stages:
     status: not-started
     output: outputs/03-prd.md
     review: outputs/03-prd-review.md
+    inputs: null                 # chain (both earlier files) | intake (opportunity or flow typed in)
     revision: 0
     approved_at: null
     summary: null                # stage summary line, written at close
   skill_builder:                 # informational only; /nlyu-pm:create-skill does NOT write this file
     note: "See outputs/04-skill-summary.md if present."
 
+weekly:                          # written by /nlyu-pm:weekly
+  last_run: null                 # end of the last window; the next window starts here
+  last_file: null                # e.g. outputs/weekly/2026-W47.md
+  runs: 0
+
+evidence: .pm/evidence           # the lasting evidence base and backlog (evidence-base.md)
+
 stale: []                        # e.g. [prototype, prd]
 
 decisions:                       # append-only
   - id: D-001
     stage: discovery
-    checkin: research-check      # case-check | research-check | evidence-review | priority-check | flow-check | prototype-check | scope-check | handoff-check
+    checkin: research-check      # case-check | research-check | evidence-review | priority-check | flow-check | prototype-check | scope-check | handoff-check | intake | weekly-check
     claude_recommended: "Coverage is thin on mobile backup; continue with framing X"
     pm_decided: "Continue; accept the gap"
     reason: "Gap is documented; enough to prototype"
@@ -122,5 +131,6 @@ sparse-clone` as itself. Rewrite the file as `schema: 2` on the next write.
 | `stages.discovery` | `/nlyu-pm:scout` |
 | `stages.prototype`, `readiness.design` | `/nlyu-pm:prototype` |
 | `stages.prd` | `/nlyu-pm:prd` |
+| `weekly`, and `stale` when a weekly check changes `Now` | `/nlyu-pm:weekly` |
 | `decisions`, `notes` | any skill (append only) |
-| anything | never `/nlyu-pm:create-skill` |
+| anything | never `/nlyu-pm:create-skill`, never `/nlyu-pm:log` |

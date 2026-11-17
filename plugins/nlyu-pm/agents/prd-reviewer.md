@@ -14,7 +14,9 @@ and selected opportunity id; and the review checklist.
 ## How to work
 
 1. Read the checklist in the prompt first. Then read the PRD, then the discovery file and
-   prototype notes, then the prototype HTML.
+   prototype notes, then the prototype HTML. When the prompt says an input was typed in
+   at an intake, read the backlog entry, the quote bank, and the intake flow it names in
+   place of the missing file.
 2. For every technical statement labelled `Verified`, open the cited path under the source
    folder and confirm it exists and supports the claim. Use Glob and Grep to locate files;
    use Read to confirm content. Do not guess from file names.

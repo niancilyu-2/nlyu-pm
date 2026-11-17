@@ -56,10 +56,14 @@ Layout created by setup (wrapper mode; in-repo mode omits `sources/`):
 │   ├── primary/                # clone (sparse and pinned for an example case; shallow for a URL)
 │   └── companion/              # only for a case that defines one
 ├── outputs/
-│   └── prototype/
+│   ├── prototype/
+│   └── weekly/                 # one dated digest per weekly run
 └── .pm/
     ├── session.yaml
-    ├── fetches/                # text saved from every research fetch, with index.md
+    ├── evidence/               # the lasting log, quote bank, and backlog (evidence-base.md)
+    ├── fetches/                # text saved from every fetch, paste, and captured note, with index.md
+    ├── intake/                 # a flow typed in when a stage starts without the one before it
+    ├── inbox/                  # files the PM drops in for Claude to read
     ├── drafts/
     └── case/                   # BYOP case package, when one was built or provided
 ```
@@ -249,7 +253,7 @@ triggers:
 | Change | Mark stale |
 |---|---|
 | Different case or lane | discovery, prototype, prd |
-| Different selected opportunity | prototype, prd |
+| Different selected opportunity, including a different `Now` recorded by `/nlyu-pm:weekly` | prototype, prd |
 | Different actor, job, main path, or alternate states | prd |
 | Prototype re-approved with different scope | prd |
 
@@ -263,3 +267,4 @@ code moved, record the new sha under `sources[].moved_to`, and re-check each cit
 constraint at its path before relying on it (the PRD stage does this anyway).
 
 `/nlyu-pm:create-skill` never marks anything stale and never reads or writes `session.yaml`.
+`/nlyu-pm:log` never marks anything stale and never writes `session.yaml`.

@@ -112,7 +112,7 @@ Pick the option that stops asking for the session.
 |---|---|
 | Send | Enter |
 | New line without sending | Shift+Enter |
-| See available commands | type `/`, or `/nl` to show only this plugin's four commands, then pick one from the list |
+| See available commands | type `/`, or `/nl` to show only this plugin's six commands, then pick one from the list |
 | Stop Claude mid-reply | Escape, or the stop button |
 | Answer a multiple-choice question | click an option, or type your own answer |
 | Move to the next stage | start a new session in the same folder |
@@ -136,6 +136,8 @@ Open your workspace folder in the Code tab (step 4), then run one stage per sess
 | PRD | `/nlyu-pm:prd` |
 | | new session |
 | Skill builder (independent, any time) | `/nlyu-pm:create-skill` |
+| File a note, quote, or link (any time, two minutes) | `/nlyu-pm:log` |
+| Weekly refresh (about once a week) | `/nlyu-pm:weekly` |
 
 Every reply ends with a status line such as `Scout · step 5/11 · fetches 6/20 · 14 min`,
 and every stage closes with a one-line summary of what it spent and produced.
@@ -228,7 +230,7 @@ the folder, say yes. Type `/exit` to leave.
 |---|---|
 | Send | Enter |
 | New line without sending | Shift+Enter, or `\` then Enter |
-| See available commands | type `/`, or `/nl` to show only this plugin's four commands, then pick one from the list |
+| See available commands | type `/`, or `/nl` to show only this plugin's six commands, then pick one from the list |
 | Stop Claude mid-reply | Escape |
 | Clear the conversation | `/clear` |
 | Quit | `/exit` |
@@ -283,6 +285,8 @@ Open a terminal in the folder you picked in step 7 (`pm-workspace`, or your repo
 | PRD | `/nlyu-pm:prd` |
 | | `/clear` |
 | Skill builder (independent, any time) | `/nlyu-pm:create-skill` |
+| File a note, quote, or link (any time, two minutes) | `/nlyu-pm:log` |
+| Weekly refresh (about once a week) | `/nlyu-pm:weekly` |
 
 Every reply ends with a status line such as `Scout · step 5/11 · fetches 6/20 · 14 min`.
 
@@ -341,11 +345,11 @@ the session when asked.
 ### Keys and commands
 
 Everywhere this guide says `/nlyu-pm:scout`, `/nlyu-pm:prototype`, `/nlyu-pm:prd`, or
-`/nlyu-pm:create-skill`, type the `$` name instead.
+`/nlyu-pm:log`, `/nlyu-pm:weekly`, or `/nlyu-pm:create-skill`, type the `$` name instead.
 
 | To | Do |
 |---|---|
-| Start a stage | `$scout`, `$prototype`, `$prd`, or `$create-skill` |
+| Start a stage | `$scout`, `$prototype`, `$prd`, `$log`, `$weekly`, or `$create-skill` |
 | See the installed skills | `/skills`, or type `$` |
 | Answer a multiple-choice question | pick an option if Codex shows buttons, otherwise type its number or your own answer |
 | Move to the next stage | `/new`, or a new thread in the app, in the same folder |
@@ -368,6 +372,8 @@ Everywhere this guide says `/nlyu-pm:scout`, `/nlyu-pm:prototype`, `/nlyu-pm:prd
 | PRD | `$prd` |
 | | `/new` |
 | Skill builder (independent, any time) | `$create-skill` |
+| File a note, quote, or link (any time, two minutes) | `$log` |
+| Weekly refresh (about once a week) | `$weekly` |
 
 Every reply ends with a status line such as `Scout · step 5/11 · fetches 6/20 · 14 min`.
 

@@ -1,0 +1,7 @@
+# Codex metadata. Claude Code ignores this file and reads SKILL.md frontmatter instead.
+interface:
+  display_name: "Weekly (Refresh)"
+  short_description: "See what changed this week and what it means for the backlog"
+
+policy:
+  allow_implicit_invocation: false   # same effect as disable-model-invocation: true

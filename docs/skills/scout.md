@@ -69,11 +69,17 @@ the brief against the saved fetches and the code, and how each finding was settl
    relabelled), asks you only when a fix changes which opportunities stand, and tells you
    the result in a few lines. If the floor is not met the brief will be saved provisional,
    and no one can override that.
+   (Say "set up only" at the start and scout stops after step 4, with the product ready
+   for `/nlyu-pm:log`, `/nlyu-pm:weekly`, or a later stage.)
 10. **Priority check-in.** Claude introduces each opportunity as a two-sentence story, then
    recommends a Now, Next, Later order with the strongest quote under each. You choose the
    Now item, then pick your reasons from a short list (several allowed) or type your own.
    Your choice stands even if it differs from Claude's.
 11. **Save.** The brief is written, the session file updated, and the next step named.
+
+Notes you filed earlier with `/nlyu-pm:log` count from the start of the research pass,
+and at the close everything is added to the workspace's lasting evidence base and
+backlog, which `/nlyu-pm:log`, `/nlyu-pm:weekly`, and later stages share.
 
 ## Where the evidence comes from
 

@@ -32,12 +32,19 @@ trade-offs, and which revisions to accept.
 State the stage boundary. From here on, end every reply with the usage line from shared
 rules section 9 (`Prototype · step n/11 · path · revision · minutes · sources`). Then re-hydrate:
 
-- Read `.pm/session.yaml`. If `stages.discovery.status` is not `approved` (`approved` with
-  `provisional: true` still counts), or `prototype` is listed in `stale`, stop and say which
-  skill to run.
-- Read `outputs/01-discovery.md`, the selected `OPP-###`, and the case's `case.yaml`,
-  `design-notes.md`, and lane entry (surface, viewport, `repo_entry_points`), from the
-  case folder named in `session.yaml` (shared rules section 10).
+- Read `.pm/session.yaml`. If `prototype` is listed in `stale`, say why (the opportunity
+  it was built on is no longer first) and offer **Restart** on the current one; the old
+  files stay until the new ones are approved.
+- The opportunity. If `stages.discovery.status` is `approved` (`approved` with
+  `provisional: true` still counts), read `outputs/01-discovery.md` and build on the
+  opportunity in the backlog's `Now` slot: the brief's selected `OPP-###`, unless a later
+  weekly check moved it. Say which one in one line, and set `stages.prototype.inputs:
+  chain`. If there is no approved discovery brief, follow
+  `<plugin-root>/resources/intake.md`: the PM either starts here with the opportunity
+  intake (`inputs: intake`) or runs `/nlyu-pm:scout` first.
+- Read the case's `case.yaml`, `design-notes.md`, and lane entry (surface, viewport,
+  `repo_entry_points`), from the case folder named in `session.yaml` (shared rules
+  section 10).
 - If `stages.prototype.status` is `awaiting-design`, skip to **Step 6b (resume after
   Design)**. If `in-progress` or `approved`, offer Resume or Restart.
 - Run the source check and record `clean_at_start`. Set `stage.current: prototype`,
@@ -45,8 +52,11 @@ rules section 9 (`Prototype · step n/11 · path · revision · minutes · sourc
 
 ## Step 1: Confirm the flow (short conversational questions)
 
-First show the two or three quotes from the discovery quote bank that belong to the
-selected opportunity, so the actor and job are confirmed against users' own words.
+First show the two or three quotes that belong to the selected opportunity (from the
+discovery brief's quote bank, or from `.pm/evidence/quotes.md` after an intake), so the
+actor and job are confirmed against users' own words. If the opportunity has no quote
+yet, say so in one line and confirm against the PM's own statement instead; never write
+one.
 Then ask, one at a time or in pairs, with options drawn from the opportunity and the lane:
 
 1. Who is the one actor, and what is the one job in their words?
@@ -162,9 +172,10 @@ Record `D-###`.
 ## Step 11: Save and close
 
 - Complete the draft, copy it to `outputs/02-prototype.md`, delete the draft (status
-  `approved`, all 11 sections).
+  `approved`, all 11 sections). The `Based on` row names the opportunity and where it
+  came from (`intake.md`, "What changes downstream").
 - Update `session.yaml`: `stages.prototype` (`status: approved`, `revision` +1,
-  `approved_at`, `path`), `stage.current: prd`, `stage.status: not-started`.
+  `approved_at`, `path`, `inputs`), `stage.current: prd`, `stage.status: not-started`.
 - Source check; record `clean_at_end`.
 - Close with three lines: what Claude contributed, what the PM decided, next
   command: a new session in the same folder (`/clear` in a Claude Code terminal, `/new` in Codex), then

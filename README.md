@@ -9,10 +9,10 @@
 ║   ╚═╝  ╚═══╝ ╚══════╝  ╚═╝     ╚═════╝           ╚═╝      ╚═╝     ╚═╝             ║
 ║                                                                                   ║
 ║   Product discovery to PRD rapid cycle                                            ║
-║   4 skills · 2 adversarial reviewer agents · 5 example cases or BYOR              ║
+║   6 skills · 2 adversarial reviewer agents · 5 example cases or BYOR              ║
 ║   Claude desktop app (Code tab) · Claude Code CLI · OpenAI Codex                  ║
 ║                                                                                   ║
-║   v0.10.1 · November 16, 2026 · MIT · Claude plugin directory: pending            ║
+║   v0.11.0 · November 16, 2026 · MIT · Claude plugin directory: pending            ║
 ║                                                                                   ║
 ╚═══════════════════════════════════════════════════════════════════════════════════╝
 ```
@@ -45,8 +45,8 @@ In Codex (CLI, IDE extension, or app):
 codex plugin marketplace add niancilyu-2/nlyu-pm
 ```
 
-then open `/plugins` in Codex and install **nlyu-pm**. The same four skills run there
-under Codex's names: `$scout`, `$prototype`, `$prd`, `$create-skill`. This README and the
+then open `/plugins` in Codex and install **nlyu-pm**. The same six skills run there
+under Codex's names: `$scout`, `$prototype`, `$prd`, `$log`, `$weekly`, `$create-skill`. This README and the
 docs use the Claude Code names (`/nlyu-pm:scout` and so on) and say "Claude" for the
 assistant; in Codex read them as the `$` names and "Codex". Three things differ in
 Codex: prototypes are always a standalone HTML file (Claude Design is Claude Code only),
@@ -120,13 +120,15 @@ ready for engineering review, not ready to build.
 ### What it does
 
 
-Four skills. Each runs only when you type it.
+Six skills. Each runs only when you type it. Three take a product from evidence to a PRD, two keep the evidence current week to week, and one builds a skill of your own.
 
 | Skill | What it does | You leave with | Details |
 |---|---|---|---|
 | `/nlyu-pm:scout` | Readiness check on first run, a case built from your own repository (or an example case to try it on), then a research pass over a fixed sequence of public sources, repository constraints, three opportunities checked by a separate read-only reviewer, and your choice of one | `outputs/01-discovery.md`, the discovery brief, and `outputs/01-discovery-review.md` | [docs/skills/scout.md](docs/skills/scout.md) |
 | `/nlyu-pm:prototype` | One actor, one job, one flow. A clickable prototype in Claude Design or as a standalone HTML file, a design critique, one revision | `outputs/02-prototype.md`, `outputs/prototype/index.html` | [docs/skills/prototype.md](docs/skills/prototype.md) |
 | `/nlyu-pm:prd` | A delivery PRD grounded in the product's code, reviewed by a separate read-only agent that has not seen your conversation | `outputs/03-prd.md`, `outputs/03-prd-review.md` | [docs/skills/prd.md](docs/skills/prd.md) |
+| `/nlyu-pm:log` | File a call note, a support thread, a message, a review, or a link as evidence in about two minutes, attached to an opportunity. No check-in. Any time | signals and quotes in `.pm/evidence/` | [docs/skills/log.md](docs/skills/log.md) |
+| `/nlyu-pm:weekly` | In about fifteen minutes, what you captured this week, what moved in the public sources, how the evidence behind each opportunity changed, and a stakeholder update to paste. One decision at the end | `outputs/weekly/<year>-W<week>.md` | [docs/skills/weekly.md](docs/skills/weekly.md) |
 | `/nlyu-pm:create-skill` | Turn one PM practice of your own into a small project skill, test it once in a fresh session, revise it once | `.claude/skills/<name>/SKILL.md`, `outputs/04-skill-summary.md` | [docs/skills/create-skill.md](docs/skills/create-skill.md) |
 
 Each skill opens by saying what you will do, what Claude will do, and what you
@@ -142,8 +144,16 @@ flowchart LR
   P -->|"02-prototype.md<br/>index.html"| R["/nlyu-pm:prd<br/>PRD + read-only review"]
   R --> H["03-prd.md, delivery PRD<br/>03-prd-review.md"]
   P -. "opportunity changed" .-> stale["prototype and PRD marked stale"]
+  L["/nlyu-pm:log<br/>capture, any time"] --> E[".pm/evidence<br/>log, quotes, backlog"]
+  S --> E
+  E --> W["/nlyu-pm:weekly<br/>refresh and digest"]
+  W -. "you change what is first" .-> stale
   C["/nlyu-pm:create-skill<br/>independent skill builder"] --> K["SKILL.md<br/>04-skill-summary.md"]
 ```
+
+The three product stages build on each other but do not force each other. Prototype and
+PRD use the approved file from the stage before when it exists; when it does not, they
+take the same input from you in a short intake and say so in the file they write.
 
 ### Agentic design principles
 
@@ -207,6 +217,10 @@ one section for the desktop app (about 15 minutes, no terminal) and one for the 
    `/nlyu-pm:scout` resumes.
 4. Run the stages in order, one session each: start a new session in the same folder
    between them (`/clear` in a terminal, `/new` in Codex); each resumes from the files you approved.
+5. From then on, file what you hear with `/nlyu-pm:log` as it happens, and run
+   `/nlyu-pm:weekly` about once a week. For a small change you can go straight to
+   `/nlyu-pm:prototype` or `/nlyu-pm:prd`; each offers a short intake when the stage
+   before it has not run.
 
 [docs/TEST-WALKTHROUGH.md](docs/TEST-WALKTHROUGH.md) shows every stage step by step with
 what to expect at each check-in.
@@ -287,10 +301,15 @@ boundaries and starting points only, never conclusions, so the research is yours
 ### Guardrails and limits
 
 
-- Public information and synthetic data by default. No private customer data or
-  confidential material, and no password, token, or key ever enters the conversation; your
-  own repository and any source behind a sign-in are read only through access you already
-  hold and set up yourself. Your own repository is read in place and never modified.
+- Public information and synthetic data by default, and no password, token, or key ever
+  enters the conversation; your own repository and any source behind a sign-in are read
+  only through access you already hold and set up yourself. Your own repository is read
+  in place and never modified.
+- The one place for material from inside your company is `/nlyu-pm:log`: an excerpt you
+  choose to paste, such as a call note or a support thread, never an export of many
+  people's records. It is saved on your computer with personal details removed, labelled
+  internal wherever it appears, and never sent anywhere by the plugin. No other skill asks
+  for it, and prototypes still use made-up data.
 - Every claim is labelled `Evidence`, `Inference`, `Assumption`, or `Constraint`. Technical
   statements in the PRD are `Verified` with a file path, `Inferred`, or `Engineering-owned`.
 - No composite scores, RICE, ARR, PERT, estimates, story points, delivery dates, or costs.
@@ -326,7 +345,7 @@ nlyu-pm/
 ├── plugins/nlyu-pm/
 │   ├── .claude-plugin/plugin.json       Claude Code manifest
 │   ├── plugin.json                      Codex manifest
-│   ├── skills/{scout,prototype,prd,create-skill}/SKILL.md
+│   ├── skills/{scout,prototype,prd,log,weekly,create-skill}/SKILL.md
 │   ├── skills/*/agents/openai.yaml      Codex: manual invocation only
 │   ├── agents/{discovery-reviewer,prd-reviewer}.md
 │   ├── README.md                what the plugin runs, reads, fetches, and writes
@@ -336,7 +355,7 @@ nlyu-pm/
 │   │   ├── orientation.md
 │   │   └── design-notes.md
 │   └── resources/               shared rules, research guide, readiness, case schema,
-│                                BYOP case builder, templates
+│                                BYOP case builder, evidence base, intake, templates
 ├── docs/
 ├── CHANGELOG.md
 ├── LICENSE

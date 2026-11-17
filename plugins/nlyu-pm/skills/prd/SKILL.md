@@ -33,11 +33,16 @@ behaviour, acceptance criteria, and which product questions stay open.
 State the stage boundary. From here on, end every reply with the usage line from shared
 rules section 9 (`PRD · step n/7 · REQ · AC · findings · minutes · sources`). Re-hydrate:
 
-- Read `.pm/session.yaml`. Stop with the next action if `stages.discovery.status` or
-  `stages.prototype.status` is not `approved`, or if `prd` is in `stale`.
-- Read `outputs/01-discovery.md`, `outputs/02-prototype.md`, `outputs/prototype/index.html`,
-  the case `case.yaml` from the case folder in `session.yaml` (shared rules section 10),
-  and the lane entry points.
+- Read `.pm/session.yaml`. Stop with the next action if `prd` is in `stale`.
+- Inputs. The PRD needs an opportunity and a flow. Take each from the approved stage
+  file when it exists: the opportunity from `outputs/01-discovery.md` (or from the
+  `Based on` row of `outputs/02-prototype.md` when the prototype itself started from an
+  intake), the flow from `outputs/02-prototype.md` and `outputs/prototype/index.html`.
+  For whichever is missing, follow `<plugin-root>/resources/intake.md`: the PM either
+  starts here with that intake or runs the earlier stage first. Set `stages.prd.inputs`
+  to `chain` when both came from stage files, otherwise `intake`.
+- Read the case `case.yaml` from the case folder in `session.yaml` (shared rules section
+  10) and the lane entry points.
 - If `stages.prd.status` is `in-progress` or `approved`, offer Resume or Restart.
 - Source check; record `clean_at_start`. Set `stage.current: prd`,
   `stages.prd.status: in-progress`.
@@ -55,7 +60,9 @@ file in this session. Anything you did not open is `Inferred`. Before writing, r
 there; if it is not, relabel that constraint `Inferred`, say so, and add an `OPEN-###`
 engineering question. Every constraint keeps `Status: to confirm with engineering` in the
 PRD until an engineer signs it off. Architecture, implementation design, and
-estimates are `Engineering-owned`; do not write them.
+estimates are `Engineering-owned`; do not write them. With no discovery brief there are
+no earlier constraints to reopen: record at least two fresh `CON-###` from what you read,
+in the research guide's format.
 
 For a case with a `companion` or `web-reference` repository, use it to understand
 framework behaviour (forms, workflow, permissions) but do not propose changes to it.
@@ -80,7 +87,9 @@ Fill every section. Apply the case's `exclusions` from `case.yaml`. Rules:
   line range, the touchpoints counted by label, which layers were and were not read, and
   the two or three questions only engineering can answer. Then the touchpoints with labels
   and paths.
-- Voice of the customer: propose three quotes from the discovery quote bank (section 4b)
+- Voice of the customer (after an intake, from `.pm/evidence/quotes.md`; with no quote
+  attached to the opportunity, write "No verbatim customer evidence logged yet" and
+  skip the proposal): propose three quotes from the discovery quote bank (section 4b)
   for section 1. The PM picks two at the scope check-in. Copy them verbatim as
   blockquotes with the attribution line beneath (`QUO-###`, role, date, URL). Never edit a
   quote.
@@ -112,8 +121,10 @@ conversation. How to start it depends on the host (shared rules section 11):
 
 The reviewer does not see this conversation, so on every host the prompt must contain:
 
-- Absolute paths of `outputs/01-discovery.md`, `outputs/02-prototype.md`,
-  `outputs/03-prd.md`, `outputs/prototype/index.html`.
+- Absolute paths of `outputs/03-prd.md` and of whichever of `outputs/01-discovery.md`,
+  `outputs/02-prototype.md`, and `outputs/prototype/index.html` exist. When an input came
+  from an intake, also `.pm/evidence/backlog.md`, `.pm/evidence/quotes.md`, and
+  `.pm/intake/flow.md`, and one line saying which inputs are PM-provided.
 - Absolute path of each source root (a clone under `sources/`, or the repository itself
   in in-repo mode) and its pinned SHA, with a note when the working tree has uncommitted
   changes. In in-repo mode tell the reviewer it must not read `outputs/` or `.pm/` as
@@ -162,10 +173,13 @@ confirms the open product questions. Record `D-###`.
 
 ## Step 7: Save and close
 
-- Set the PRD status to `ready-for-engineering-review`; fill section 11 and Appendix A;
-  copy the draft to `outputs/03-prd.md` and delete the draft.
+- Set the PRD status to `ready-for-engineering-review`, adding the inputs in brackets
+  when any came from an intake (`intake.md`, "What changes downstream"); fill the
+  `Based on` row, section 11, and Appendix A; copy the draft to `outputs/03-prd.md` and
+  delete the draft.
 - Complete `outputs/03-prd-review.md` with the approved dispositions.
-- Update `session.yaml`: `stages.prd` (`status: approved`, `revision` +1, `approved_at`),
+- Update `session.yaml`: `stages.prd` (`status: approved`, `revision` +1, `approved_at`,
+  `inputs`),
   `stage.current: done`, `stage.status: approved`.
 - Source check; record `clean_at_end`.
 - Close with three lines: what Claude contributed, what the PM decided, and the

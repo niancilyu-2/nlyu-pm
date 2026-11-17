@@ -8,7 +8,7 @@ exercise. Everything Claude produces lands in files you can open in any text edi
 Not installed yet? Do [SETUP.md](SETUP.md) first.
 
 Using OpenAI Codex? The flow is the same with four differences: type
-`$scout`, `$prototype`, `$prd`, and `$create-skill` instead of the `/nlyu-pm:` commands;
+`$scout`, `$prototype`, `$prd`, `$log`, `$weekly`, and `$create-skill` instead of the `/nlyu-pm:` commands;
 use `/new` where this says `/clear`; readiness skips the Claude Design check and the
 prototype is always a standalone HTML file; and your own skill lands in
 `.agents/skills/` instead of `.claude/skills/`. Where this says Claude, read Codex.
@@ -176,7 +176,35 @@ you.
 
 Files: `.claude/skills/<name>/SKILL.md`, `outputs/04-skill-summary.md`.
 
-## 8. Problems
+## 8. Between cycles: `/nlyu-pm:log` and `/nlyu-pm:weekly`
+
+**Log (2 min, any time).** Type `/nlyu-pm:log` and paste a call note, a support thread, a
+review, or a link. Claude saves it (a note from inside your company has names and contact
+details removed), logs one to three signals, and attaches them to an opportunity in your
+backlog or opens a candidate. No check-in.
+
+Check: the reply has three lines and a usage line; a note from inside your company is
+labelled `Evidence (internal)`; a quote appears only if the text held the person's own
+words; nothing in the backlog changed slot.
+
+**Weekly (15 min, about once a week).** Type `/nlyu-pm:weekly`. Claude gathers the week's
+notes, re-reads the public sources on a small budget, recounts the evidence behind each
+opportunity, and writes the digest. One question at the end: keep the order, the one
+change it recommends, or decide later.
+
+Check: every number has its base; the stakeholder update has no IDs, no names, and is at
+most 120 words; nothing moved unless you said so.
+
+Files: `.pm/evidence/`, `outputs/weekly/<year>-W<week>.md`.
+
+**Starting later in the chain.** With the product set up (tell scout "set up only"), run
+`/nlyu-pm:prototype` or `/nlyu-pm:prd` directly. Each offers a short intake for what the
+earlier stage would have supplied.
+
+Check: the file's `Based on` row says which inputs were typed in; nothing you typed is
+labelled Evidence; the PRD status carries the same note in brackets.
+
+## 9. Problems
 
 | You see | Do |
 |---|---|
@@ -192,7 +220,7 @@ Files: `.claude/skills/<name>/SKILL.md`, `outputs/04-skill-summary.md`.
 | Lost your place | Start a new session in the same folder (in a terminal, `/clear`), then the current stage command. It resumes from the files |
 | Your new skill not in `/skills` | Test from a new session in the same folder. If it is still missing, tell Claude; the skill's folder name and its `name` line must match, and Claude fixes that for you |
 
-## 9. Feedback
+## 10. Feedback
 
 If you want to report how a run went, open an issue on GitHub with, per stage:
 
