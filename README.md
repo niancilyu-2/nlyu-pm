@@ -10,9 +10,9 @@
 ║                                                                                   ║
 ║   Product discovery to PRD rapid cycle                                            ║
 ║   4 skills · 2 adversarial reviewer agents · 5 example cases or BYOR              ║
-║   Claude desktop app (Code tab) · Claude Code CLI · OpenAI Codex (experimental)   ║
+║   Claude desktop app (Code tab) · Claude Code CLI · OpenAI Codex                  ║
 ║                                                                                   ║
-║   v0.10.0 · November 16, 2026 · MIT · Claude plugin directory: pending             ║
+║   v0.10.0 · November 16, 2026 · MIT · Claude plugin directory: pending            ║
 ║                                                                                   ║
 ╚═══════════════════════════════════════════════════════════════════════════════════╝
 ```
