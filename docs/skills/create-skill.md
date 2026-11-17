@@ -1,57 +1,38 @@
 # /nlyu-pm:create-skill
 
-The skill builder. It turns one repeatable practice of your own into a small Claude skill that
-lives in your project, tests it once in a fresh session, and revises it once. It is
-independent of the other three skills and needs none of their files.
+The skill builder. It turns one PM practice of your own into a small reusable skill,
+tests it once, and revises it once. It is independent of the other skills.
 
 ## What it produces
 
-`.claude/skills/<name>/SKILL.md`, a skill you can run as `/<name>` in that folder and copy
-to other projects, and `outputs/04-skill-summary.md`: its job and trigger, what Claude does,
-what stays with you, the test and its result, the revision, and reuse instructions.
+`.claude/skills/<name>/SKILL.md`, your skill, and `outputs/04-skill-summary.md`, which
+records what it does, how it was tested, and what stays your call.
 
 ## How a run goes
 
-1. **Prompt versus skill.** One paragraph: a prompt handles one request; a skill captures a
-   method worth reusing, with its own trigger, steps, quality bar, and boundaries.
-2. **Starting point.** Describe a recurring task, or paste a prompt, checklist, or notes
-   you already use. If you typed the task after the command, Claude skips this and asks
-   only for what is missing.
-3. **Four questions**, one at a time. The recurring job and who uses the result. What you
-   provide and what comes out. The three to six steps that make your approach work, and
-   which judgments must stay with you. What a good result must include, what the skill must
-   never assume or invent, and a safe example to test it on. If the idea covers a whole
-   discipline or several outputs, Claude offers two or three narrower jobs instead.
-4. **Scope check-in.** Claude shows the proposed name, trigger, inputs, output, steps, your
-   decision points, quality checks, and exclusions. You approve or narrow it before any
-   file is written.
-5. **Write and validate.** One file, under 1,000 words, manual invocation only so it cannot
-   fire unexpectedly. Claude runs a self-check and the plugin validator.
-6. **Test in a fresh session.** You open a second session in the same folder (a new Code tab session or a second
-   terminal), confirm the
-   skill is listed, run it on the agreed example, and paste the result back. Claude reviews
-   it for trigger clarity, missing context, usefulness, unsupported assumptions, and
-   ownership. If nothing comes back, the summary says "not tested".
-7. **One revision and ownership check-in.** Claude proposes at most one change. You approve
-   it, then state in your own words what the skill automates and what remains your call.
-   Your words go into the summary exactly as typed.
-8. **Summary.** Written, with reuse instructions.
+1. **Starting point.** Describe a task you repeat, or paste a prompt or checklist you
+   already use.
+2. **Four questions**, one at a time: the job, what goes in and comes out, your steps,
+   and what a good result looks like.
+3. **Scope check-in.** Claude shows the proposed skill. You approve or narrow it.
+4. **Write.** One file, run only when you type it.
+5. **Test in a new session.** You run the skill on a safe example and paste the result
+   back.
+6. **One revision.** You approve it, then say in your own words what the skill automates
+   and what remains your judgment.
 
 ## Rules it follows
 
-- Runs only when you type it. The generated skill is manual too until you remove one line.
-- No scripts, subagents, integrations, or custom metadata in the first version.
-- Nothing is installed globally, published, or committed.
-- Writes only the skill file and the summary. Never touches the session file.
+- One job per skill. If the idea is too broad, Claude offers narrower ones.
+- No scripts, integrations, or global install.
+- If you do not test it, the summary says "not tested".
 
 ## Where the details live
 
-`plugins/nlyu-pm/skills/create-skill/SKILL.md` is the skill and
-`plugins/nlyu-pm/resources/project-skill-template.md` the template and self-check.
+`plugins/nlyu-pm/skills/create-skill/SKILL.md` is the skill, and
+`resources/project-skill-template.md` the template.
 
 ## In Codex
 
-Run it as `$create-skill`. The skill is written to `.agents/skills/<name>/SKILL.md` and run
-as `$<name>`. A second small file, `agents/openai.yaml`, keeps it manual; delete it later
-to let Codex choose the skill itself. There is no plugin validator in Codex, so the
-self-check list is the check.
+Run it as `$create-skill`. The skill is written to `.agents/skills/<name>/` and run as
+`$<name>`.

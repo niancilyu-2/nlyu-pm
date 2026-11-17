@@ -9,8 +9,9 @@ before the priority check-in.
 
 ## What to check
 
-1. **Quote verification.** Every `QUO-###` in section 4b names a saved fetch (`from
-   F-###` or `from P-###` for pasted material). Open that file and confirm the quoted
+1. **Quote verification.** Every `QUO-###` in section 4b names a saved file (`from
+   F-###`, `from P-###` for pasted material, or `from N-###` for an internal note
+   captured with `/nlyu-pm:log`). Open that file and confirm the quoted
    words appear in it, in order, with only the cuts the ellipses mark; spelling and
    grammar must match the source, not be corrected. Report each quote as `verified`,
    `differs`, `not found`, or `not checked (PM-held)`. Also flag: over 40 words, a handle
@@ -19,7 +20,9 @@ before the priority check-in.
    header says `truncated: yes`.
 2. **Label audit.** Every `SIG-###` labelled `Evidence` has a URL that appears in
    `index.md`, a source type and rung, and an access date; an item whose URL was never
-   fetched is `Inference` at best. A search snippet labelled `Evidence` is a finding.
+   fetched is `Inference` at best. An item labelled `Evidence (internal)` or `Evidence
+   (PM-provided)` has no fetched URL; it must name a saved `N-###` or `P-###` file that
+   exists and supports the claim. A search snippet labelled `Evidence` is a finding.
    Every number carries its base ("12 of 3,877 ratings"); "many users" is a finding.
    Every `CON-###` names a path, a line range, a commit, one quoted line, and `Status: to
    confirm with engineering`; open the path under the source root and confirm the quoted

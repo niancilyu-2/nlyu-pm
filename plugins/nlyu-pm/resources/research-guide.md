@@ -31,7 +31,9 @@ to the file, one request per address.
   fetch order, under a four-line header: `url:`, `rung:`, `accessed:`, and `truncated:
   yes/no` as far as you can tell. Material the PM pastes goes to `.pm/fetches/P-###.txt`
   with `url:` set to the page they pasted from. Search results go to
-  `.pm/fetches/S-###.txt` with the query in the header; snippets are never quotes.
+  `.pm/fetches/S-###.txt` with the query in the header; snippets are never quotes. An
+  internal note given to `/nlyu-pm:log` goes to `.pm/fetches/N-###.txt` with personal
+  details removed (`evidence-base.md`).
 - Append one line per file to `.pm/fetches/index.md`: `F-004 · <url> · rung 1 · accessed
   2026-10-01 · SIG-002, SIG-005` (the signal IDs are added as you log them).
 - A source read with PM-held access is the exception: its response is never written to

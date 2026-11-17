@@ -16,7 +16,7 @@ place), the case id and lane id, and the review checklist.
 1. Read the checklist in the prompt first. Then read the draft brief in full, then
    `index.md` in the fetch folder, then the case file's `exclusions`.
 2. For every quote in the brief's quote bank, open the saved fetch file its attribution
-   line names (`from F-###` or `from P-###`) and confirm the words appear there, in order,
+   line names (`from F-###`, `from P-###`, or `from N-###`) and confirm the words appear there, in order,
    with only the cuts the ellipses mark. Use Grep on a distinctive fragment, then Read
    around the match. A quote whose file does not contain it is `not found`; a quote whose
    file contains it with different words is `differs`; a quote marked `PM-held` has no

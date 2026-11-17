@@ -2,12 +2,12 @@
 
 | Field | Value |
 |---|---|
-| Status | draft / ready-for-engineering-review |
+| Status | draft / ready-for-engineering-review (with the inputs in brackets when any was typed in at an intake) |
 | Approved | <date and time, or not yet> |
 | Revision | <n> |
 | Product · case lane | <product> · <lane> |
 | Source commits | <owner/repo @ sha>; <companion @ sha> |
-| Based on | 01-discovery.md rev <n> (OPP-###) · 02-prototype.md rev <n> |
+| Based on | 01-discovery.md rev <n> (OPP-###) · 02-prototype.md rev <n>; or, for an input typed in at an intake, OPP-### (PM-provided, no discovery brief) · flow from .pm/intake/flow.md (not prototyped) |
 | Review | outputs/03-prd-review.md |
 | Run summary | <stage summary line, written at close> |
 
@@ -19,7 +19,7 @@
 - Desired outcome: <…>
 - Persona: <the role, not a synthetic name; synthetic names stay in the prototype>
 - Supporting evidence: SIG-### … · CON-### …
-- Voice of the customer, two quotes chosen by the PM from the discovery quote bank:
+- Voice of the customer, two quotes chosen by the PM from the quote bank (or "No verbatim customer evidence logged yet"):
 
 > "<verbatim>"
 

@@ -1,13 +1,21 @@
 # PRD review checklist (passed to `nlyu-pm:prd-reviewer`)
 
 The reviewer does not see the conversation. `/nlyu-pm:prd` sends it: the paths of
-`outputs/01-discovery.md`, `outputs/02-prototype.md`, `outputs/03-prd.md`, the source
-roots with their commits, the case id and lane, the selected opportunity ID, and this
-checklist.
+`outputs/03-prd.md` and of whichever of `outputs/01-discovery.md` and
+`outputs/02-prototype.md` exist, the source roots with their commits, the case id and
+lane, the selected opportunity ID, and this checklist. When the PRD started from an
+intake, the prompt says which inputs are PM-provided and gives `.pm/evidence/backlog.md`,
+`.pm/evidence/quotes.md`, and `.pm/intake/flow.md` instead of the missing stage file.
 The reviewer reads only; it returns findings as text. `/nlyu-pm:prd` writes them to
 `outputs/03-prd-review.md`.
 
 ## What to check
+
+**Inputs.** A missing discovery brief or prototype is not a finding when the prompt says
+that input was typed in at an intake. Check instead that the PRD's `Based on` row and
+status say so, that requirements trace to the backlog entry and the intake flow, and that
+nothing the PM typed is labelled `Evidence`. Flag a PM-provided statement presented as
+evidence, and say in the Summary which inputs were PM-provided.
 
 1. **Traceability.** Every `REQ-###` links to the selected `OPP-###` and to at least one
    `SIG-###`, `CON-###`, or an approved prototype screen or state. Every `AC-###` links to a
@@ -17,7 +25,8 @@ The reviewer reads only; it returns findings as text. `/nlyu-pm:prd` writes them
    named, and engineering-only questions are listed. Flag a missing constraint or an
    appendix that reads as verified without saying which layers were left unread.
 3. **Quote provenance.** Every quotation in the PRD carries a `QUO-###` that exists in
-   `01-discovery.md` section 4b with a URL, and the wording matches that entry. Flag any
+   `01-discovery.md` section 4b (or in `.pm/evidence/quotes.md`) with its source, and
+   the wording matches that entry. Flag any
    quote that appears only in the PRD or differs from the bank.
 4. **Unsupported technical claims.** Every technical statement is labelled `Verified`,
    `Inferred`, or `Engineering-owned`. For `Verified`, open the cited path under the source

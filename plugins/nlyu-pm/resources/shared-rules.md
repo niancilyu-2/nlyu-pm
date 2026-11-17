@@ -1,6 +1,7 @@
 # Shared rules for every `nlyu-pm` skill
 
-These rules apply to `/nlyu-pm:scout`, `/nlyu-pm:prototype`, `/nlyu-pm:prd`, and `/nlyu-pm:create-skill`.
+These rules apply to `/nlyu-pm:scout`, `/nlyu-pm:prototype`, `/nlyu-pm:prd`,
+`/nlyu-pm:log`, `/nlyu-pm:weekly`, and `/nlyu-pm:create-skill`.
 Read them at the start of every stage. They override any earlier process instructions in
 the conversation, but approved artifacts and evidence from earlier stages remain valid.
 
@@ -14,7 +15,8 @@ Claude supplies evidence, options, drafts, and challenges. Claude does not make 
 accountable product decision. In practice:
 
 - (`/nlyu-pm:create-skill` is the exception: it records its check-ins only in
-  `outputs/04-skill-summary.md` and never writes `session.yaml`.)
+  `outputs/04-skill-summary.md` and never writes `session.yaml`. `/nlyu-pm:log` has no
+  check-in at all: it files what the PM gave it and decides nothing.)
 - Every check-in shows two clearly separated blocks: **Claude's recommendation** and
   **Your decision**. Never merge them. Never pre-fill the PM's decision.
 - Record only what the PM said or did in this conversation. Do not record actions
@@ -39,9 +41,11 @@ Start with, in this order:
    approved files and evidence from earlier stages stay valid."
 2. **What you will do / what Claude will do / what you decide.** Three short lines,
    taken from the skill's stage objective.
-3. **Re-hydrate.** Read `.pm/session.yaml` and the approved output files this stage depends
-   on. If a dependency is missing or marked stale, say so plainly and stop with the next
-   action (which earlier stage to run).
+3. **Re-hydrate.** Read `.pm/session.yaml` and the approved output files this stage
+   builds on. A stage depends on its inputs, not on the earlier stage having run: if an
+   earlier file is missing, `intake.md` says how the PM can supply the same input in a
+   short intake or run the earlier stage first. If an earlier file is marked stale, say
+   so plainly and stop with the next action (which stage to run again).
 4. **Resume or restart.** If this stage already has saved progress, offer to *resume* or
    *restart*. Running drafts live in `.pm/drafts/` and are copied to `outputs/` only when
    the PM approves the stage, so a restart never overwrites an approved file.
@@ -99,11 +103,17 @@ its path), `Inferred` (you believe it from context), `Engineering-owned` (a deci
 engineering will make).
 
 `Evidence` carries a suffix when it did not come from a public page Claude fetched:
-`Evidence (PM-provided)` for a document or paste the PM supplied, `Evidence (PM-held
-access)` for a source read through a sign-in or key the PM holds (`research-guide.md`,
-"Sources behind a sign-in"). Both keep the URL or file name and the access date.
+`Evidence (PM-provided)` for a public document or paste the PM supplied, `Evidence
+(PM-held access)` for a source read through a sign-in or key the PM holds
+(`research-guide.md`, "Sources behind a sign-in"), and `Evidence (internal)` for a note
+from inside the PM's company given to `/nlyu-pm:log` (a call, a support thread, a
+message). All three keep the URL or file name and the date.
 
-Stable IDs, assigned in order and never reused within a workspace:
+A statement the PM typed at an intake (`intake.md`) is labelled `PM-provided` and is not
+evidence of any kind until a logged signal supports it.
+
+Stable IDs, assigned in order across every run and never reused within a workspace
+(`evidence-base.md` says how to continue the numbering):
 
 - Signals `SIG-###` · Quotes `QUO-###` · Constraints `CON-###` · Opportunities `OPP-###`
 - Requirements `REQ-###` · Acceptance criteria `AC-###` · Open questions `OPEN-###`
@@ -140,6 +150,13 @@ Stable IDs, assigned in order and never reused within a workspace:
   subscription or sign-in that the PM set up as `pm-held` and confirmed they may read this
   way (`research-guide.md`, "Sources behind a sign-in"). Items from such sources are
   labelled `Evidence (PM-held access)`.
+- One more exception, in `/nlyu-pm:log` only: the PM may paste a note of their own
+  choosing from inside their company (a call, a support thread, a message, meeting
+  notes). It is an excerpt, never an export of many people's records. It is saved only
+  under `.pm/fetches/` with personal names, email addresses, phone numbers, and account
+  numbers removed, labelled `Evidence (internal)` wherever it appears, and never sent
+  anywhere by the plugin. No other stage asks for internal material, and the prototype
+  still uses synthetic data.
 - Prototypes are exercise artifacts. Do not copy source files or large code blocks
   from the source root into `outputs/`.
 
@@ -153,7 +170,8 @@ If the PM changes an approved upstream decision (for example, picks a different
    `status: stale`.
 3. Tell the PM exactly which files must be refreshed and which skill to run.
 
-Do not silently edit later files to match.
+Do not silently edit later files to match. The same applies when `/nlyu-pm:weekly`
+records a different `Now`.
 
 ## 7. Session hygiene
 
@@ -181,6 +199,8 @@ Suggested time budget per stage:
 | Prototype (`/nlyu-pm:prototype`) | 60 |
 | PRD (`/nlyu-pm:prd`) | 45 |
 | Skill builder (`/nlyu-pm:create-skill`) | 30 |
+| Capture (`/nlyu-pm:log`), each time | 2 |
+| Weekly refresh (`/nlyu-pm:weekly`) | 15 |
 
 ## 9. Usage line
 
@@ -194,6 +214,8 @@ separators and keep it under 100 characters. Omit any field that does not apply 
 | Prototype | `Prototype · step 7/11 · path html · revision 0 · 22 min · sources clean` |
 | PRD | `PRD · step 4/7 · REQ 6 · AC 9 · findings 0 · 18 min · sources clean` |
 | Skill builder | `Skill builder · step 5/8 · skill meeting-recap · test pending · 12 min` |
+| Capture | `Log · SIG-031 · attached OPP-002 · 6 signals, 3 source types · 1 min` |
+| Weekly refresh | `Weekly · step 3/6 · fetches 4/8 · captured 5 · new 3 · moved 2 · 9 min · sources clean` |
 
 Count fetches and searches yourself as you make them; the budget lives in
 `research-guide.md`. Elapsed minutes come from the start time you recorded with `date`.
@@ -207,7 +229,8 @@ in capitals if it was not empty. During readiness, the line is
 step), print one summary line after the closing lines, and write the same text into the
 `Run summary` row of the output file's header table (and, for the three product stages,
 into `stages.<stage>.summary` in `session.yaml`). It states what the run spent and what
-it produced, from the counters you already keep and the start time you recorded:
+it produced, from the counters you already keep and the start time you recorded
+(`/nlyu-pm:log` has no summary line; its usage line is its report):
 
 | Stage | Format |
 |---|---|
@@ -215,6 +238,7 @@ it produced, from the counters you already keep and the start time you recorded:
 | Prototype | `Prototype complete · 52 min · path html · walkthrough findings 4 · revisions 1 · approved` |
 | PRD | `PRD complete · 41 min · REQ 8 · AC 12 · findings 5, blocking 2, all resolved · ready-for-engineering-review` |
 | Skill builder | `Skill builder complete · 27 min · skill meeting-recap · tested once · revised once` |
+| Weekly refresh | `Weekly complete · 14 min · captured 5 · fetches 7/8 · new signals 4 · moved 2 · order kept` |
 
 Write `provisional` in place of `approved` when the stage was cut short. Minutes are
 elapsed time from the recorded start, including any resume. Do not report token counts
@@ -263,7 +287,7 @@ everywhere, including in what you say to the PM and what you write into files.
 
 | In these files | Claude Code | Codex |
 |---|---|---|
-| A stage command, `/nlyu-pm:<stage>` | `/nlyu-pm:scout`, `/nlyu-pm:prototype`, `/nlyu-pm:prd`, `/nlyu-pm:create-skill` | `$scout`, `$prototype`, `$prd`, `$create-skill` (or chosen from `/skills`) |
+| A stage command, `/nlyu-pm:<stage>` | `/nlyu-pm:scout`, `/nlyu-pm:prototype`, `/nlyu-pm:prd`, `/nlyu-pm:log`, `/nlyu-pm:weekly`, `/nlyu-pm:create-skill` | `$scout`, `$prototype`, `$prd`, `$log`, `$weekly`, `$create-skill` (or chosen from `/skills`) |
 | "Claude", the assistant's name | Claude | Codex. Check-in blocks read **Codex's recommendation** and **Your decision** |
 | `<skills-dir>`, the project skills folder | `.claude/skills/` | `.agents/skills/` |
 | The repository guidance file the host loads | `CLAUDE.md` | `AGENTS.md` |

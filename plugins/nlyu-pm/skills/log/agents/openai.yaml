@@ -1,0 +1,7 @@
+# Codex metadata. Claude Code ignores this file and reads SKILL.md frontmatter instead.
+interface:
+  display_name: "Log (Capture)"
+  short_description: "File a note, quote, or link as evidence in two minutes"
+
+policy:
+  allow_implicit_invocation: false   # same effect as disable-model-invocation: true

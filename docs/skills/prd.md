@@ -1,88 +1,49 @@
 # /nlyu-pm:prd
 
-The delivery PRD skill. It turns the approved discovery brief and prototype into an
-engineering handoff grounded in the product's code, and has a separate read-only agent
-review it before you sign it off.
+The PRD skill. It writes an engineering handoff grounded in the product's code and has an
+independent reviewer check it before you sign it off.
 
 ## What it produces
 
-`outputs/03-prd.md`, the delivery PRD, with status `ready-for-engineering-review`, and
-`outputs/03-prd-review.md`, the independent review with each finding and how you settled
-it.
+`outputs/03-prd.md`, the PRD, with status `ready-for-engineering-review`, and
+`outputs/03-prd-review.md`, the review with each finding and how you settled it.
 
 ## Before you start
 
-Both the discovery brief and the prototype must be approved and current. If either is
-missing or stale, the skill stops and says which one to rerun.
+A product that is set up. The PRD needs an opportunity and a flow. It takes them from
+the discovery brief and the prototype when they exist. For whichever is missing, Claude
+asks you for it in a short intake, and the PRD says which inputs were typed in.
 
 ## How a run goes
 
-1. **Find the code that would change.** Starting from the focus area's entry points and
-   the prototype's references, Claude locates the UI, state, permission, and API code most
-   likely involved. Anything it opened is `Verified` with a path. Anything it did not open
-   is `Inferred`. It reopens every constraint from the discovery brief at its cited line
-   range before labelling anything verified.
-2. **Draft the PRD.** Problem and evidence with two customer quotes, goals and non-goals,
-   the approved flow and states, requirements with IDs, acceptance criteria with IDs, state
-   behaviour, success measures, quality needs, rollout considerations, risks and open
-   questions, the decision record, and an engineering appendix that opens with a
-   feasibility read: each constraint re-checked, touchpoints by label, layers not read, and
-   the questions only engineering can answer.
-3. **Scope check-in**, in two short turns. First the problem, quotes, goals, and non-goals.
-   Then behaviour, states, and acceptance criteria as yes or no items. You approve or edit,
-   and you pick which two quotes go in.
-4. **Independent review.** Claude sends the files, the source roots (a clone, or your own
-   repository), and a checklist to a reviewer agent that has not seen the conversation and
-   can only read. It checks
-   traceability, unsupported technical claims, quote provenance, missing states or
-   permissions, untestable criteria, scope conflicts, delivery risks, and blocking open
-   questions.
-5. **Settle each finding.** Blocking ones first. Fix it in the PRD, turn it into a
-   nonblocking engineering question, or accept it with a note. A blocking finding cannot be
-   deferred.
-6. **Handoff check-in.** You approve the dispositions and confirm the open product
-   questions.
-7. **Save.** PRD and review written, session updated.
-
-## Traceability
-
-Everything in the PRD points back to something earlier.
-
-```mermaid
-flowchart LR
-  SIG["SIG-### signals<br/>QUO-### quotes"] --> OPP["OPP-###<br/>chosen by the PM"]
-  CON["CON-### constraints<br/>commit, path, lines"] --> OPP
-  OPP --> FLOW["approved flow<br/>main path + 2 states"]
-  FLOW --> REQ["REQ-###"] --> AC["AC-###"]
-  QUO["two quotes,<br/>PM-chosen"] --> PRD["03-prd.md"]
-  REQ --> PRD
-  AC --> PRD
-  CON --> PRD
-  PRD --> REV["nlyu-pm:prd-reviewer<br/>read-only, no conversation"]
-```
+1. **Find the code that would change.** Anything Claude opened is `Verified` with a
+   path. Anything it did not open is `Inferred`.
+2. **Draft the PRD.** Problem and evidence, goals and non-goals, the flow and its states,
+   requirements, acceptance criteria, risks, open questions, and an appendix for
+   engineering.
+3. **Scope check-in.** You approve or edit, and pick the two customer quotes.
+4. **Independent review.** A reviewer that has not seen the conversation checks that
+   every requirement traces to evidence, every technical claim holds, and every
+   acceptance criterion can be tested.
+5. **Settle each finding.** Fix it, turn it into a question for engineering, or accept it
+   with a note. Blocking findings must be fixed.
+6. **Handoff check-in.** You approve the result and confirm the open questions.
 
 ## Rules it follows
 
-- Technical statements are `Verified` with a path, `Inferred`, or `Engineering-owned`.
-  Architecture, implementation design, and estimates are engineering's.
-- No estimates, story points, delivery dates, or costs anywhere.
-- A question may stay open for engineering only if answering it would not change scope,
-  user behaviour, data or security behaviour, or acceptance criteria.
-- Every constraint keeps "to confirm with engineering" until an engineer signs it off.
-- Every reply ends with a status line: step, requirement and criteria counts, findings,
-  minutes, source folder status.
-- The stage closes with one summary line (minutes, requirement and criteria counts,
-  findings and how many were blocking, status), repeated in the PRD's header.
+- Architecture, implementation design, and estimates belong to engineering.
+- No estimates, story points, delivery dates, or costs.
+- A question stays open for engineering only if its answer would not change scope,
+  behaviour, or acceptance criteria.
+- Every requirement points back to an opportunity and its evidence.
 
 ## Where the details live
 
-`plugins/nlyu-pm/skills/prd/SKILL.md` is the skill, `plugins/nlyu-pm/agents/prd-reviewer.md` the
-reviewer, `plugins/nlyu-pm/resources/prd-review-checklist.md` what it checks, and
-`plugins/nlyu-pm/resources/templates/03-prd.md` the PRD template.
+`plugins/nlyu-pm/skills/prd/SKILL.md` is the skill, `agents/prd-reviewer.md` the
+reviewer, `resources/prd-review-checklist.md` what it checks, and
+`resources/templates/03-prd.md` the template.
 
 ## In Codex
 
-Run it as `$prd`. The PRD reviewer runs as a fresh subagent given
-`agents/prd-reviewer.md` as its instructions; Codex cannot restrict its tools the way
-Claude Code does, so the skill checks before and after that it changed no file and
-reports it if it did.
+Run it as `$prd`. The reviewer runs as a separate subagent, and the skill checks
+afterwards that it changed no file.

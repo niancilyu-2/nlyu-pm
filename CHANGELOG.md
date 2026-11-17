@@ -5,6 +5,34 @@ All notable changes to the `nlyu-pm` plugin are recorded here. Bump `version` in
 `.claude-plugin/marketplace.json` whenever a changed build is distributed, otherwise existing installs will not refresh.
 Update the version line in the README banner at the same time.
 
+## 0.11.0 (2026-11-16)
+
+- New skill `/nlyu-pm:log`: file one piece of evidence in about two minutes (a call note,
+  a support thread, a message, a review, a link), saved with personal details removed,
+  logged as one to three signals with any verbatim quote, and attached to an opportunity
+  or opened as a candidate. No check-in; never ranks, never marks a stage stale.
+- New skill `/nlyu-pm:weekly`: a fifteen-minute refresh that gathers what was captured,
+  re-reads the public sources within 8 fetches and 3 searches, recounts the evidence
+  behind each opportunity, and writes `outputs/weekly/<year>-W<week>.md` with a
+  paste-ready stakeholder update. One question at the end; a changed `Now` marks later
+  stages stale.
+- A lasting evidence base and backlog under `.pm/evidence/` (`resources/evidence-base.md`),
+  shared by scout, log, weekly, and the later stages. IDs continue across runs. Scout
+  reads it before the research pass and appends to it at close; a workspace from an
+  earlier version is migrated from its discovery brief on first use.
+- Prototype and PRD depend on their inputs, not on the earlier stage having run. When
+  the earlier file is missing they offer a short intake (`resources/intake.md`); what the
+  PM types is labelled `PM-provided`, the file's `Based on` row and the PRD status say so,
+  and the reviewer checks against what exists. Scout accepts "set up only" and stops once
+  the product and focus area are saved.
+- New label `Evidence (internal)` for a note from inside the PM's company, accepted only
+  in `/nlyu-pm:log`; the public-only rule and both READMEs state the exception. Saved
+  notes use the `N-###` prefix, and the discovery reviewer verifies quotes against them.
+- `session.yaml` gains `weekly`, `evidence`, and `stages.<stage>.inputs`; `intake` and
+  `weekly-check` join the check-in kinds. Banner and docs count six skills.
+- README, walkthrough, and skill pages rewritten shorter and plainer: about a quarter
+  less text, the same headings and links.
+
 ## 0.10.1 (2026-11-16)
 
 - Codex setup section now matches the other two: a time estimate, numbered steps, its

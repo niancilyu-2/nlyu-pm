@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | Status | draft / approved |
-| Based on | outputs/01-discovery.md rev <n> · OPP-### |
+| Based on | outputs/01-discovery.md rev <n> · OPP-###, or OPP-### (PM-provided, no discovery brief) |
 | Path used | Claude Design / HTML fallback |
 | File | outputs/prototype/index.html |
 | Surface · viewport | <surface> · <w>×<h> |

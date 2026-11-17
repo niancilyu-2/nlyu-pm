@@ -141,12 +141,24 @@ Record `sources[]` in `session.yaml` with `root` and `method`. Run the source ch
 `workspace.md` (empty status for a clone, baseline for an in-place tree) and record
 `clean_at_start`.
 
-Set `stage.current: discovery`, `stage.status: in-progress`,
+**Set up only.** If the PM said they only want the product set up (to use `/nlyu-pm:log`
+or `/nlyu-pm:weekly`, or to start at a later stage), stop here. Set `stage.current: setup`,
+leave `stages.discovery.status` as it is, and say in three lines that the product is set
+up and what is now available: `/nlyu-pm:log` any time, `/nlyu-pm:weekly` about once a
+week, `/nlyu-pm:prototype` or `/nlyu-pm:prd` starting from a short intake, or
+`/nlyu-pm:scout` again for the full research pass.
+
+Otherwise set `stage.current: discovery`, `stage.status: in-progress`,
 `stages.discovery.status: in-progress`.
 
 ## Step 5: Public research pass (the source ladder)
 
 Follow `<plugin-root>/resources/research-guide.md` exactly. Record the start time.
+Read `<plugin-root>/resources/evidence-base.md` and, if `.pm/evidence/` exists, its log,
+quotes, and backlog first. Signals already logged for this focus area (by
+`/nlyu-pm:log`, `/nlyu-pm:weekly`, or an earlier run) count as items already collected and
+keep their IDs; name how many in the source plan ("already captured: 5 notes and items").
+A public address with a saved file less than seven days old is cited, not fetched again.
 Tell the PM once what a rung is: one kind of public source, and the ladder is
 the order you read them in. Read the `feeds:` block of the case's `case.yaml` (from
 `case.dir`), and `.pm/sources.yaml` if it exists. The sources `feeds:` can hold, all
@@ -237,7 +249,8 @@ continue, do one more targeted fetch (say which rung), or narrow the framing. Re
 
 ## Step 8: Draft three opportunities
 
-Write exactly three `OPP-###` entries. Each names one actor and one job, cites its
+Write exactly three `OPP-###` entries. An opportunity or candidate already in the backlog
+for this focus area keeps its ID if it is one of the three. Each names one actor and one job, cites its
 supporting IDs and the quote IDs that voice it, carries one evidence line in the research
 guide's fixed shape (signals, source types, strongest weight, counter-evidence, constraints), and gives one short phrase for each of the five lenses: evidence strength,
 user impact, mandate fit, delivery constraints, uncertainty. Do not compute a score. Check
@@ -349,6 +362,10 @@ without arguing.
 - Update `session.yaml`: `stages.discovery` (`status: approved`, `revision` +1,
   `approved_at`, `selected_opportunity`, `provisional`, `review`), `stage.current: prototype`,
   `stage.status: not-started`.
+- Append this run's signals, constraints, and quotes to the evidence base, and write the
+  three opportunities to the backlog with their slots, `Origin: discovery brief rev n`,
+  and the decision ID (`evidence-base.md`). Items that were already there are not
+  duplicated.
 - Run the source check again; record `clean_at_end`.
 - Close with three lines: what Claude contributed, what the PM decided, and the
   next command: a new session in the same folder (`/clear` in a Claude Code terminal, `/new` in Codex), then
