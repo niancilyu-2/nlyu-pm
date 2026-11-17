@@ -14,6 +14,7 @@ workspace: "/absolute/path/to/workspace"
 workspace_mode: wrapper          # wrapper | in-repo              (see workspace.md)
 outputs_dir: outputs             # outputs | pm-outputs           (pm-outputs only when outputs/ was already in use)
 parent_repo: null                # path of a larger repository this wrapper folder sits inside, once the PM agreed (workspace.md)
+workspace_check: null            # null | inside-parent-repo | shared-folder | unversioned-product   (set once the PM answered the workspace check)
 
 readiness:
   status: ready                  # ready | ready-with-fallback | blocked | not-run
@@ -126,7 +127,7 @@ sparse-clone` as itself. Rewrite the file as `schema: 2` on the next write.
 
 | Key | Written by |
 |---|---|
-| `schema`, `plugin_version`, `created_at`, `workspace`, `workspace_mode`, `outputs_dir`, `parent_repo`, `readiness`, `case`, `sources` | `/nlyu-pm:scout` |
+| `schema`, `plugin_version`, `created_at`, `workspace`, `workspace_mode`, `outputs_dir`, `parent_repo`, `workspace_check`, `readiness`, `case`, `sources` | `/nlyu-pm:scout` |
 | `sources[].baseline`, `clean_at_start`, `clean_at_end`, `moved_to` | any stage skill, at its start and end |
 | `stage`, `stale` | any stage skill that changes the current stage |
 | `stages.discovery` | `/nlyu-pm:scout` |

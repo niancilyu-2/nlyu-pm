@@ -16,79 +16,124 @@ Read access is the only access any mode needs. No mode writes into the repositor
 pushes anything, so a PM with read-only rights to a production repository can use all of
 them.
 
-`/nlyu-pm:scout` decides the mode during readiness by running `git rev-parse --show-toplevel`
-in the current folder:
+`/nlyu-pm:scout` decides the mode during readiness. A folder that is plainly one of the
+two modes goes straight ahead. Any other folder is not refused: it gets the workspace
+check below, and the PM decides. `Blocked` is kept for what cannot be worked around: Git
+missing, a folder that cannot be written to, no web access.
 
-- It fails: **wrapper** mode. The folder must be empty or contain only `.claude/`, `.agents/`, `.codex/`, `.pm/`,
-  `outputs/`, `sources/`, `.gitkeep`, or the hidden files Finder and Explorer leave behind
-  (`.DS_Store`, `Thumbs.db`, `desktop.ini`). Anything else is `Blocked` with the next
-  action: "create a new empty folder called `pm-workspace`, open it in the Code tab (or
-  open a terminal there and run `claude`; in Codex, open it in the Codex app or run
-  `codex` there), then `/nlyu-pm:scout` again".
-- It succeeds and equals the current folder, and the repository has at least one tracked
-  file (`git ls-files | head -1` prints something): **in-repo** mode. Tell the PM: "You
-  started inside the repository `<folder name>`. I will treat it as your product, read it
-  without changing any tracked file, and write my files to `outputs/` and `.pm/`." Ask
-  them to confirm, or to create an empty folder instead if they wanted an example case.
-- It succeeds but points to a parent folder: the current folder sits inside a larger
-  repository. What happens depends on what is in the current folder; see "A folder inside
-  another repository" below. Never go ahead without telling the PM first.
-- It succeeds but there are no tracked files (an empty folder that was `git init`ed):
-  treat as wrapper mode.
+Run `git rev-parse --show-toplevel` in the current folder, and look at what the folder
+holds. "Empty" means it holds nothing, or only `.claude/`, `.agents/`, `.codex/`, `.pm/`,
+`outputs/`, `sources/`, `.gitkeep`, or the hidden files Finder and Explorer leave behind
+(`.DS_Store`, `Thumbs.db`, `desktop.ini`).
+
+| Git says | The folder | Result |
+|---|---|---|
+| Not a repository | empty | **wrapper** mode, no questions |
+| Not a repository | holds other files | workspace check, "A folder that is not empty" |
+| This folder is the top of a repository | has tracked files (`git ls-files \| head -1` prints something) | **in-repo** mode, after the confirmation below |
+| This folder is the top of a repository | no tracked files (an empty folder that was `git init`ed) | treat as "Not a repository" |
+| The top is a parent folder | anything | workspace check, "A folder inside another repository" |
+
+In-repo confirmation. Tell the PM: "You started inside the repository `<folder name>`. I
+will treat it as your product, read it without changing any tracked file, and write my
+files to `outputs/` and `.pm/`." Ask them to confirm, or to create an empty folder
+instead if they wanted an example case.
 
 In both modes Claude must be able to create a file (write and delete `.pm/.write-test`).
+If it cannot, that is `Blocked`.
+
+### The workspace check
+
+For a folder that is neither clearly empty nor clearly the PM's repository. Verify four
+things first, without asking, then say what you found and ask one question. Never go
+ahead on an unusual folder without the PM's answer.
+
+1. **What is here.** List the top level (names only, at most twenty, then "and n more").
+   Note which entries Git tracks and, if there is a parent repository, its path. Do not
+   open the files.
+2. **Where the plugin would write.** Check that `.pm/`, `sources/`, and `outputs/` are
+   free or were made by this plugin. If `outputs/` is in use, plan on `pm-outputs`
+   (below). If `.pm/` or `sources/` holds something the plugin did not write, this
+   folder cannot be used; skip to the "new folder" way out.
+3. **That writing works.** Write and delete `.pm/.write-test`.
+4. **How the product will be kept unchanged.** Name the check that will run at the start
+   and end of every stage (Source protection, below): Git's own status for a repository,
+   a time stamp for a folder without Git.
+
+Then read back in at most four lines: what the folder is, what you would treat as the
+product (or that the product comes later, from a URL or an example case), where you
+would write, and how you will show that nothing else changed. Ask the question the case
+below gives. Record the answer as a `D-###` with `checkin: workspace`, in the PM's
+words, and write `workspace_check` in `session.yaml` (`session-schema.md`). Once it is
+recorded, do not ask again; each later stage says it once in its opening lines, for
+example "Workspace shared with other files, as agreed."
+
+One way out is always offered and always works, so the PM is never stuck: **Use a new
+empty folder.** Offer to create it for them: `pm-workspace` inside the current folder
+when there is no parent repository, otherwise a path outside the parent repository that
+the PM names (suggest `C:\pm-workspace` on Windows, `~/pm-workspace` elsewhere, when
+those are outside it). Create it only on a yes. Then stop with the status `Blocked` and
+the next action: "open `<that folder>` and run `/nlyu-pm:scout` again". A session cannot
+move itself to another folder, so this step is the PM's.
+
+### A folder that is not empty
+
+Not a repository, and it holds files of its own. After the workspace check, ask (header
+`Folder`, "What is in this folder?") with three options:
+
+- **My product's code.** An unpacked copy without Git. Use **in-repo** mode with no
+  version history: record the source as `method: in-place`, `root: "."`,
+  `pinned_sha: null`, and protect it with the time-stamp check (Source protection, "In
+  place, no Git"). Citations name the folder and the date it was read ("unversioned
+  copy, read 2026-11-18") instead of a commit, and the discovery brief says the snapshot
+  is unpinned, as for an archive. Skip any step that needs Git history (for example the
+  `git log` in `/nlyu-pm:weekly`) and say so in one line.
+- **Other files; use this folder anyway.** **Wrapper** mode. The plugin never opens,
+  moves, renames, or deletes anything it did not create, and treats none of it as the
+  product or as evidence. Say which folders it will add (`.pm/`, `outputs/` or
+  `pm-outputs/`, `sources/`).
+- **Use a new empty folder.** As above.
 
 ### A folder inside another repository
 
 This happens most often by accident: a home folder (`C:\Users\<name>`, `/Users/<name>`)
 that was once turned into a Git repository makes every folder under it, including a new
-`pm-workspace` on the Desktop, count as "inside a repository". It also happens on
-purpose, when the PM opens one folder of a larger repository. Call the path that
-`git rev-parse --show-toplevel` printed the *parent repository*.
+`pm-workspace` on the Desktop, count as "inside a repository". Call the path that
+`git rev-parse --show-toplevel` printed the *parent repository*. Run
+`git ls-files . | head -1` in the current folder.
 
-Run `git ls-files . | head -1` in the current folder and look at what the folder holds:
+- **Nothing in the folder is tracked** (the command prints nothing). After the workspace
+  check, say:
 
-- **Empty, and nothing in it is tracked** (the command prints nothing, and the folder
-  holds only what an empty wrapper folder may hold, listed above): it can be used as a
-  wrapper workspace, but only after the PM has seen the flag and said yes. Say, before
-  doing anything else:
+  > This folder sits inside another Git repository at `<parent repository path>`. That
+  > is usually a home folder that was made into a repository at some point. I can still
+  > work here. I will not read or change that repository. The files I create will show
+  > up in it as new, untracked files unless I hide them.
 
-  > This folder is empty, but it sits inside another Git repository at `<parent
-  > repository path>`. That is usually a home folder that was made into a repository at
-  > some point. I can still work here. I will not read or change that repository. The
-  > files I create will show up in it as new, untracked files unless I hide them.
-
-  Then ask one question (header `Folder`, "Use this folder as your workspace?") with two
-  options: **Use this folder** and **Use a different folder**. Wait for the answer.
-  - *Use this folder:* wrapper mode. Record `parent_repo: <path>` in `session.yaml` and a
-    `D-###` with `checkin: workspace`, in the PM's words. Offer once to hide the workspace
-    from the parent repository by adding this folder's path, relative to the parent
-    repository's top folder, to `<parent repository>/.git/info/exclude` (local to this
-    computer, not a tracked file; never edit a `.gitignore`). From then on, run a git
-    command only inside a source folder (`sources/primary`, or a path the PM named),
-    never in the workspace folder itself: there it would report on the parent repository.
-  - *Use a different folder:* `Blocked`. Next action: "create a new empty folder outside
-    `<parent repository path>` (for example `C:\pm-workspace`, or a folder on another
-    drive), open it, then run `/nlyu-pm:scout` again".
-- **It holds files the parent repository tracks** (the command prints a path): the PM has
-  opened part of a repository. `Blocked`, with a next action that names both ways out:
-  "if that repository is your product, open its top folder `<parent repository path>`
-  and run `/nlyu-pm:scout` again; if you wanted an example case or a different product,
-  create a new empty folder and open that instead". Working from one folder of a larger
-  repository is not supported.
-- **It holds other files, none of them tracked:** `Blocked`, with the same next action as
-  a non-empty folder in wrapper mode.
-
-When `session.yaml` already records `parent_repo`, the PM has agreed; do not ask again.
-Say it once per stage in the opening lines: "Workspace inside the repository at
-`<path>`, as agreed."
+  If the folder is empty, ask (header `Folder`, "Use this folder as your workspace?")
+  with **Use this folder** and **Use a new empty folder**. If it holds files of its own,
+  ask the three-option question from "A folder that is not empty" instead; the same
+  results apply. On any answer that stays here, record `parent_repo: <path>` in
+  `session.yaml` and offer once to hide the workspace from the parent repository by
+  adding this folder's path, relative to the parent repository's top folder, to
+  `<parent repository>/.git/info/exclude` (local to this computer, not a tracked file;
+  never edit a `.gitignore`). From then on, run a git command only inside a source
+  folder (`sources/primary`, or a path the PM named), never in the workspace folder
+  itself: there it would report on the parent repository.
+- **The folder holds files the parent repository tracks** (the command prints a path):
+  the PM has opened one folder of a larger repository. Working from part of a repository
+  is not supported yet. Say so after the workspace check, and give both ways out as the
+  next action, with the status `Blocked`: "if that repository is your product, open its
+  top folder `<parent repository path>` and run `/nlyu-pm:scout` again; if you wanted an
+  example case or a different product, use a new empty folder" (offer to create one, as
+  above).
 
 Record `workspace_mode` and `outputs_dir` in `session.yaml`. `outputs_dir` is `outputs`
-unless, in in-repo mode, a folder called `outputs/` already exists and holds files the
-plugin did not write; then use `pm-outputs` and say so once. Every `outputs/` path in the
+unless a folder called `outputs/` already exists and holds files the
+plugin did not write (in-repo mode, or a wrapper folder shared with other files); then use `pm-outputs` and say so once. Every `outputs/` path in the
 skills means `<outputs_dir>/`.
 
-In in-repo mode, offer once to add `outputs/`, `.pm/`, and `<skills-dir>` to
+In in-repo mode with a Git repository, offer once to add `outputs/`, `.pm/`, and `<skills-dir>` to
 `.git/info/exclude` so they never show as untracked changes. This file is local to the
 PM's machine and is not a tracked file; do not edit `.gitignore`.
 
@@ -263,8 +308,21 @@ git status --porcelain -- . ':!outputs' ':!pm-outputs' ':!.pm' ':!.claude/skills
 
 Store the output as `baseline` under that source in `session.yaml`. At the end of the
 stage run the same command; `clean_at_end` is `true` when the output is identical to the
-baseline. A folder that is not a git repository cannot be checked; record `clean_at_start:
-unknown` and say so once.
+baseline.
+
+**In place, no Git.** A folder without Git (an unpacked copy the PM opened directly, or a
+local path that is not a repository) is checked by time stamp, like an archive, leaving
+out the plugin's own folders when the root is the workspace itself:
+
+```bash
+touch .pm/.source-stamp
+find "<root>" -type f -newer .pm/.source-stamp \
+  -not -path '*/.pm/*' -not -path '*/outputs/*' -not -path '*/pm-outputs/*' \
+  -not -path '*/sources/*' -not -path '*/.claude/skills/*' -not -path '*/.agents/skills/*'
+```
+
+Expected output is empty. Record the result in `clean_at_end`. A change the PM made
+themselves during the stage shows up here too; ask before treating it as a problem.
 
 If a check fails (output where none was expected, or output that differs from the baseline):
 

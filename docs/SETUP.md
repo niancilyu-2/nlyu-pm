@@ -147,7 +147,7 @@ Every reply ends with a status line such as `Scout · step 5/11 · fetches 6/20 
 | Sign-in says your plan does not include Claude Code | You are on the free plan or the wrong account. Sign out and sign in with a Pro, Max, Team, or Enterprise account |
 | `/nlyu-pm:` commands missing | Settings, Plugins: check **nlyu-pm** is installed and enabled, then start a new session in the same folder |
 | Readiness says Git is missing | Step 2, then run `/nlyu-pm:scout` again |
-| Readiness says the folder is inside another repository | Your home folder is probably a Git repository. If the folder is empty you can say yes and carry on; otherwise make a new empty folder outside your home folder (for example `C:\pm-workspace`) and open that |
+| Readiness says the folder is not empty, or is inside another repository | It tells you what it found and asks what to do. You can carry on in that folder, or have it create a new empty folder for you to open. "Inside another repository" usually means your home folder is a Git repository |
 | Path-too-long error on Windows | Ask Claude in the session to run `git config --global core.longpaths true`, then `/nlyu-pm:scout` |
 | Web search policy error | Ignore it. Send the error text to whoever manages your Claude account |
 | Screen looks stuck | Escape or the stop button. If nothing changes, start a new session in the same folder and rerun the stage command |
@@ -299,7 +299,7 @@ Every reply ends with a status line such as `Scout · step 5/11 · fetches 6/20 
 | Sign-in says your plan does not include Claude Code | You are on the free plan or the wrong account. Type `/logout`, then sign in with a Pro, Max, Team, or Enterprise account |
 | `/nlyu-pm:` commands missing | `/plugin marketplace update nlyu-pm`, then `/plugin install nlyu-pm@nlyu-pm` |
 | Git missing | Step 4, then reopen the terminal and run `/nlyu-pm:scout` |
-| Readiness says the folder is inside another repository | Your home folder is probably a Git repository. If the folder is empty you can say yes and carry on; otherwise make a new empty folder outside your home folder (for example `C:\pm-workspace`) and open that |
+| Readiness says the folder is not empty, or is inside another repository | It tells you what it found and asks what to do. You can carry on in that folder, or have it create a new empty folder for you to open. "Inside another repository" usually means your home folder is a Git repository |
 | Path-too-long error on Windows | `git config --global core.longpaths true`, then `/nlyu-pm:scout` |
 | Web search policy error | Ignore it. Send the error text to whoever manages your Claude account |
 | Screen looks stuck | Escape. If nothing changes, `/exit`, start `claude` again, rerun the stage command |
@@ -383,7 +383,7 @@ Every reply ends with a status line such as `Scout · step 5/11 · fetches 6/20 
 | `$scout` is not listed | In a terminal, `codex plugin marketplace list` should show nlyu-pm. If it does, open `/plugins`, install **nlyu-pm**, and start a new thread |
 | `codex plugin` is not a command | Update Codex to the current version, then repeat step 2 |
 | Codex keeps asking before each download | Approve network access for the session when it asks |
-| Readiness says the folder is inside another repository | Your home folder is probably a Git repository. If the folder is empty you can say yes and carry on; otherwise make a new empty folder outside your home folder (for example `C:\pm-workspace`) and open that |
+| Readiness says the folder is not empty, or is inside another repository | It tells you what it found and asks what to do. You can carry on in that folder, or have it create a new empty folder for you to open. "Inside another repository" usually means your home folder is a Git repository |
 | The review step says "same session (not independent)" | Codex could not start a separate reviewer, so the check ran in the same session. The review file says so; the findings still apply |
 | Asked to type `/design` | Not available in Codex. Say so, and the prototype is built as an HTML file |
 | Something behaves differently from this guide | Open an issue at https://github.com/niancilyu-2/nlyu-pm/issues with the step number |
