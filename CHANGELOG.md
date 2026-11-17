@@ -9,6 +9,8 @@ Update the version line in the README banner at the same time.
 
 - Plugin descriptions in all three manifests mention capturing evidence and the weekly
   digest. The Codex manifest's starter prompts are now `$scout`, `$log`, and `$weekly`.
+- The plugin's display name in Claude Code and Codex is now "PM Toolkit" (was "Product
+  Discovery to PRD"). The install name `nlyu-pm` and the commands are unchanged.
 - New `scripts/check_release.py` and a GitHub Actions workflow that runs it with both
   `claude plugin validate --strict` commands on every pull request. The script checks
   that the version agrees in the three manifests, the README banner, and this file, and
