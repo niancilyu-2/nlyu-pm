@@ -5,6 +5,23 @@ All notable changes to the `nlyu-pm` plugin are recorded here. Bump `version` in
 `.claude-plugin/marketplace.json` whenever a changed build is distributed, otherwise existing installs will not refresh.
 Update the version line in the README banner at the same time.
 
+## 0.11.2 (2026-11-17)
+
+- An unusual workspace folder is no longer refused. Readiness runs a workspace check
+  (what is in the folder, where the plugin would write, that writing works, how the
+  product will be shown unchanged), says what it found, and asks before going on. The
+  answer is recorded as a decision and as `workspace_check` in `session.yaml`.
+- An empty folder inside another Git repository (most often a home folder that was made
+  into a repository by accident) can be used after that question; readiness records
+  `parent_repo` and offers to hide the workspace from that repository.
+- A folder that already holds files can be used too: as the PM's product when it is an
+  unpacked copy without Git (checked by time stamp, citations marked unversioned), or as
+  a shared folder whose other files the plugin never opens or changes.
+- Every case offers a new empty folder, which the plugin can create, as a way out that
+  works. `Blocked` remains for Git missing, a folder that cannot be written to, no web
+  access, and, for now, one folder of a larger repository.
+- Setup guide problems tables cover these cases.
+
 ## 0.11.1 (2026-11-17)
 
 - Plugin descriptions in all three manifests mention capturing evidence and the weekly

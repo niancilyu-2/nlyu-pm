@@ -20,7 +20,9 @@ Report only one of three words, then the next action:
 2. **Workspace folder and mode.** Apply the folder checks in `workspace.md` to decide
    between wrapper mode (an empty folder; an example case, or BYOP by URL, path, or zip)
    and in-repo mode (the PM started inside their own repository, which is BYOP). In in-repo mode confirm
-   with the PM that this repository is the product. Create `<skills-dir>`
+   with the PM that this repository is the product. A folder that is neither (it holds
+   other files, or sits inside a larger repository) is not refused: run the workspace
+   check there, say what you found, and go on only after the PM has answered. Create `<skills-dir>`
    (shared rules section 11),
    `outputs/prototype/`, `.pm/`, and in wrapper mode `sources/`. Write `.pm/session.yaml`
    with `readiness.status: not-run`, `workspace_mode`, and `outputs_dir` if it does not

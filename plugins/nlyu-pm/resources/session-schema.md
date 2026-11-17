@@ -13,6 +13,8 @@ created_at: "2026-10-01T09:12:00Z"
 workspace: "/absolute/path/to/workspace"
 workspace_mode: wrapper          # wrapper | in-repo              (see workspace.md)
 outputs_dir: outputs             # outputs | pm-outputs           (pm-outputs only when outputs/ was already in use)
+parent_repo: null                # path of a larger repository this wrapper folder sits inside, once the PM agreed (workspace.md)
+workspace_check: null            # null | inside-parent-repo | shared-folder | unversioned-product   (set once the PM answered the workspace check)
 
 readiness:
   status: ready                  # ready | ready-with-fallback | blocked | not-run
@@ -100,7 +102,7 @@ stale: []                        # e.g. [prototype, prd]
 decisions:                       # append-only
   - id: D-001
     stage: discovery
-    checkin: research-check      # case-check | research-check | evidence-review | priority-check | flow-check | prototype-check | scope-check | handoff-check | intake | weekly-check
+    checkin: research-check      # case-check | research-check | evidence-review | priority-check | flow-check | prototype-check | scope-check | handoff-check | intake | weekly-check | workspace
     claude_recommended: "Coverage is thin on mobile backup; continue with framing X"
     pm_decided: "Continue; accept the gap"
     reason: "Gap is documented; enough to prototype"
@@ -125,7 +127,7 @@ sparse-clone` as itself. Rewrite the file as `schema: 2` on the next write.
 
 | Key | Written by |
 |---|---|
-| `schema`, `plugin_version`, `created_at`, `workspace`, `workspace_mode`, `outputs_dir`, `readiness`, `case`, `sources` | `/nlyu-pm:scout` |
+| `schema`, `plugin_version`, `created_at`, `workspace`, `workspace_mode`, `outputs_dir`, `parent_repo`, `workspace_check`, `readiness`, `case`, `sources` | `/nlyu-pm:scout` |
 | `sources[].baseline`, `clean_at_start`, `clean_at_end`, `moved_to` | any stage skill, at its start and end |
 | `stage`, `stale` | any stage skill that changes the current stage |
 | `stages.discovery` | `/nlyu-pm:scout` |
