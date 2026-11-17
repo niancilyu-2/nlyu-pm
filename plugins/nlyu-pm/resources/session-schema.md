@@ -14,7 +14,7 @@ workspace: "/absolute/path/to/workspace"
 workspace_mode: wrapper          # wrapper | in-repo              (see workspace.md)
 outputs_dir: outputs             # outputs | pm-outputs           (pm-outputs only when outputs/ was already in use)
 parent_repo: null                # path of a larger repository this wrapper folder sits inside, once the PM agreed (workspace.md)
-workspace_check: null            # null | inside-parent-repo | shared-folder | unversioned-product   (set once the PM answered the workspace check)
+workspace_check: null            # null | inside-parent-repo | shared-folder | unversioned-product | repo-subfolder   (set once the PM answered the workspace check)
 
 readiness:
   status: ready                  # ready | ready-with-fallback | blocked | not-run
@@ -46,6 +46,8 @@ sources:
     pinned_sha: 9994eb3bedc77a63e652cb4195d843433696d036   # null if the folder is not a git repository
     verified_sha: 9994eb3bedc77a63e652cb4195d843433696d036   # from git rev-parse HEAD after clone
     method: sparse-clone         # sparse-clone | shallow-clone | in-place | offline-copy | archive
+    repo_top: null               # one folder of a larger repository only: that repository's top folder (workspace.md)
+    repo_prefix: null            # the same case: this folder's path inside it, for example apps/web/
     access: public               # public | private   (private: cloned with the PM's own existing credentials)
     archive_ref: null            # archive only: branch or tag and download date the PM gave
     dirty_at_start: false        # in-place only: the working tree had uncommitted changes

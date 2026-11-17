@@ -19,7 +19,10 @@ signals fall below target, and says so.
 
 Decided by workspace mode (see `workspace.md`):
 
-- **In-repo mode.** The repository is the folder Claude is running in. `root: "."`.
+- **In-repo mode.** The repository is the folder Claude is running in. `root: "."`. When
+  the session records `workspace_check: repo-subfolder`, the product is that one folder
+  of a larger repository: follow "One folder of a larger repository" in `workspace.md`
+  for what to read, how to cite shared code, and how to narrow the public sources.
 - **Wrapper mode.** If readiness recorded `case.origin`, use it without asking. Otherwise
   ask one short question (header `Code`, "Where is the code?") with exactly three
   options: a repository URL (GitHub, GitLab, or any other host; public, or private if

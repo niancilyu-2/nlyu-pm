@@ -55,7 +55,7 @@ the stage reads the case the same way whichever it is. Never put more than four
 candidates in one question (shared rules section 3), and no table in the reply.
 
 - **In-repo mode** (`workspace_mode: in-repo`): the product is the repository Claude is
-  running in. Say "BYOP: this repository (`<folder name>`)" in one line, set
+  running in (or the one folder of it the PM chose at the workspace check; say which). Say "BYOP: this repository (`<folder name>`)" in one line, set
   `case.source: custom`, and go to Step 2b.
 - `.pm/case/case.yaml` already exists: offer to keep it, change its lane, or build fresh
   (`custom-case.md`, "Re-running on the same product"). If it was placed there by hand
@@ -284,7 +284,9 @@ The reviewer does not see this conversation, so on every host the prompt must co
   `index.md`, and the case file (`<case.dir>/case.yaml`) for its `exclusions`.
 - Absolute path of each source root and its pinned SHA, with a note when the working
   tree has uncommitted changes. In in-repo mode tell the reviewer it must not read
-  `outputs/` or `.pm/` as product code and must not open anything outside the given paths.
+  `outputs/` or `.pm/` as product code and must not open anything outside the given paths. When the product is one folder of a
+  larger repository, also give `repo_top` and the rule from `workspace.md`: outside the
+  folder only where a file inside it leads.
 - Case id, lane id, and whether the case is an example case or BYOP.
 - The full text of `<plugin-root>/resources/discovery-review-checklist.md`.
 - The instruction to return findings in the checklist's output format and to write no

@@ -12,7 +12,7 @@
 ║   6 skills · 2 adversarial reviewer agents · 5 example cases or BYOR              ║
 ║   Claude desktop app (Code tab) · Claude Code CLI · OpenAI Codex                  ║
 ║                                                                                   ║
-║   v0.11.2 · November 17, 2026 · MIT · Claude plugin directory: pending            ║
+║   v0.11.3 · November 17, 2026 · MIT · Claude plugin directory: pending            ║
 ║                                                                                   ║
 ╚═══════════════════════════════════════════════════════════════════════════════════╝
 ```
@@ -182,7 +182,8 @@ New to this? [docs/SETUP.md](docs/SETUP.md) walks through the install step by st
 This is the normal path. Read access is all you need, and nothing is written into your
 repository.
 
-- **Inside a local copy.** Open the top folder of your clone and run `/nlyu-pm:scout`.
+- **Inside a local copy.** Open the top folder of your clone and run `/nlyu-pm:scout`. If your
+  product is one folder of a larger repository, open that folder instead; it asks first.
 - **From an empty folder.** Choose BYOP and give a repository URL, a folder on your
   computer, or a zip. Private repositories work if your computer already has access.
   Claude never asks for a password or token.
