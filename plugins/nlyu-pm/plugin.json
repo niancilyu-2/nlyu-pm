@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "nlyu-pm",
-  "version": "0.11.0",
-  "description": "Product discovery to PRD for product managers: research public evidence on your own repository or an example open-source product, choose an opportunity, build a clickable prototype, with independent read-only reviews of both the evidence and the PRD.",
+  "version": "0.11.1",
+  "description": "Product discovery to PRD for product managers: research public evidence on your own repository or an example open-source product, choose an opportunity, build a clickable prototype, and write a PRD, with independent read-only reviews of both the evidence and the PRD. Between research passes, file new evidence in two minutes and get a weekly digest of what changed.",
   "author": {
     "name": "niancilyu-2",
     "url": "https://github.com/niancilyu-2"
@@ -25,9 +25,9 @@
   "extensions": {
     "com.openai": {
       "interface": {
-        "displayName": "Product Discovery to PRD",
-        "shortDescription": "Public evidence to a reviewed PRD, for product managers",
-        "longDescription": "Product discovery to PRD for product managers: research public evidence on your own repository or an example open-source product, choose an opportunity, build a clickable prototype, with independent read-only reviews of both the evidence and the PRD.",
+        "displayName": "PM Toolkit",
+        "shortDescription": "Public evidence to a reviewed PRD, kept current each week",
+        "longDescription": "Product discovery to PRD for product managers: research public evidence on your own repository or an example open-source product, choose an opportunity, build a clickable prototype, and write a PRD, with independent read-only reviews of both the evidence and the PRD. Between research passes, file new evidence in two minutes and get a weekly digest of what changed.",
         "developerName": "niancilyu-2",
         "category": "Productivity",
         "capabilities": [
@@ -37,8 +37,8 @@
         "websiteURL": "https://github.com/niancilyu-2/nlyu-pm",
         "defaultPrompt": [
           "$scout",
-          "$prototype",
-          "$prd"
+          "$log",
+          "$weekly"
         ],
         "composerIcon": "./.claude-plugin/icon.png",
         "logo": "./.claude-plugin/icon.png"

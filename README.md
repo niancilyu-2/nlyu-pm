@@ -12,7 +12,7 @@
 ║   6 skills · 2 adversarial reviewer agents · 5 example cases or BYOR              ║
 ║   Claude desktop app (Code tab) · Claude Code CLI · OpenAI Codex                  ║
 ║                                                                                   ║
-║   v0.11.0 · November 16, 2026 · MIT · Claude plugin directory: pending            ║
+║   v0.11.1 · November 17, 2026 · MIT · Claude plugin directory: pending            ║
 ║                                                                                   ║
 ╚═══════════════════════════════════════════════════════════════════════════════════╝
 ```
@@ -252,6 +252,8 @@ nlyu-pm/
 │   ├── cases/                           the five example cases
 │   └── resources/                       shared rules, guides, and templates
 ├── docs/
+├── scripts/check_release.py              version and per-skill consistency checks
+├── .github/workflows/check.yml           runs the checks on every pull request
 ├── CHANGELOG.md
 └── README.md
 ```
@@ -260,6 +262,7 @@ When you publish a changed build, bump `version` in both `plugin.json` files and
 `.claude-plugin/marketplace.json`, and update the banner above. To develop locally:
 
 ```bash
+python3 scripts/check_release.py
 claude plugin validate . --strict
 claude plugin validate ./plugins/nlyu-pm --strict
 claude --plugin-dir ./plugins/nlyu-pm

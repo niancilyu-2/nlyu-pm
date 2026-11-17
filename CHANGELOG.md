@@ -5,6 +5,18 @@ All notable changes to the `nlyu-pm` plugin are recorded here. Bump `version` in
 `.claude-plugin/marketplace.json` whenever a changed build is distributed, otherwise existing installs will not refresh.
 Update the version line in the README banner at the same time.
 
+## 0.11.1 (2026-11-17)
+
+- Plugin descriptions in all three manifests mention capturing evidence and the weekly
+  digest. The Codex manifest's starter prompts are now `$scout`, `$log`, and `$weekly`.
+- The plugin's display name in Claude Code and Codex is now "PM Toolkit" (was "Product
+  Discovery to PRD"). The install name `nlyu-pm` and the commands are unchanged.
+- New `scripts/check_release.py` and a GitHub Actions workflow that runs it with both
+  `claude plugin validate --strict` commands on every pull request. The script checks
+  that the version agrees in the three manifests, the README banner, and this file, and
+  that every skill has its Codex policy file, its plugin-root paragraph, a row in the
+  shared rules host table, and a docs page.
+
 ## 0.11.0 (2026-11-16)
 
 - New skill `/nlyu-pm:log`: file one piece of evidence in about two minutes (a call note,
